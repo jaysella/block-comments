@@ -27,7 +27,7 @@ export default function CustomHighlight({
   useEffect(() => {
     async function loadLang() {
       (typeof global !== "undefined" ? global : window).Prism = Prism;
-      await import("prismjs/components/prism-python");
+      await import("prismjs/components/prism-python" as any);
     }
 
     loadLang();

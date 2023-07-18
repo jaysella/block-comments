@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { Highlight, Prism, themes } from "prism-react-renderer";
 import { ReactNode, useEffect } from "react";
 import HighlightExplainer from "./HighlightExplainer";
+import { useRouter } from "next/navigation";
 
 export type Explanation = {
   line: number;
@@ -22,12 +23,15 @@ export default function CustomHighlight({
   language: string;
   explanations: Explanation[];
 }) {
+  const router = useRouter();
   const code = children;
 
   useEffect(() => {
     async function loadLang() {
       (typeof global !== "undefined" ? global : window).Prism = Prism;
-      await import("prismjs/components/prism-python" as any);
+      await import("prismjs/components/prism-python" as any).then(() => {
+        router.refresh();
+      });
     }
 
     loadLang();

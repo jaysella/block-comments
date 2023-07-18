@@ -32,7 +32,8 @@ const explanations = [
     content: (
       <>
         This begins defining the <CodeSegment>GameType</CodeSegment> class.
-        We'll use this below to build examples of various types of video games.
+        We&rsquo;ll use this below to build examples of various types of video
+        games.
       </>
     ),
   },

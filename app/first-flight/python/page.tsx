@@ -50,7 +50,7 @@ const explanations = [
 
 export default function Page() {
   return (
-    <div className="m-16 rounded-2xl">
+    <div className="rounded-2xl">
       <CustomHighlight language="python" explanations={explanations}>
         {pythonSnippet}
       </CustomHighlight>

@@ -204,7 +204,7 @@ const outputExplanations: Explanation[] = [
         <br />
         This is correct since the definition of{" "}
         <CodeSegment>GAME_CYBER</CodeSegment> on line 10 defines it as an{" "}
-        <b>action</b> game.
+        <b>rpg</b>.
       </>
     ),
   },

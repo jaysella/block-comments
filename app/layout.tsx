@@ -1,4 +1,5 @@
 import { Toaster } from "@/app/_components/ui/toaster";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -19,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn(inter.className, "dark:bg-slate-950")}>
         {children}
         <Toaster />
       </body>

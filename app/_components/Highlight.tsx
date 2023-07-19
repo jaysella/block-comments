@@ -10,7 +10,7 @@ import {
   themes,
 } from "prism-react-renderer";
 import { ReactNode, useEffect } from "react";
-import HighlightExplainer from "./HighlightExplanation";
+import HighlightExplanation from "./HighlightExplanation";
 import { useRouter } from "next/navigation";
 
 export type Explanation = {
@@ -95,7 +95,7 @@ export default function Highlight({
                       </PopoverTrigger>
 
                       <PopoverContent align="start" arrowPadding={25}>
-                        <HighlightExplainer
+                        <HighlightExplanation
                           title={
                             title
                               ? `${title} > Line ${lineNum}`
@@ -104,7 +104,7 @@ export default function Highlight({
                         >
                           {explanations.filter((e) => e.line === lineNum)[0]
                             ?.content ?? null}
-                        </HighlightExplainer>
+                        </HighlightExplanation>
 
                         {/* <PopoverArrow className="visible fill-slate-200" /> */}
                       </PopoverContent>

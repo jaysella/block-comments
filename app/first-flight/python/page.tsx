@@ -2,7 +2,7 @@
 "use client";
 
 import Highlight, { Explanation } from "../../_components/Highlight";
-import { CodeSegment } from "../../_components/HighlightExplainer";
+import { CodeSegment } from "../../_components/HighlightExplanation";
 
 const pythonSnippet = `class GameType:
   """

@@ -10,7 +10,7 @@ import {
   themes,
 } from "prism-react-renderer";
 import { ReactNode, useEffect } from "react";
-import HighlightExplainer from "./HighlightExplainer";
+import HighlightExplainer from "./HighlightExplanation";
 import { useRouter } from "next/navigation";
 
 export type Explanation = {
@@ -29,8 +29,6 @@ export default function Highlight({
   explanations?: Explanation[];
   children: string;
 }) {
-  console.log(title);
-
   const router = useRouter();
   const code = children;
 
@@ -51,14 +49,19 @@ export default function Highlight({
   return (
     <HighlightPrimitive theme={themes.github} code={code} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <div style={style} className={cn(className, "py-6 rounded-xl")}>
+        <div style={style} className={cn(className, "py-4 md:py-6 rounded-xl")}>
           {title ? (
-            <h2 className="w-full px-8 pb-2 font-bold uppercase border-b border-b-slate-200">
+            <h2 className="w-full px-4 pb-2 font-bold uppercase border-b md:px-8 border-b-slate-200">
               {title}
             </h2>
           ) : null}
 
-          <pre className={cn(title ? "mt-4" : null)}>
+          <pre
+            className={cn(
+              "overflow-auto text-sm md:text-base",
+              title ? "mt-4" : ""
+            )}
+          >
             {tokens.map((line, i) => {
               const lineNum = i + 1;
 
@@ -66,9 +69,9 @@ export default function Highlight({
                 <div
                   key={i}
                   {...getLineProps({ line })}
-                  className="flex flex-row px-8 hover:bg-slate-200"
+                  className="flex flex-row px-4 md:px-8 hover:bg-slate-200"
                 >
-                  <div className="self-end w-10 select-none text-slate-400">
+                  <div className="self-end flex-shrink-0 w-10 select-none text-slate-400">
                     {lineNum}
                   </div>
 

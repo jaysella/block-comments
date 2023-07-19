@@ -11,7 +11,7 @@ import {
 } from "@/app/_components/ui/tooltip";
 import { useToast } from "@/app/_components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import { AlignLeftIcon, CopyIcon, WrapTextIcon } from "lucide-react";
+import { AlignLeftIcon, CopyIcon, PlayIcon, WrapTextIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import {
   Highlight as HighlightPrimitive,
@@ -29,11 +29,13 @@ export type Explanation = {
 export default function Highlight({
   title,
   language,
+  sandboxLink,
   explanations = [],
   children,
 }: {
   title?: string;
   language: string;
+  sandboxLink?: URL;
   explanations?: Explanation[];
   children: string;
 }) {
@@ -108,6 +110,20 @@ export default function Highlight({
                     <p>Copy code</p>
                   </TooltipContent>
                 </Tooltip>
+
+                {sandboxLink ? (
+                  <Tooltip>
+                    <TooltipTrigger
+                      className="p-2 rounded-lg hover:bg-slate-200"
+                      onClick={() => window.open(sandboxLink, "_blank")}
+                    >
+                      <PlayIcon size={18} />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Open interactive CodeSandbox</p>
+                    </TooltipContent>
+                  </Tooltip>
+                ) : null}
               </div>
             </div>
 

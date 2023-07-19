@@ -9,6 +9,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
+import { useToast } from "@/app/_components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { AlignLeftIcon, CopyIcon, WrapTextIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -36,8 +37,9 @@ export default function Highlight({
   explanations?: Explanation[];
   children: string;
 }) {
-  const router = useRouter();
   const code = children;
+  const router = useRouter();
+  const { toast } = useToast();
 
   const [wrapText, setWrapText] = useState<boolean>(false);
 
@@ -70,7 +72,13 @@ export default function Highlight({
                 <Tooltip>
                   <TooltipTrigger
                     className="p-2 rounded-lg hover:bg-slate-200"
-                    onClick={() => setWrapText(!wrapText)}
+                    onClick={() => {
+                      setWrapText(!wrapText);
+                      toast({
+                        title: `Text ${wrapText ? "unwrapped" : "wrapped"}! ✅`,
+                        description: `The ${title} section's formatting has been updated.`,
+                      });
+                    }}
                   >
                     {wrapText ? (
                       <AlignLeftIcon size={18} />
@@ -79,13 +87,20 @@ export default function Highlight({
                     )}
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>{wrapText ? "Don't wrap text" : "Wrap text"}</p>
+                    <p>{wrapText ? "Unwrap text" : "Wrap text"}</p>
                   </TooltipContent>
                 </Tooltip>
+
                 <Tooltip>
                   <TooltipTrigger
                     className="p-2 rounded-lg hover:bg-slate-200"
-                    onClick={() => navigator.clipboard.writeText(code)}
+                    onClick={() => {
+                      navigator.clipboard.writeText(code);
+                      toast({
+                        title: "Copied! ✅",
+                        description: `The ${title} has been copied to your clipboard.`,
+                      });
+                    }}
                   >
                     <CopyIcon size={18} />
                   </TooltipTrigger>
@@ -148,8 +163,6 @@ export default function Highlight({
                             {explanations.filter((e) => e.line === lineNum)[0]
                               ?.content ?? null}
                           </HighlightExplanation>
-
-                          {/* <PopoverArrow className="visible fill-slate-200" /> */}
                         </PopoverContent>
                       </Popover>
                     </div>

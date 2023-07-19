@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import {
   Highlight as HighlightPrimitive,
   Prism,
+  PrismTheme,
   themes,
 } from "prism-react-renderer";
 import { ReactNode, useEffect, useState } from "react";
@@ -42,6 +43,7 @@ export default function Highlight({
   const code = children;
   const router = useRouter();
   const { toast } = useToast();
+  const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
   const [wrapText, setWrapText] = useState<boolean>(false);
 
@@ -61,19 +63,23 @@ export default function Highlight({
 
   return (
     <TooltipProvider>
-      <HighlightPrimitive theme={themes.github} code={code} language={language}>
+      <HighlightPrimitive
+        theme={darkMode ? themes.nightOwl : themes.github}
+        code={code}
+        language={language}
+      >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <div
             style={style}
             className={cn(className, "py-3 md:pb-6 rounded-xl")}
           >
-            <div className="flex items-center justify-between w-full px-4 pb-2 border-b md:px-8 border-b-slate-200">
+            <div className="flex items-center justify-between w-full px-4 pb-2 border-b md:px-8 border-b-slate-200 dark:border-b-slate-800">
               {title ? <h2 className="font-bold uppercase">{title}</h2> : null}
 
               <div className="flex items-center gap-1 -mr-2">
                 <Tooltip>
                   <TooltipTrigger
-                    className="p-2 rounded-lg hover:bg-slate-200"
+                    className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
                     onClick={() => {
                       setWrapText(!wrapText);
                       toast({
@@ -95,7 +101,7 @@ export default function Highlight({
 
                 <Tooltip>
                   <TooltipTrigger
-                    className="p-2 rounded-lg hover:bg-slate-200"
+                    className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
                     onClick={() => {
                       navigator.clipboard.writeText(code);
                       toast({
@@ -114,7 +120,7 @@ export default function Highlight({
                 {sandboxLink ? (
                   <Tooltip>
                     <TooltipTrigger
-                      className="p-2 rounded-lg hover:bg-slate-200"
+                      className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
                       onClick={() => window.open(sandboxLink, "_blank")}
                     >
                       <PlayIcon size={18} />
@@ -143,9 +149,9 @@ export default function Highlight({
                   <div
                     key={i}
                     {...getLineProps({ line })}
-                    className="flex flex-row px-4 md:px-8 hover:bg-slate-200"
+                    className="flex flex-row px-4 md:px-8 hover:bg-slate-200 dark:hover:bg-slate-800"
                   >
-                    <div className="self-end flex-shrink-0 w-10 select-none text-slate-400">
+                    <div className="self-end flex-shrink-0 w-10 select-none text-slate-400 dark:text-slate-500">
                       {lineNum}
                     </div>
 

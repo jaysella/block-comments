@@ -12,7 +12,7 @@ export default function InfoBlock({
   return (
     <div
       className={cn(
-        "flex flex-col gap-4 py-4 px-6 rounded-xl md:flex-row bg-blue-100",
+        "flex flex-col gap-4 py-4 px-6 rounded-xl md:flex-row bg-blue-100 dark:bg-slate-800 dark:text-white",
         className
       )}
     >

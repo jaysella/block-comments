@@ -1,3 +1,4 @@
+import HighlightExplanation from "@/app/_components/HighlightExplanation";
 import {
   Popover,
   PopoverContent,
@@ -9,8 +10,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
-import { useToast } from "@/app/_components/ui/use-toast";
 import { useThemeDetector } from "@/app/_components/ui/use-theme-detector";
+import { useToast } from "@/app/_components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { AlignLeftIcon, CopyIcon, PlayIcon, WrapTextIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -20,7 +21,6 @@ import {
   themes,
 } from "prism-react-renderer";
 import { ReactNode, useEffect, useState } from "react";
-import HighlightExplanation from "./HighlightExplanation";
 
 export type Explanation = {
   line: number;
@@ -73,10 +73,10 @@ export default function Highlight({
             style={style}
             className={cn(
               className,
-              "py-3 md:pb-6 rounded-xl border-2 border-slate-200 dark:border-slate-800"
+              "pb-3 md:pb-6 rounded-xl border-2 border-slate-200 dark:border-slate-800"
             )}
           >
-            <div className="flex items-center justify-between w-full px-4 pb-2 border-b-2 md:px-8 border-b-slate-200 dark:border-b-slate-800">
+            <div className="flex items-center justify-between w-full py-2 pl-4 pr-2 border-b-2 md:pl-8 md:pr-6 border-b-slate-200 dark:border-b-slate-800">
               {title ? <h2 className="font-bold uppercase">{title}</h2> : null}
 
               <div className="flex items-center gap-1 -mr-2">

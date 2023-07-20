@@ -3,10 +3,10 @@ import InfoBlock from "@/app/_components/InfoBlock";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <main className="container flex flex-col gap-4 my-4 md:my-8">
+    <main className="container flex flex-col gap-4 my-4">
       <InfoBlock>
-        Click on any line in the snippet below for additional information. To
-        close it, press{" "}
+        Click on any line in the snippets below for additional info. To close
+        it, press{" "}
         <kbd className="px-1.5 py-0.5 rounded-lg bg-blue-50 dark:bg-blue-600">
           ESC
         </kbd>{" "}

@@ -102,7 +102,7 @@ export default function Highlight({
                   </TooltipContent>
                 </Tooltip>
 
-                {navigator.clipboard ? (
+                {typeof navigator !== "undefined" && navigator.clipboard ? (
                   <Tooltip>
                     <TooltipTrigger
                       className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"

@@ -21,6 +21,7 @@ import {
   themes,
 } from "prism-react-renderer";
 import { ReactNode, useEffect, useState } from "react";
+import { ToastAction } from "./ui/toast";
 
 export type Explanation = {
   line: number;
@@ -86,7 +87,7 @@ export default function Highlight({
                     onClick={() => {
                       setWrapText(!wrapText);
                       toast({
-                        title: `Text ${wrapText ? "unwrapped" : "wrapped"}! ✅`,
+                        title: `Text ${wrapText ? "unwrapped" : "wrapped"}!`,
                         description: `The ${title} section's formatting has been updated.`,
                       });
                     }}
@@ -102,33 +103,35 @@ export default function Highlight({
                   </TooltipContent>
                 </Tooltip>
 
-                {typeof navigator !== "undefined" && navigator.clipboard ? (
-                  <Tooltip>
-                    <TooltipTrigger
-                      className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
-                      onClick={() => {
-                        navigator.clipboard.writeText(code).then(
-                          () => {
-                            toast({
-                              title: "Copied! ✅",
-                              description: `The ${title} has been copied to your clipboard.`,
-                            });
-                          },
-                          () =>
-                            toast({
-                              title: "Unable to copy.",
-                              description: `Try opening up this demo in its own tab.`,
-                            })
-                        );
-                      }}
-                    >
-                      <CopyIcon size={18} />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Copy snippet</p>
-                    </TooltipContent>
-                  </Tooltip>
-                ) : null}
+                <Tooltip>
+                  <TooltipTrigger
+                    className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
+                    onClick={() => {
+                      navigator.clipboard.writeText(code).then(
+                        () => {
+                          toast({
+                            title: "Copied!",
+                            description: `The ${title} has been copied to your clipboard.`,
+                            icon: "success",
+                          });
+                        },
+                        () => {
+                          toast({
+                            title: "Unable to copy",
+                            description:
+                              "Try opening up this demo in its own tab.",
+                            icon: "error",
+                          });
+                        }
+                      );
+                    }}
+                  >
+                    <CopyIcon size={18} />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Copy snippet</p>
+                  </TooltipContent>
+                </Tooltip>
 
                 {sandboxLink ? (
                   <Tooltip>

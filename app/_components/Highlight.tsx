@@ -102,23 +102,33 @@ export default function Highlight({
                   </TooltipContent>
                 </Tooltip>
 
-                <Tooltip>
-                  <TooltipTrigger
-                    className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
-                    onClick={() => {
-                      navigator.clipboard.writeText(code);
-                      toast({
-                        title: "Copied! ✅",
-                        description: `The ${title} has been copied to your clipboard.`,
-                      });
-                    }}
-                  >
-                    <CopyIcon size={18} />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Copy code</p>
-                  </TooltipContent>
-                </Tooltip>
+                {navigator.clipboard ? (
+                  <Tooltip>
+                    <TooltipTrigger
+                      className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
+                      onClick={() => {
+                        navigator.clipboard.writeText(code).then(
+                          () => {
+                            toast({
+                              title: "Copied! ✅",
+                              description: `The ${title} has been copied to your clipboard.`,
+                            });
+                          },
+                          () =>
+                            toast({
+                              title: "Unable to copy.",
+                              description: `Try opening up this demo in its own tab.`,
+                            })
+                        );
+                      }}
+                    >
+                      <CopyIcon size={18} />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Copy snippet</p>
+                    </TooltipContent>
+                  </Tooltip>
+                ) : null}
 
                 {sandboxLink ? (
                   <Tooltip>

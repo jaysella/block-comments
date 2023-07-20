@@ -204,7 +204,7 @@ const outputExplanations: Explanation[] = [
         <br />
         This is correct since the definition of{" "}
         <CodeSegment>GAME_CYBER</CodeSegment> on line 10 defines it as an{" "}
-        <b>rpg</b>.
+        <b>action</b> game.
       </>
     ),
   },
@@ -236,7 +236,7 @@ const outputExplanations: Explanation[] = [
         <br />
         This is correct since the definition of{" "}
         <CodeSegment>GAME_ELDEN</CodeSegment> on line 12 defines it as an{" "}
-        <b>action</b> game.
+        <b>rpg</b>.
       </>
     ),
   },

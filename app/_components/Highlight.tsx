@@ -10,13 +10,13 @@ import {
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
 import { useToast } from "@/app/_components/ui/use-toast";
+import { useThemeDetector } from "@/app/_components/ui/use-theme-detector";
 import { cn } from "@/lib/utils";
 import { AlignLeftIcon, CopyIcon, PlayIcon, WrapTextIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import {
   Highlight as HighlightPrimitive,
   Prism,
-  PrismTheme,
   themes,
 } from "prism-react-renderer";
 import { ReactNode, useEffect, useState } from "react";
@@ -42,8 +42,8 @@ export default function Highlight({
 }) {
   const code = children;
   const router = useRouter();
+  const darkMode = useThemeDetector();
   const { toast } = useToast();
-  const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
   const [wrapText, setWrapText] = useState<boolean>(false);
 
@@ -71,9 +71,12 @@ export default function Highlight({
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <div
             style={style}
-            className={cn(className, "py-3 md:pb-6 rounded-xl")}
+            className={cn(
+              className,
+              "py-3 md:pb-6 rounded-xl border-2 border-slate-200 dark:border-slate-800"
+            )}
           >
-            <div className="flex items-center justify-between w-full px-4 pb-2 border-b md:px-8 border-b-slate-200 dark:border-b-slate-800">
+            <div className="flex items-center justify-between w-full px-4 pb-2 border-b-2 md:px-8 border-b-slate-200 dark:border-b-slate-800">
               {title ? <h2 className="font-bold uppercase">{title}</h2> : null}
 
               <div className="flex items-center gap-1 -mr-2">

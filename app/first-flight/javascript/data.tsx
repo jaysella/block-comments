@@ -80,16 +80,6 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 8,
-    content: (
-      <>
-        Similar to a <CodeSegment>;</CodeSegment> in Racket, a two (2) forward
-        slashes (<CodeSegment>{"//"}</CodeSegment>) denote a comment in
-        JavaScript.
-      </>
-    ),
-  },
-  {
     line: 9,
     content: (
       <>

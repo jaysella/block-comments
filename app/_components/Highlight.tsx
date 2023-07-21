@@ -53,8 +53,10 @@ export default function Highlight({
     async function loadLang() {
       (typeof global !== "undefined" ? global : window).Prism = Prism;
       await Promise.all([
-        import("prismjs/components/prism-python" as any),
-        import("prismjs/components/prism-scheme" as any),
+        language === "python" &&
+          import("prismjs/components/prism-python" as any),
+        language === "scheme" &&
+          import("prismjs/components/prism-scheme" as any),
       ]).then(() => {
         router.refresh();
       });

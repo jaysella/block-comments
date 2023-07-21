@@ -54,7 +54,7 @@ export default function Highlight({
       (typeof global !== "undefined" ? global : window).Prism = Prism;
       await Promise.all([
         import("prismjs/components/prism-python" as any),
-        import("prismjs/components/prism-bash" as any),
+        import("prismjs/components/prism-scheme" as any),
       ]).then(() => {
         router.refresh();
       });

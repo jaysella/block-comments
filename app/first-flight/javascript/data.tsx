@@ -173,13 +173,15 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     line: 15,
     content: (
       <>
-        <CodeSegment>function</CodeSegment> defines a function. The name of this
-        function is <CodeSegment>isAdventureGame</CodeSegment> and it consumes
-        one (1) argument named <CodeSegment>game</CodeSegment>.
+        This accesses the given <CodeSegment>game</CodeSegment>'s{" "}
+        <CodeSegment>type</CodeSegment> and determines if that type is exactly
+        equal to the value of <CodeSegment>GameType.ADVENTURE</CodeSegment>.{" "}
+        <CodeSegment>GameType.ADVENTURE</CodeSegment> looks up the value of{" "}
+        <CodeSegment>ADVENTURE</CodeSegment> in the{" "}
+        <CodeSegment>GameType</CodeSegment> enumeration (constant object).
         <br />
         <br />
-        The function body is wrapped in a single curly brace (
-        <CodeSegment>{"{"}</CodeSegment>/<CodeSegment>{"}"}</CodeSegment>)
+        The resulting boolean is returned to the caller.
       </>
     ),
   },
@@ -256,7 +258,7 @@ export const OUTPUT_EXPLANATIONS: Explanation[] = [
         <br />
         <br />
         This is correct since the definition of{" "}
-        <CodeSegment>GAME_CYBER</CodeSegment> on line 10 defines it as an{" "}
+        <CodeSegment>GAME_CYBER</CodeSegment> on line 9 defines it as an{" "}
         <b>action</b> game.
       </>
     ),
@@ -272,7 +274,7 @@ export const OUTPUT_EXPLANATIONS: Explanation[] = [
         <br />
         <br />
         This is correct since the definition of{" "}
-        <CodeSegment>GAME_ZELDA</CodeSegment> on line 11 does define it as an{" "}
+        <CodeSegment>GAME_ZELDA</CodeSegment> on line 10 does define it as an{" "}
         <b>adventure</b> game.
       </>
     ),
@@ -288,7 +290,7 @@ export const OUTPUT_EXPLANATIONS: Explanation[] = [
         <br />
         <br />
         This is correct since the definition of{" "}
-        <CodeSegment>GAME_ELDEN</CodeSegment> on line 12 defines it as an{" "}
+        <CodeSegment>GAME_ELDEN</CodeSegment> on line 11 defines it as an{" "}
         <b>rpg</b>.
       </>
     ),

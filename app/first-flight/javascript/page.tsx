@@ -3,7 +3,7 @@ import { CODE, CODE_EXPLANATIONS, OUTPUT, OUTPUT_EXPLANATIONS } from "./data";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "First Flight: Python",
+  title: "First Flight: JavaScript",
 };
 
 export default function Page() {
@@ -11,7 +11,7 @@ export default function Page() {
     <>
       <Highlight
         title="Code"
-        language="python"
+        language="javascript"
         explanations={CODE_EXPLANATIONS}
       >
         {CODE}
@@ -19,7 +19,7 @@ export default function Page() {
 
       <Highlight
         title="Output"
-        language="python"
+        language="javascript"
         explanations={OUTPUT_EXPLANATIONS}
       >
         {OUTPUT}

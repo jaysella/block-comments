@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        mono: ["var(--font-space-mono)"],
+      },
       keyframes: {
         "accordion-down": {
           from: { height: 0 },

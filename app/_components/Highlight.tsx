@@ -1,3 +1,5 @@
+"use client";
+
 import HighlightExplanation from "@/app/_components/HighlightExplanation";
 import {
   Popover,
@@ -21,7 +23,6 @@ import {
   themes,
 } from "prism-react-renderer";
 import { ReactNode, useEffect, useState } from "react";
-import { ToastAction } from "./ui/toast";
 
 export type Explanation = {
   line: number;

@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <InfoBlock>
         Click on any line in the snippets below for additional info. To close
         it, press{" "}
-        <kbd className="px-1.5 py-0.5 rounded-lg bg-blue-50 dark:bg-blue-600">
+        <kbd className="px-1.5 py-0.5 rounded-lg bg-slate-200 font-bold dark:bg-blue-600">
           ESC
         </kbd>{" "}
         on your keyboard or click anywhere outside the popover.

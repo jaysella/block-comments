@@ -80,7 +80,7 @@ export default function Highlight({
               "pb-3 md:pb-6 rounded-xl border-2 border-slate-200 dark:border-slate-800"
             )}
           >
-            <div className="flex items-center justify-between w-full py-2 pl-4 pr-2 border-b-2 md:pl-8 md:pr-6 border-b-slate-200 dark:border-b-slate-800">
+            <div className="flex items-center justify-between w-full py-2 pl-4 pr-4 border-b-2 md:pl-8 md:pr-6 border-b-slate-200 dark:border-b-slate-800">
               {title ? <h2 className="font-bold uppercase">{title}</h2> : null}
 
               <div className="flex items-center gap-1 -mr-2">
@@ -168,7 +168,7 @@ export default function Highlight({
                   <div
                     key={i}
                     {...getLineProps({ line })}
-                    className="flex flex-row px-4 md:px-8 hover:bg-slate-200 dark:hover:bg-slate-800"
+                    className="flex flex-row w-full px-4 md:px-8 hover:bg-slate-200 dark:hover:bg-slate-800"
                   >
                     <div className="self-end flex-shrink-0 w-10 select-none text-slate-400 dark:text-slate-500">
                       {lineNum}

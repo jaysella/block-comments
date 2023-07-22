@@ -35,7 +35,25 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
+    line: 2,
+    content: (
+      <>
+        Lines 2-4 represent a "docstring". Line 3 contains the purpose statement
+        for our <CodeSegment>GameType</CodeSegment> class.
+      </>
+    ),
+  },
+  {
     line: 3,
+    content: (
+      <>
+        Lines 2-4 represent a "docstring". Line 3 contains the purpose statement
+        for our <CodeSegment>GameType</CodeSegment> class.
+      </>
+    ),
+  },
+  {
+    line: 4,
     content: (
       <>
         Lines 2-4 represent a "docstring". Line 3 contains the purpose statement
@@ -162,7 +180,27 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
+    line: 15,
+    content: (
+      <>
+        Lines 15-17 represent a "docstring". Line 16 contains the purpose
+        statement for our <CodeSegment>is_adventure_game(Game)</CodeSegment>{" "}
+        function.
+      </>
+    ),
+  },
+  {
     line: 16,
+    content: (
+      <>
+        Lines 15-17 represent a "docstring". Line 16 contains the purpose
+        statement for our <CodeSegment>is_adventure_game(Game)</CodeSegment>{" "}
+        function.
+      </>
+    ),
+  },
+  {
+    line: 17,
     content: (
       <>
         Lines 15-17 represent a "docstring". Line 16 contains the purpose

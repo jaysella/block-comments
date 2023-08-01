@@ -202,7 +202,7 @@ export default function Highlight({
                             }
                           >
                             {explanations.filter((e) =>
-                              e.lines.includes(lineNum)
+                              e.lines?.includes(lineNum)
                             )[0]?.content ?? null}
                           </HighlightExplanation>
                         </PopoverContent>

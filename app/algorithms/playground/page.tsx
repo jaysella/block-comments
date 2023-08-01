@@ -7,12 +7,11 @@ import {
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
-import { Metadata } from "next";
+// import { Metadata } from "next";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useThemeDetector } from "@/app/_components/ui/use-theme-detector";
-import { Badge } from "@/app/_components/ui/badge";
 
 // export const metadata: Metadata = {
 //   title: "Algorithms: K-Mers Playground",

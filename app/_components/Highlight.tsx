@@ -25,7 +25,8 @@ import {
 import { ReactNode, useEffect, useState } from "react";
 
 export type Explanation = {
-  line: number;
+  line?: number;
+  lines?: number[];
   content: ReactNode;
 };
 
@@ -201,8 +202,9 @@ export default function Highlight({
                                 : `Line ${lineNum}`
                             }
                           >
-                            {explanations.filter((e) => e.line === lineNum)[0]
-                              ?.content ?? null}
+                            {explanations.filter((e) =>
+                              e.lines.includes(lineNum)
+                            )[0]?.content ?? null}
                           </HighlightExplanation>
                         </PopoverContent>
                       </Popover>

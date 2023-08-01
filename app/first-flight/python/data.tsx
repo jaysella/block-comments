@@ -27,7 +27,7 @@ print(is_adventure_game(GAME_ELDEN)) # False`;
 
 export const CODE_EXPLANATIONS: Explanation[] = [
   {
-    line: 1,
+    lines: [1],
     content: (
       <>
         This begins defining the <CodeSegment>GameType</CodeSegment> class.
@@ -35,7 +35,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 2,
+    lines: [2, 3, 4],
     content: (
       <>
         Lines 2-4 represent a "docstring". Line 3 contains the purpose statement
@@ -44,25 +44,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 3,
-    content: (
-      <>
-        Lines 2-4 represent a "docstring". Line 3 contains the purpose statement
-        for our <CodeSegment>GameType</CodeSegment> class.
-      </>
-    ),
-  },
-  {
-    line: 4,
-    content: (
-      <>
-        Lines 2-4 represent a "docstring". Line 3 contains the purpose statement
-        for our <CodeSegment>GameType</CodeSegment> class.
-      </>
-    ),
-  },
-  {
-    line: 5,
+    lines: [5],
     content: (
       <>
         <CodeSegment>ACTION</CodeSegment> is created as a constant with the
@@ -71,7 +53,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 6,
+    lines: [6],
     content: (
       <>
         <CodeSegment>ADVENTURE</CodeSegment> is created as a constant with the
@@ -80,7 +62,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 7,
+    lines: [7],
     content: (
       <>
         <CodeSegment>RPG</CodeSegment> is created as a constant with the string
@@ -89,7 +71,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 9,
+    lines: [9],
     content: (
       <>
         Similar to a <CodeSegment>;</CodeSegment> in Racket, a{" "}
@@ -98,7 +80,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 10,
+    lines: [10],
     content: (
       <>
         This creates a constant named <CodeSegment>GAME_CYBER</CodeSegment>. The
@@ -120,7 +102,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 11,
+    lines: [11],
     content: (
       <>
         This creates a constant named <CodeSegment>GAME_ZELDA</CodeSegment>. The
@@ -142,7 +124,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 12,
+    lines: [12],
     content: (
       <>
         This creates a constant named <CodeSegment>GAME_ELDEN</CodeSegment>. The
@@ -164,7 +146,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 14,
+    lines: [14],
     content: (
       <>
         <CodeSegment>def</CodeSegment>, short for "define", defines a function.
@@ -180,7 +162,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 15,
+    lines: [15, 16, 17],
     content: (
       <>
         Lines 15-17 represent a "docstring". Line 16 contains the purpose
@@ -190,27 +172,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 16,
-    content: (
-      <>
-        Lines 15-17 represent a "docstring". Line 16 contains the purpose
-        statement for our <CodeSegment>is_adventure_game(Game)</CodeSegment>{" "}
-        function.
-      </>
-    ),
-  },
-  {
-    line: 17,
-    content: (
-      <>
-        Lines 15-17 represent a "docstring". Line 16 contains the purpose
-        statement for our <CodeSegment>is_adventure_game(Game)</CodeSegment>{" "}
-        function.
-      </>
-    ),
-  },
-  {
-    line: 18,
+    lines: [18],
     content: (
       <>
         <CodeSegment>return</CodeSegment> returns the given value from the
@@ -232,7 +194,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 20,
+    lines: [20],
     content: (
       <>
         <CodeSegment>print()</CodeSegment> outputs the given argument to the
@@ -247,7 +209,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 21,
+    lines: [21],
     content: (
       <>
         <CodeSegment>print()</CodeSegment> outputs the given argument to the
@@ -262,7 +224,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 22,
+    lines: [22],
     content: (
       <>
         <CodeSegment>print()</CodeSegment> outputs the given argument to the
@@ -284,7 +246,7 @@ False`;
 
 export const OUTPUT_EXPLANATIONS: Explanation[] = [
   {
-    line: 1,
+    lines: [1],
     content: (
       <>
         This is the output from line 20 (
@@ -300,7 +262,7 @@ export const OUTPUT_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 2,
+    lines: [2],
     content: (
       <>
         This is the output from line 21 (
@@ -316,7 +278,7 @@ export const OUTPUT_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 3,
+    lines: [3],
     content: (
       <>
         This is the output from line 22 (

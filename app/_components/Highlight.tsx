@@ -73,12 +73,11 @@ export default function Highlight({
         code={code}
         language={language}
       >
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        {({ className, tokens, getLineProps, getTokenProps }) => (
           <div
-            style={style}
             className={cn(
               className,
-              "pb-3 md:pb-6 rounded-xl border-2 border-slate-200 dark:border-slate-800"
+              "pb-3 md:pb-6 rounded-xl bg-slate-50 text-slate-700 dark:text-slate-200 dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800"
             )}
           >
             <div className="flex items-center justify-between w-full py-2 pl-4 pr-4 border-b-2 md:pl-8 md:pr-6 border-b-slate-200 dark:border-b-slate-800">

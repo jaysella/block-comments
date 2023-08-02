@@ -26,13 +26,13 @@ import { Block, BlockControls, BlockHeader, BlockTitle } from "./ui/block";
 
 export default function GitVisualization() {
   const DEFAULT_BRANCH = "main";
-  const [step, setStep] = useState(0);
   const [branches, setBranches] = useState<{ [branch: string]: Set<string> }>(
     {}
   );
   const [branchCommits, setBranchCommits] = useState(
     commits.filter(({ branches }) => branches.includes(DEFAULT_BRANCH))
   );
+  const [step, setStep] = useState(branchCommits.length - 1);
   const [currentCommit, setCurrentCommit] = useState(
     commits[commits.length - 1]
   );
@@ -66,9 +66,9 @@ export default function GitVisualization() {
     setStep(commits.indexOf(commits.filter((c) => c === currentCommit)[0]));
   }, [currentCommit]);
 
-  // useEffect(() => {
-  //   setCurrentCommit(branchCommits[Math.min(branchCommits.length - 1, step)]);
-  // }, [branchCommits, step, currentBranch]);
+  useEffect(() => {
+    setCurrentCommit(branchCommits[Math.min(branchCommits.length - 1, step)]);
+  }, [branchCommits, step, currentBranch]);
 
   return (
     <>

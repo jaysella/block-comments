@@ -95,16 +95,16 @@ function Commit({ hash, ts, author, message }: CommitBase) {
             <code>{hash}</code>
           </CommitMetaTag>
           <CommitMetaTag>
+            <UserCircle2Icon size={14} />
+            {author}
+          </CommitMetaTag>
+          <CommitMetaTag>
             <CalendarIcon size={14} />
-            <time>{moment(ts).format("MMMM DD, YYYY")}</time>
+            <time>{moment(ts).format("MMMM D, YYYY")}</time>
           </CommitMetaTag>
           <CommitMetaTag>
             <ClockIcon size={14} />
-            <time>{moment(ts).format("hh:mm:ss a")}</time>
-          </CommitMetaTag>
-          <CommitMetaTag>
-            <UserCircle2Icon size={14} />
-            {author}
+            <time>{moment(ts).format("h:mm:ss a")}</time>
           </CommitMetaTag>
           {/* <button>
           <CommitMetaTag className="transition-colors bg-orange-100 border-orange-200 dark:bg-orange-800 hover:bg-orange-200 dark:hover:bg-orange-700 dark:border-orange-700">
@@ -133,7 +133,7 @@ function CommitMetaTag({
     <motion.div
       variants={variants}
       className={cn(
-        "flex items-center gap-2 px-2 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-800 w-max border border-slate-200 dark:border-slate-700",
+        "flex items-center gap-2 px-2 py-1 text-sm rounded-lg bg-slate-100 dark:bg-slate-800 w-max border border-slate-200 dark:border-slate-700",
         className
       )}
     >

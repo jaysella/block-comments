@@ -25,12 +25,16 @@ import { COMMITS as commits } from "../git/playground/data";
 import { Block, BlockControls, BlockHeader, BlockTitle } from "./ui/block";
 
 export default function GitPlayground() {
+  const DEFAULT_BRANCH = "main";
   const [step, setStep] = useState(0);
   const [branches, setBranches] = useState<{ [branch: string]: Set<string> }>(
     {}
   );
+  const [branchCommits, setBranchCommits] = useState(
+    commits.filter(({ branches }) => branches.includes(DEFAULT_BRANCH))
+  );
   const [currentCommit, setCurrentCommit] = useState(commits[0]);
-  const [currentBranch, setCurrentBranch] = useState("main");
+  const [currentBranch, setCurrentBranch] = useState(DEFAULT_BRANCH);
 
   useEffect(() => {
     commits.forEach((c) => {
@@ -53,8 +57,12 @@ export default function GitPlayground() {
   }, []);
 
   useEffect(() => {
-    setCurrentCommit(commits[step]);
-  }, [step]);
+    setBranchCommits(commits.filter((c) => c.branches.includes(currentBranch)));
+  }, [currentBranch]);
+
+  useEffect(() => {
+    setCurrentCommit(branchCommits[Math.min(branchCommits.length - 1, step)]);
+  }, [branchCommits, step, currentBranch]);
 
   return (
     <>
@@ -96,7 +104,7 @@ export default function GitPlayground() {
               <div className="mr-2 text-sm uppercase">
                 <code className="flex items-center gap-2 px-2 py-1 text-sm border rounded-lg border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800">
                   <GitCommitIcon size={18} aria-label="commit" />{" "}
-                  {commits[step].hash}
+                  {branchCommits[step].hash}
                 </code>
               </div>
             </div>
@@ -117,7 +125,7 @@ export default function GitPlayground() {
             <Tooltip>
               <TooltipTrigger
                 className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
-                disabled={step === commits.length - 1}
+                disabled={step === branchCommits.length - 1}
                 onClick={() => setStep(step + 1)}
               >
                 <ArrowRightIcon size={18} />
@@ -132,7 +140,7 @@ export default function GitPlayground() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <Files files={currentCommit.files} />
-        <CommitHistory commits={commits.filter((_, i) => i <= step)} />
+        <CommitHistory commits={branchCommits.filter((_, i) => i <= step)} />
       </div>
     </>
   );

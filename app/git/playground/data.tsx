@@ -18,7 +18,7 @@ export const COMMITS: Commit[] = [
   },
   {
     hash: "64e77ed",
-    branches: ["main", "resume"],
+    branches: ["main"],
     author: "Serif Purpleson",
     ts: moment("2023-08-02T19:31:00.000Z"),
     message: "Add name to README",

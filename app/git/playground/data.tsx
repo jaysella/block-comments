@@ -4,6 +4,7 @@ import moment from "moment";
 export const COMMITS: Commit[] = [
   {
     hash: "db6554a",
+    branches: ["main", "resume"],
     author: "Serif Purpleson",
     ts: moment("2023-08-02T18:26:00.000Z"),
     message: "Initial commit",
@@ -17,6 +18,7 @@ export const COMMITS: Commit[] = [
   },
   {
     hash: "64e77ed",
+    branches: ["main", "resume"],
     author: "Serif Purpleson",
     ts: moment("2023-08-02T19:31:00.000Z"),
     message: "Add name to README",
@@ -33,6 +35,7 @@ export const COMMITS: Commit[] = [
   },
   {
     hash: "f2fddd4",
+    branches: ["main", "resume"],
     author: "Serif Purpleson",
     ts: moment("2023-08-02T19:54:00.000Z"),
     message: "Fix typo",
@@ -49,6 +52,7 @@ export const COMMITS: Commit[] = [
   },
   {
     hash: "a4d3c32",
+    branches: ["main", "resume"],
     author: "Serif Purpleson",
     ts: moment("2023-08-02T21:13:00.000Z"),
     message: "Add resume with education",
@@ -61,7 +65,7 @@ export const COMMITS: Commit[] = [
 Serif Purpleson.`,
       },
       {
-        name: "resume.md",
+        name: "RESUME.md",
         language: "markdown",
         content: `+# Serif Purpleson's Resume
 +
@@ -74,6 +78,7 @@ Serif Purpleson.`,
   },
   {
     hash: "cd87d09",
+    branches: ["main"],
     author: "Serif Purpleson",
     ts: moment("2023-08-03T01:07:00.000Z"),
     message: "Merge pull request #1 from serif-123/resume",
@@ -86,7 +91,7 @@ Serif Purpleson.`,
 Serif Purpleson.`,
       },
       {
-        name: "resume.md",
+        name: "RESUME.md",
         language: "markdown",
         content: `+# Serif Purpleson's Resume
 +

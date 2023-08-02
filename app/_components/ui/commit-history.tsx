@@ -25,6 +25,7 @@ type CommitBase = {
 
 export type Commit = CommitBase & {
   files: File[];
+  branches: string[];
 };
 
 export function CommitHistory({ commits }: { commits: Commit[] }) {

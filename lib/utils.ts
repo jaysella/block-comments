@@ -71,17 +71,26 @@ export function processDiff(input: string): Record<string, LineHighlight> {
   return result;
 }
 
-export function removeDiffChars(input: string): string {
+export function unDiff(input: string, hideDeleted: boolean = false): string {
   const lines = input.split("\n");
-  const processedLines = lines.map((line) => {
-    const trimmedLine = line.trim();
-    if (
-      trimmedLine.length > 0 &&
-      (trimmedLine[0] === "+" || trimmedLine[0] === "-")
-    ) {
-      return trimmedLine.substring(1);
-    }
-    return line;
-  });
+  const processedLines = lines
+    .filter((line) => {
+      const trimmedLine = line.trim();
+      if (hideDeleted && trimmedLine[0] === "-") {
+        return false;
+      }
+      return true;
+    })
+    .map((line) => {
+      const trimmedLine = line.trim();
+      if (
+        trimmedLine.length > 0 &&
+        (trimmedLine[0] === "+" || trimmedLine[0] === "-")
+      ) {
+        return trimmedLine.substring(1);
+      }
+      return line;
+    });
+
   return processedLines.join("\n");
 }

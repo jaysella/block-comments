@@ -162,7 +162,7 @@ export function SnippetContent({
     }
 
     loadLang();
-  }, []);
+  }, [language, router]);
 
   return (
     <HighlightPrimitive

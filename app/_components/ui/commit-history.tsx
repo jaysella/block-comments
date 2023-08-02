@@ -1,3 +1,10 @@
+import { File } from "@/app/_components/Files";
+import {
+  Block,
+  BlockContent,
+  BlockHeader,
+  BlockTitle,
+} from "@/app/_components/ui/block";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -8,7 +15,6 @@ import {
 } from "lucide-react";
 import moment, { Moment } from "moment";
 import { ReactNode } from "react";
-import { Block, BlockContent, BlockHeader, BlockTitle } from "./block";
 
 type CommitBase = {
   hash: string;
@@ -18,7 +24,7 @@ type CommitBase = {
 };
 
 export type Commit = CommitBase & {
-  diff: string;
+  files: File[];
 };
 
 export function CommitHistory({ commits }: { commits: Commit[] }) {

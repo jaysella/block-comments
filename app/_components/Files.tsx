@@ -1,5 +1,6 @@
-"user client";
-import { useState } from "react";
+"use client";
+
+import { useEffect, useState } from "react";
 import { Explanation, LineHighlight, SnippetContent } from "./Snippet";
 import { Block, BlockControls, BlockHeader, BlockTitle } from "./ui/block";
 import {
@@ -10,9 +11,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { AlignLeftIcon, ChevronDownIcon, WrapTextIcon } from "lucide-react";
+import {
+  AlignLeftIcon,
+  BracesIcon,
+  ChevronDownIcon,
+  DiffIcon,
+  WrapTextIcon,
+} from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { useToast } from "./ui/use-toast";
+import { processDiff, unDiff } from "@/lib/utils";
 
 export type File = {
   name: string;
@@ -27,6 +35,11 @@ export default function Files({ files }: { files: File[] }) {
 
   const [currentFile, setCurrentFile] = useState(files[0]);
   const [wrapText, setWrapText] = useState<boolean>(false);
+  const [showDiff, setShowDiff] = useState(true);
+
+  useEffect(() => {
+    setCurrentFile(files[0]);
+  }, [files]);
 
   return (
     <Block>
@@ -41,6 +54,7 @@ export default function Files({ files }: { files: File[] }) {
                   <ChevronDownIcon className="w-4 h-4 text-secondary-foreground" />
                 </button>
               </DropdownMenuTrigger>
+
               <DropdownMenuContent className="w-[200px]" forceMount>
                 <DropdownMenuLabel>Files</DropdownMenuLabel>
                 <DropdownMenuSeparator />
@@ -59,6 +73,18 @@ export default function Files({ files }: { files: File[] }) {
         </div>
 
         <BlockControls>
+          <Tooltip>
+            <TooltipTrigger
+              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
+              onClick={() => setShowDiff(!showDiff)}
+            >
+              {showDiff ? <BracesIcon size={18} /> : <DiffIcon size={18} />}
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{showDiff ? "Hide diff" : "Show diff"}</p>
+            </TooltipContent>
+          </Tooltip>
+
           <Tooltip>
             <TooltipTrigger
               className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
@@ -82,14 +108,21 @@ export default function Files({ files }: { files: File[] }) {
           </Tooltip>
         </BlockControls>
       </BlockHeader>
+
       <SnippetContent
         title={currentFile.name}
         language={currentFile.language}
         explanations={currentFile.explanations}
-        highlights={currentFile.highlights}
+        highlights={
+          showDiff
+            ? currentFile.highlights
+              ? currentFile.highlights
+              : processDiff(currentFile.content)
+            : undefined
+        }
         wrapText={wrapText}
       >
-        {currentFile.content}
+        {unDiff(currentFile.content, !showDiff)}
       </SnippetContent>
     </Block>
   );

@@ -66,7 +66,7 @@ export default function KMersPlayground({ sequence }: { sequence: string }) {
     <TooltipProvider>
       <div className="border-2 rounded-xl border-slate-200 dark:border-slate-800 bg-slate-50 text-slate-700 dark:text-slate-200 dark:bg-slate-900">
         <div className="flex items-center justify-between w-full py-2 pl-4 pr-4 border-b-2 md:pl-8 md:pr-6 border-b-slate-200 dark:border-b-slate-800">
-          <h2 className="font-bold uppercase">{k}-mers Playground</h2>
+          <h2 className="font-bold uppercase">K-Mers Playground</h2>
 
           <div className="flex items-center -mr-2">
             <span className="mr-2 text-sm uppercase">

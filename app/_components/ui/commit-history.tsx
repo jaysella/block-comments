@@ -79,15 +79,6 @@ function Commit({
   allCommits: Commit[];
   setCurrentCommit: (commit: Commit) => void;
 }) {
-  const metaVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-      },
-    },
-  };
   return (
     <motion.li
       initial={{ opacity: 0 }}
@@ -108,12 +99,7 @@ function Commit({
             {message}
           </h3>
 
-          <motion.div
-            variants={metaVariants}
-            initial="hidden"
-            animate="show"
-            className="flex flex-wrap gap-1 mt-1"
-          >
+          <div className="flex flex-wrap gap-1 mt-1">
             <CommitMetaTag>
               <GitCommitIcon size={14} />
               <code>{hash}</code>
@@ -130,7 +116,7 @@ function Commit({
               <ClockIcon size={14} />
               <time>{moment(ts).format("h:mm a")}</time>
             </CommitMetaTag>
-          </motion.div>
+          </div>
         </motion.div>
       </button>
     </motion.li>
@@ -144,19 +130,14 @@ function CommitMetaTag({
   className?: string;
   children: ReactNode;
 }) {
-  const variants = {
-    hidden: { opacity: 0, translateX: -2.5 },
-    show: { opacity: 1, translateX: 0 },
-  };
   return (
-    <motion.div
-      variants={variants}
+    <div
       className={cn(
         "flex items-center gap-2 px-2 py-1 text-sm rounded-lg bg-slate-100 dark:bg-slate-800 w-max border border-slate-200 dark:border-slate-700",
         className
       )}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

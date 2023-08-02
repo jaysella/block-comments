@@ -33,7 +33,9 @@ export default function GitVisualization() {
   const [branchCommits, setBranchCommits] = useState(
     commits.filter(({ branches }) => branches.includes(DEFAULT_BRANCH))
   );
-  const [currentCommit, setCurrentCommit] = useState(commits[0]);
+  const [currentCommit, setCurrentCommit] = useState(
+    commits[commits.length - 1]
+  );
   const [currentBranch, setCurrentBranch] = useState(DEFAULT_BRANCH);
 
   useEffect(() => {
@@ -64,9 +66,9 @@ export default function GitVisualization() {
     setStep(commits.indexOf(commits.filter((c) => c === currentCommit)[0]));
   }, [currentCommit]);
 
-  useEffect(() => {
-    setCurrentCommit(branchCommits[Math.min(branchCommits.length - 1, step)]);
-  }, [branchCommits, step, currentBranch]);
+  // useEffect(() => {
+  //   setCurrentCommit(branchCommits[Math.min(branchCommits.length - 1, step)]);
+  // }, [branchCommits, step, currentBranch]);
 
   return (
     <>

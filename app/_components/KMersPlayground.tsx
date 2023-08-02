@@ -120,7 +120,8 @@ export default function KMersPlayground({
               <PopoverTrigger className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800">
                 <Settings2Icon size={18} />
               </PopoverTrigger>
-              <PopoverContent align="end" className="w-full p-4 md:p-6">
+
+              <PopoverContent align="end" className="w-full px-6 pt-4 pb-6">
                 <div className="flex flex-col gap-4">
                   <div className="grid gap-2">
                     <div className="flex items-center justify-between">
@@ -136,6 +137,7 @@ export default function KMersPlayground({
                             ? "text-red-700"
                             : ""
                         )}
+                        aria-label="Sequence length"
                       >
                         {sequence.length}
                       </span>
@@ -153,7 +155,10 @@ export default function KMersPlayground({
 
                   <div className="flex items-center justify-between">
                     <Label htmlFor="k-value">k-value</Label>
-                    <span className="w-10 rounded-md border border-transparent px-2 py-0.5 text-right text-sm hover:border-slate-200 dark:hover:border-slate-800">
+                    <span
+                      className="w-10 rounded-md border border-transparent px-2 py-0.5 text-right text-sm hover:border-slate-200 dark:hover:border-slate-800"
+                      aria-hidden="true"
+                    >
                       {k}
                     </span>
                   </div>
@@ -174,24 +179,28 @@ export default function KMersPlayground({
 
         <div className="flex flex-col justify-between gap-6 p-4 divide-y-2 md:divide-y-0 md:flex-row md:divide-x-2 md:pb-6 md:px-8 divide-slate-200 dark:divide-slate-800">
           <div>
-            <div className="-ml-2 font-mono text-5xl font-bold text-black dark:text-white">
+            <motion.div
+              className="-ml-2 font-mono text-5xl font-bold text-black dark:text-white"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
               {sequence.split("").map((char, index) => (
                 <motion.span
                   key={index}
                   initial={sequenceVariants.normal}
                   variants={sequenceVariants}
+                  animate={
+                    index >= step && index < step + k ? "highlighted" : "normal"
+                  }
                   className={cn(
                     "inline-block p-2 border-2 border-slate-50 dark:border-slate-900",
                     index > step && index < step + k ? "border-l-0" : ""
                   )}
-                  animate={
-                    index >= step && index < step + k ? "highlighted" : "normal"
-                  }
                 >
                   {char}
                 </motion.span>
               ))}
-            </div>
+            </motion.div>
 
             <div className="mt-4">
               Current {k}-mer:{" "}

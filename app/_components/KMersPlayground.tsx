@@ -46,12 +46,24 @@ function groupSubstrings(
 
 export default function KMersPlayground({
   sequence: initialSequence,
+  k: initialK = 3,
+  hideSteps = false,
+  playground = true,
 }: {
   sequence: string;
+  k?: number;
+  hideSteps?: boolean;
+  playground?: boolean;
 }) {
   const darkMode = useThemeDetector();
   const searchParams = useSearchParams();
-  const kTarget = parseInt(searchParams.get("k") || "3");
+
+  // determine target window size
+  let kTarget: number = initialK ?? 3;
+  let kParam = searchParams.get("k");
+  if (kParam && parseInt(kParam)) {
+    kTarget = parseInt(kParam);
+  }
 
   const [step, setStep] = useState<number>(0);
   const [sequence, setSequence] = useState<string>(initialSequence);
@@ -82,13 +94,17 @@ export default function KMersPlayground({
     <TooltipProvider>
       <div className="border-2 rounded-xl border-slate-200 dark:border-slate-800 bg-slate-50 text-slate-700 dark:text-slate-200 dark:bg-slate-900">
         <div className="flex items-center justify-between w-full py-2 pl-4 pr-4 border-b-2 md:pl-8 md:pr-6 border-b-slate-200 dark:border-b-slate-800">
-          <h2 className="font-bold uppercase">K-Mers Playground</h2>
+          <h2 className="font-bold uppercase">
+            K-Mers {playground ? "Playground" : "Visualization"}
+          </h2>
 
           <div className="flex items-center -mr-2">
-            <span className="mr-2 text-sm uppercase">
-              <span className="hidden sm:inline">Step </span>
-              {step} of {totalSteps}
-            </span>
+            {!hideSteps && (
+              <span className="mr-2 text-sm uppercase">
+                <span className="hidden sm:inline">Step </span>
+                {step} of {totalSteps}
+              </span>
+            )}
 
             <Tooltip>
               <TooltipTrigger
@@ -116,64 +132,66 @@ export default function KMersPlayground({
               </TooltipContent>
             </Tooltip>
 
-            <Popover>
-              <PopoverTrigger className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800">
-                <Settings2Icon size={18} />
-              </PopoverTrigger>
+            {playground && (
+              <Popover>
+                <PopoverTrigger className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800">
+                  <Settings2Icon size={18} />
+                </PopoverTrigger>
 
-              <PopoverContent align="end" className="w-full px-6 pt-4 pb-6">
-                <div className="flex flex-col gap-4">
-                  <div className="grid gap-2">
+                <PopoverContent align="end" className="w-full px-6 pt-4 pb-6">
+                  <div className="flex flex-col gap-4">
+                    <div className="grid gap-2">
+                      <div className="flex items-center justify-between">
+                        <Label htmlFor="sequence">Sequence</Label>
+                        <span
+                          className={cn(
+                            "w-10 rounded-md border border-transparent px-2 py-0.5 text-right text-sm hover:border-slate-200 dark:hover:border-slate-800",
+                            sequence.length >
+                              maxSequenceLength - maxSequenceLength / 4
+                              ? "text-orange-400"
+                              : "",
+                            sequence.length > maxSequenceLength
+                              ? "text-red-700"
+                              : ""
+                          )}
+                          aria-label="Sequence length"
+                        >
+                          {sequence.length}
+                        </span>
+                      </div>
+                      <Input
+                        id="sequence"
+                        type="text"
+                        value={sequence}
+                        maxLength={maxSequenceLength}
+                        onChange={(value) =>
+                          setSequence(value.target.value.toUpperCase())
+                        }
+                      />
+                    </div>
+
                     <div className="flex items-center justify-between">
-                      <Label htmlFor="sequence">Sequence</Label>
+                      <Label htmlFor="k-value">k-value</Label>
                       <span
-                        className={cn(
-                          "w-10 rounded-md border border-transparent px-2 py-0.5 text-right text-sm hover:border-slate-200 dark:hover:border-slate-800",
-                          sequence.length >
-                            maxSequenceLength - maxSequenceLength / 4
-                            ? "text-orange-400"
-                            : "",
-                          sequence.length > maxSequenceLength
-                            ? "text-red-700"
-                            : ""
-                        )}
-                        aria-label="Sequence length"
+                        className="w-10 rounded-md border border-transparent px-2 py-0.5 text-right text-sm hover:border-slate-200 dark:hover:border-slate-800"
+                        aria-hidden="true"
                       >
-                        {sequence.length}
+                        {k}
                       </span>
                     </div>
-                    <Input
-                      id="sequence"
-                      type="text"
-                      value={sequence}
-                      maxLength={maxSequenceLength}
-                      onChange={(value) =>
-                        setSequence(value.target.value.toUpperCase())
-                      }
+                    <Slider
+                      id="k-value"
+                      min={1}
+                      max={sequence.length}
+                      step={1}
+                      value={[k]}
+                      onValueChange={(value) => setK(value[0])}
+                      className="[&_[role=slider]]:h-4 [&_[role=slider]]:w-4"
                     />
                   </div>
-
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="k-value">k-value</Label>
-                    <span
-                      className="w-10 rounded-md border border-transparent px-2 py-0.5 text-right text-sm hover:border-slate-200 dark:hover:border-slate-800"
-                      aria-hidden="true"
-                    >
-                      {k}
-                    </span>
-                  </div>
-                  <Slider
-                    id="k-value"
-                    min={1}
-                    max={sequence.length}
-                    step={1}
-                    value={[k]}
-                    onValueChange={(value) => setK(value[0])}
-                    className="[&_[role=slider]]:h-4 [&_[role=slider]]:w-4"
-                  />
-                </div>
-              </PopoverContent>
-            </Popover>
+                </PopoverContent>
+              </Popover>
+            )}
           </div>
         </div>
 

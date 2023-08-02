@@ -80,7 +80,7 @@ export default function GitVisualization() {
             <div className="flex gap-2">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <div className="flex items-center text-sm uppercase border rounded-lg border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800">
+                  <div className="flex items-center text-sm border rounded-lg border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800">
                     <code className="flex items-center gap-2 px-2 py-1 text-sm">
                       <GitBranchIcon size={18} aria-label="branch" />{" "}
                       {currentBranch}
@@ -107,10 +107,10 @@ export default function GitVisualization() {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <div className="mr-2 text-sm uppercase">
+              <div className="mr-2 text-sm">
                 <code className="flex items-center gap-2 px-2 py-1 text-sm border rounded-lg border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800">
                   <GitCommitIcon size={18} aria-label="commit" />{" "}
-                  {branchCommits[step].hash}
+                  {branchCommits[Math.min(branchCommits.length - 1, step)].hash}
                 </code>
               </div>
             </div>

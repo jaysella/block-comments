@@ -105,8 +105,8 @@ export default function KMersPlayground({
   }, [sequence, k]);
 
   return (
-    <div className="border-2 rounded-xl border-slate-200 dark:border-slate-800 bg-slate-50 text-slate-700 dark:text-slate-200 dark:bg-slate-900">
-      <div className="flex items-center justify-between w-full px-4 py-2 border-b-2 md:pl-8 border-b-slate-200 dark:border-b-slate-800">
+    <div className="@container border-2 rounded-xl border-slate-200 dark:border-slate-800 bg-slate-50 text-slate-700 dark:text-slate-200 dark:bg-slate-900">
+      <div className="flex items-center justify-between w-full px-4 py-2 border-b-2 @md:pl-8 border-b-slate-200 dark:border-b-slate-800">
         <h2 className="font-bold uppercase">
           K-Mers {playground ? "Playground" : "Visualization"}
         </h2>
@@ -117,10 +117,10 @@ export default function KMersPlayground({
               className="mr-2 text-sm uppercase"
               aria-description={`Step ${step} of ${totalSteps}`}
             >
-              <span className="sm:hidden">
+              <span className="@sm:hidden">
                 {step}/{totalSteps}
               </span>
-              <span className="hidden sm:inline">
+              <span className="hidden @sm:inline">
                 Step {step} of {totalSteps}
               </span>
             </span>
@@ -128,7 +128,7 @@ export default function KMersPlayground({
 
           <Tooltip>
             <TooltipTrigger
-              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800"
+              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
               disabled={step === 0}
               onClick={() => setStep(step - 1)}
             >
@@ -141,7 +141,7 @@ export default function KMersPlayground({
 
           <Tooltip>
             <TooltipTrigger
-              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800"
+              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
               disabled={totalSteps === step}
               onClick={() => setStep(step + 1)}
             >
@@ -280,7 +280,7 @@ export default function KMersPlayground({
         </div>
       </div>
 
-      <div className="flex flex-col justify-between gap-6 p-4 divide-y-2 md:divide-y-0 md:flex-row md:divide-x-2 md:pb-6 md:px-8 divide-slate-200 dark:divide-slate-800">
+      <div className="flex flex-col justify-between gap-6 p-4 divide-y-2 @md:divide-y-0 @md:flex-row @md:divide-x-2 @md:pb-6 @md:px-8 divide-slate-200 dark:divide-slate-800">
         <div>
           <motion.div
             className="-ml-2 font-mono text-5xl font-bold text-black dark:text-white"
@@ -314,8 +314,8 @@ export default function KMersPlayground({
           </p>
         </div>
 
-        <div className="flex flex-col pt-6 gap-y-4 sm:flex-row md:divide-x-2 divide-slate-200 dark:divide-slate-800 gap-x-6 md:pt-0 sm:justify-between">
-          <div className="md:px-4">
+        <div className="flex flex-col pt-6 gap-y-4 sm:flex-row @md:divide-x-2 divide-slate-200 dark:divide-slate-800 gap-x-6 @md:pt-0 @sm:justify-between">
+          <div className="@md:px-4">
             <h3 className="font-bold uppercase">{k}-mers Identified</h3>
             <AnimatedList>
               {findSubstrings(sequence, k)
@@ -326,7 +326,7 @@ export default function KMersPlayground({
             </AnimatedList>
           </div>
 
-          <div className="sm:px-4">
+          <div className="@sm:px-4">
             <h3 className="font-bold uppercase">{k}-mers, Grouped</h3>
             <AnimatedList>
               {groupSubstrings(

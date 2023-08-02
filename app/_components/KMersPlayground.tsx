@@ -9,7 +9,14 @@ import {
 import { useThemeDetector } from "@/app/_components/ui/use-theme-detector";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeftIcon, ArrowRightIcon, Settings2Icon } from "lucide-react";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  PauseIcon,
+  PlayIcon,
+  RotateCcwIcon,
+  Settings2Icon,
+} from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Input } from "./ui/input";
@@ -65,8 +72,9 @@ export default function KMersPlayground({
     kTarget = parseInt(kParam);
   }
 
-  const [step, setStep] = useState<number>(0);
-  const [sequence, setSequence] = useState<string>(initialSequence);
+  const [step, setStep] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [sequence, setSequence] = useState(initialSequence);
   const [k, setK] = useState<number>(
     kTarget > sequence.length ? sequence.length : kTarget
   );
@@ -77,12 +85,33 @@ export default function KMersPlayground({
     highlighted: {
       backgroundColor: darkMode ? "#1e3a8a" : "#dbeafe",
       borderColor: darkMode ? "#1d4ed8" : "#93c5fd",
+      transition: { duration: 0.25 },
     },
     normal: {
-      backgroundColor: "transparent",
+      backgroundColor: darkMode ? "#0f172a" : "#f8fafc",
       borderColor: darkMode ? "#0f172a" : "#f8fafc",
+      transition: { duration: 0.25 },
     },
   };
+
+  useEffect(() => {
+    let interval: NodeJS.Timer;
+
+    if (isPlaying) {
+      interval = setInterval(() => {
+        // Increment the count by 1
+        setStep((prevStep) => prevStep + 1);
+      }, 750);
+    }
+
+    // Stop the interval when count is greater than 5
+    if (step === totalSteps) {
+      setIsPlaying(false);
+    }
+
+    // Clean up the interval when the component is unmounted or when the interval is stopped
+    return () => clearInterval(interval);
+  }, [isPlaying, step, totalSteps]);
 
   useEffect(() => {
     if (k > sequence.length) {
@@ -132,6 +161,29 @@ export default function KMersPlayground({
               </TooltipContent>
             </Tooltip>
 
+            <Tooltip>
+              <TooltipTrigger
+                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800"
+                onClick={() => {
+                  if (!isPlaying && step === totalSteps) {
+                    setStep(0);
+                  }
+                  setIsPlaying(!isPlaying);
+                }}
+              >
+                {isPlaying ? (
+                  <PauseIcon size={18} />
+                ) : !isPlaying && step === totalSteps ? (
+                  <RotateCcwIcon size={18} />
+                ) : (
+                  <PlayIcon size={18} />
+                )}
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{isPlaying ? "Stop" : "Play"}</p>
+              </TooltipContent>
+            </Tooltip>
+
             {playground && (
               <Popover>
                 <PopoverTrigger className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800">
@@ -171,7 +223,7 @@ export default function KMersPlayground({
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <Label htmlFor="k-value">k-value</Label>
+                      <Label htmlFor="k-value">Window size (k-value)</Label>
                       <span
                         className="w-10 rounded-md border border-transparent px-2 py-0.5 text-right text-sm hover:border-slate-200 dark:hover:border-slate-800"
                         aria-hidden="true"
@@ -186,6 +238,25 @@ export default function KMersPlayground({
                       step={1}
                       value={[k]}
                       onValueChange={(value) => setK(value[0])}
+                      className="[&_[role=slider]]:h-4 [&_[role=slider]]:w-4"
+                    />
+
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="step">Step</Label>
+                      <span
+                        className="w-10 rounded-md border border-transparent px-2 py-0.5 text-right text-sm hover:border-slate-200 dark:hover:border-slate-800"
+                        aria-hidden="true"
+                      >
+                        {step}
+                      </span>
+                    </div>
+                    <Slider
+                      id="step"
+                      min={0}
+                      max={totalSteps}
+                      step={1}
+                      value={[step]}
+                      onValueChange={(value) => setStep(value[0])}
                       className="[&_[role=slider]]:h-4 [&_[role=slider]]:w-4"
                     />
                   </div>

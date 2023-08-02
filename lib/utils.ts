@@ -5,6 +5,17 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function getRandomSeconds(min: number = 0, max: number = 60): number {
+  if (min < 0 || max < 0 || min >= max) {
+    throw new Error(
+      "Invalid input: min and max must be positive and min must be less than max"
+    );
+  }
+
+  const randomSeconds = Math.floor(Math.random() * (max - min + 1)) + min;
+  return randomSeconds;
+}
+
 export function findSubstrings(sequence: string, k: number): string[] {
   const res: string[] = [];
 

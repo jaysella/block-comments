@@ -1,7 +1,7 @@
 import Highlight from "@/app/_components/Highlight";
-import { CODE, CODE_EXPLANATIONS, OUTPUT, OUTPUT_EXPLANATIONS } from "./data";
-import { Metadata } from "next";
 import KMersPlayground from "@/app/_components/KMersPlayground";
+import { Metadata } from "next";
+import { CODE, CODE_EXPLANATIONS, OUTPUT, OUTPUT_EXPLANATIONS } from "./data";
 
 export const metadata: Metadata = {
   title: "Algorithms: Counting K-Mers (Go)",

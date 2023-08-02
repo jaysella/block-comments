@@ -55,6 +55,8 @@ export default function Highlight({
       (typeof global !== "undefined" ? global : window).Prism = Prism;
       await Promise.all([
         language === "go" && import("prismjs/components/prism-go" as any),
+        language === "markdown" &&
+          import("prismjs/components/prism-markdown" as any),
         language === "python" &&
           import("prismjs/components/prism-python" as any),
         language === "scheme" &&

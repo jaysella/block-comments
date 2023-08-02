@@ -29,6 +29,7 @@
     "eslint-config-next": "13.4.10",
     "framer-motion": "^10.15.0",
     "lucide-react": "^0.261.0",
+    "moment": "^2.29.4",
     "next": "13.4.10",
     "postcss": "8.4.26",
     "prism-react-renderer": "^2.0.6",

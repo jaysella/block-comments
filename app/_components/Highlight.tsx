@@ -54,6 +54,7 @@ export default function Highlight({
     async function loadLang() {
       (typeof global !== "undefined" ? global : window).Prism = Prism;
       await Promise.all([
+        language === "diff" && import("prismjs/components/prism-diff" as any),
         language === "go" && import("prismjs/components/prism-go" as any),
         language === "markdown" &&
           import("prismjs/components/prism-markdown" as any),

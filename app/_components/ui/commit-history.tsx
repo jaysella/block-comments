@@ -104,14 +104,8 @@ function Commit({ hash, ts, author, message }: CommitBase) {
           </CommitMetaTag>
           <CommitMetaTag>
             <ClockIcon size={14} />
-            <time>{moment(ts).format("h:mm:ss a")}</time>
+            <time>{moment(ts).format("h:mm a")}</time>
           </CommitMetaTag>
-          {/* <button>
-          <CommitMetaTag className="transition-colors bg-orange-100 border-orange-200 dark:bg-orange-800 hover:bg-orange-200 dark:hover:bg-orange-700 dark:border-orange-700">
-            <Undo2Icon size={14} />
-            Revert
-          </CommitMetaTag>
-        </button> */}
         </motion.div>
       </motion.div>
     </motion.li>

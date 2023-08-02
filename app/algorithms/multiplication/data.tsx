@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Explanation } from "@/app/_components/Highlight";
-import { CodeSegment } from "@/app/_components/HighlightExplanation";
+import { CodeSegment } from "@/app/_components/ui/code-segment";
 import Link from "next/link";
 
 export const CODE = `package main

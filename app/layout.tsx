@@ -1,4 +1,5 @@
 import { Toaster } from "@/app/_components/ui/toaster";
+import { TooltipProvider } from "@/app/_components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter, Roboto_Mono } from "next/font/google";
@@ -28,7 +29,7 @@ export default function RootLayout({
       <body
         className={cn(inter.className, spaceMono.variable, "dark:bg-slate-950")}
       >
-        {children}
+        <TooltipProvider>{children}</TooltipProvider>
         <Toaster />
       </body>
     </html>

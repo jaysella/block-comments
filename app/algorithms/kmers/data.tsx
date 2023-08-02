@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Explanation } from "@/app/_components/Highlight";
-import { CodeSegment } from "@/app/_components/HighlightExplanation";
 import KMersPlayground from "@/app/_components/KMersPlayground";
+import { CodeSegment } from "@/app/_components/ui/code-segment";
 import Link from "next/link";
 
 export const CODE = `package main
@@ -198,7 +198,7 @@ export const OUTPUT_EXPLANATIONS: Explanation[] = [
         sequence. These are: ACG, AGG, CGA, GAG, GGT, GTA, and TAC.
         <br />
         <br />
-        The observation count of each 3-mer is also returned as the value for
+        The count of each 3-mer identified is also returned as the value for
         each key. Note that this matches the format of our{" "}
         <CodeSegment>kmers</CodeSegment> map which is returned by the{" "}
         <CodeSegment>countkmers</CodeSegment> function.

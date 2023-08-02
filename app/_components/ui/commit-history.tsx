@@ -1,15 +1,14 @@
-import moment, { Moment } from "moment";
-import { Block, BlockContent, BlockHeader, BlockTitle } from "./block";
+import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   CalendarIcon,
   ClockIcon,
   GitCommitIcon,
   UserCircle2Icon,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import moment, { Moment } from "moment";
 import { ReactNode } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { AnimatedListItem } from "../AnimatedList";
+import { Block, BlockContent, BlockHeader, BlockTitle } from "./block";
 
 type CommitBase = {
   hash: string;

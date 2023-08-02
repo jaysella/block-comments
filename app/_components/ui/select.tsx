@@ -1,16 +1,15 @@
 "use client"
 
-import * as React from "react"
-import * as SelectPrimitive from "@radix-ui/react-select"
+import { cn } from "@/lib/utils";
+import * as SelectPrimitive from "@radix-ui/react-select";
 import { Check, ChevronsUpDownIcon } from "lucide-react";
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+const Select = SelectPrimitive.Root;
 
-const Select = SelectPrimitive.Root
+const SelectGroup = SelectPrimitive.Group;
 
-const SelectGroup = SelectPrimitive.Group
-
-const SelectValue = SelectPrimitive.Value
+const SelectValue = SelectPrimitive.Value;
 
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
@@ -19,7 +18,7 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-10 w-full items-center justify-between rounded-md border border-slate-200 border-slate-200 bg-transparent px-3 py-2 text-sm ring-offset-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-800 dark:border-slate-800 dark:ring-offset-slate-950 dark:placeholder:text-slate-400 dark:focus:ring-slate-800",
+      "flex h-10 w-full items-center justify-between rounded-md border border-slate-200 bg-transparent px-3 py-2 text-sm ring-offset-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-800 dark:ring-offset-slate-950 dark:placeholder:text-slate-400 dark:focus:ring-slate-800",
       className
     )}
     {...props}
@@ -111,11 +110,12 @@ SelectSeparator.displayName = SelectPrimitive.Separator.displayName
 
 export {
   Select,
-  SelectGroup,
-  SelectValue,
-  SelectTrigger,
   SelectContent,
-  SelectLabel,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectSeparator,
-}
+  SelectTrigger,
+  SelectValue,
+};
+

@@ -28,7 +28,13 @@ export type Commit = CommitBase & {
   branches: string[];
 };
 
-export function CommitHistory({ commits }: { commits: Commit[] }) {
+export function CommitHistory({
+  commits,
+  setCurrentCommit,
+}: {
+  commits: Commit[];
+  setCurrentCommit: (commit: Commit) => void;
+}) {
   return (
     <Block>
       <BlockHeader>
@@ -51,6 +57,8 @@ export function CommitHistory({ commits }: { commits: Commit[] }) {
                   ts={c.ts}
                   author={c.author}
                   message={c.message}
+                  allCommits={commits}
+                  setCurrentCommit={setCurrentCommit}
                 />
               ))}
           </AnimatePresence>
@@ -60,7 +68,17 @@ export function CommitHistory({ commits }: { commits: Commit[] }) {
   );
 }
 
-function Commit({ hash, ts, author, message }: CommitBase) {
+function Commit({
+  hash,
+  ts,
+  author,
+  message,
+  allCommits,
+  setCurrentCommit,
+}: CommitBase & {
+  allCommits: Commit[];
+  setCurrentCommit: (commit: Commit) => void;
+}) {
   const metaVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -79,35 +97,42 @@ function Commit({ hash, ts, author, message }: CommitBase) {
     >
       <div className="absolute w-3 h-3 bg-slate-200 rounded-full mt-1.5 -left-[0.4rem] border-2 border-slate-50 dark:border-slate-900 dark:bg-slate-700"></div>
 
-      <motion.div initial={{ translateY: -10 }} animate={{ translateY: 0 }}>
-        <h3 className="font-semibold text-md text-slate-900 dark:text-white">
-          {message}
-        </h3>
+      <button
+        className="p-2 pt-1 -m-2 text-left border border-transparent rounded-lg hover:bg-slate-100 hover:border-slate-200 dark:hover:border-slate-800"
+        onClick={() =>
+          setCurrentCommit(allCommits.filter((c) => c.hash === hash)[0])
+        }
+      >
+        <motion.div initial={{ translateY: -10 }} animate={{ translateY: 0 }}>
+          <h3 className="font-semibold text-md text-slate-900 dark:text-white">
+            {message}
+          </h3>
 
-        <motion.div
-          variants={metaVariants}
-          initial="hidden"
-          animate="show"
-          className="flex flex-wrap gap-1 mt-1"
-        >
-          <CommitMetaTag>
-            <GitCommitIcon size={14} />
-            <code>{hash}</code>
-          </CommitMetaTag>
-          <CommitMetaTag>
-            <UserCircle2Icon size={14} />
-            {author}
-          </CommitMetaTag>
-          <CommitMetaTag>
-            <CalendarIcon size={14} />
-            <time>{moment(ts).format("MMMM D, YYYY")}</time>
-          </CommitMetaTag>
-          <CommitMetaTag>
-            <ClockIcon size={14} />
-            <time>{moment(ts).format("h:mm a")}</time>
-          </CommitMetaTag>
+          <motion.div
+            variants={metaVariants}
+            initial="hidden"
+            animate="show"
+            className="flex flex-wrap gap-1 mt-1"
+          >
+            <CommitMetaTag>
+              <GitCommitIcon size={14} />
+              <code>{hash}</code>
+            </CommitMetaTag>
+            <CommitMetaTag>
+              <UserCircle2Icon size={14} />
+              {author}
+            </CommitMetaTag>
+            <CommitMetaTag>
+              <CalendarIcon size={14} />
+              <time>{moment(ts).format("MMMM D, YYYY")}</time>
+            </CommitMetaTag>
+            <CommitMetaTag>
+              <ClockIcon size={14} />
+              <time>{moment(ts).format("h:mm a")}</time>
+            </CommitMetaTag>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </button>
     </motion.li>
   );
 }

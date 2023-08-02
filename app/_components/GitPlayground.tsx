@@ -61,6 +61,10 @@ export default function GitPlayground() {
   }, [currentBranch]);
 
   useEffect(() => {
+    setStep(commits.indexOf(commits.filter((c) => c === currentCommit)[0]));
+  }, [currentCommit]);
+
+  useEffect(() => {
     setCurrentCommit(branchCommits[Math.min(branchCommits.length - 1, step)]);
   }, [branchCommits, step, currentBranch]);
 
@@ -140,7 +144,10 @@ export default function GitPlayground() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <Files files={currentCommit.files} />
-        <CommitHistory commits={branchCommits.filter((_, i) => i <= step)} />
+        <CommitHistory
+          commits={branchCommits.filter((_, i) => i <= step)}
+          setCurrentCommit={setCurrentCommit}
+        />
       </div>
     </>
   );

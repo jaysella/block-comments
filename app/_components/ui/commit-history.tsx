@@ -30,7 +30,11 @@ export function CommitHistory({ commits }: { commits: Commit[] }) {
       </BlockHeader>
 
       <BlockContent>
-        <ol className="relative flex flex-col gap-6 border-l border-slate-200 dark:border-slate-700">
+        <motion.ol
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="relative flex flex-col gap-6 border-l border-slate-200 dark:border-slate-700"
+        >
           <AnimatePresence>
             {commits
               .sort((a, b) => b.ts.diff(a.ts))
@@ -44,7 +48,7 @@ export function CommitHistory({ commits }: { commits: Commit[] }) {
                 />
               ))}
           </AnimatePresence>
-        </ol>
+        </motion.ol>
       </BlockContent>
     </Block>
   );
@@ -56,7 +60,7 @@ function Commit({ hash, ts, author, message }: CommitBase) {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.35,
+        staggerChildren: 0.3,
       },
     },
   };
@@ -116,7 +120,7 @@ function CommitMetaTag({
   children: ReactNode;
 }) {
   const variants = {
-    hidden: { opacity: 0, translateX: -10 },
+    hidden: { opacity: 0, translateX: -5 },
     show: { opacity: 1, translateX: 0 },
   };
   return (

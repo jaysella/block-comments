@@ -1,13 +1,19 @@
 "use client";
 import Highlight from "@/app/_components/Highlight";
-import { Commit, CommitHistory } from "@/app/_components/ui/commit-history";
+import { CommitHistory } from "@/app/_components/ui/commit-history";
 import { processDiff, removeDiffChars } from "@/lib/utils";
 import { useState } from "react";
 import { Block, BlockControls, BlockHeader, BlockTitle } from "./ui/block";
 import { Tooltip, TooltipTrigger } from "@radix-ui/react-tooltip";
-import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  GitBranchIcon,
+  GitCommitIcon,
+} from "lucide-react";
 import { TooltipContent } from "./ui/tooltip";
 import { COMMITS as commits } from "../git/data";
+import { CodeSegment } from "./ui/code-segment";
 
 export default function GitPlayground() {
   const [step, setStep] = useState(0);
@@ -20,7 +26,16 @@ export default function GitPlayground() {
 
           <BlockControls>
             <div className="mr-2 text-sm uppercase">
-              Step {step} of {commits.length - 1}
+              <code className="flex items-center gap-2 px-2 py-1 text-sm rounded-lg bg-slate-200">
+                <GitBranchIcon size={18} aria-label="branch" /> main
+              </code>
+            </div>
+
+            <div className="mr-2 text-sm uppercase">
+              <code className="flex items-center gap-2 px-2 py-1 text-sm rounded-lg bg-slate-200">
+                <GitCommitIcon size={18} aria-label="commit" />{" "}
+                {commits[step].hash}
+              </code>
             </div>
 
             <Tooltip>

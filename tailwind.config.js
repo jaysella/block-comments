@@ -6,6 +6,20 @@ module.exports = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
+  safelist: [
+    "bg-green-100",
+    "bg-red-100",
+    "hover:bg-green-200",
+    "hover:bg-red-200",
+    "dark:bg-green-900",
+    "dark:bg-red-900",
+    "dark:hover:bg-green-800",
+    "dark:hover:bg-red-800",
+    "text-green-600",
+    "text-red-600",
+    "dark:text-green-400",
+    "dark:text-red-400",
+  ],
   theme: {
     container: {
       center: true,

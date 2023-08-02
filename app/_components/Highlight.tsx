@@ -30,17 +30,24 @@ export type Explanation = {
   content: ReactNode;
 };
 
+export type LineHighlight = {
+  color: string;
+  label?: string;
+};
+
 export default function Highlight({
   title,
   language,
   sandboxLink,
-  explanations = [],
+  explanations,
+  highlights = {},
   children,
 }: {
   title?: string;
   language: string;
   sandboxLink?: URL;
   explanations?: Explanation[];
+  highlights?: Record<string, LineHighlight>;
   children: string;
 }) {
   const code = children;
@@ -167,20 +174,71 @@ export default function Highlight({
             >
               {tokens.map((line, i) => {
                 const lineNum = i + 1;
+                const highlight = lineNum in highlights;
 
                 return (
                   <div
                     key={i}
                     {...getLineProps({ line })}
-                    className="flex flex-row w-full px-4 md:px-8 hover:bg-slate-200 dark:hover:bg-slate-800"
+                    className={cn(
+                      "flex flex-row w-full px-4 md:px-8",
+                      highlight
+                        ? `bg-${highlights[lineNum].color}-100 dark:bg-${highlights[lineNum].color}-900`
+                        : "",
+                      explanations
+                        ? highlight
+                          ? `hover:bg-${highlights[lineNum].color}-200 dark:bg-${highlights[lineNum].color}-800`
+                          : "hover:bg-slate-200 dark:hover:bg-slate-800"
+                        : ""
+                    )}
                   >
-                    <div className="self-end flex-shrink-0 w-10 select-none text-slate-400 dark:text-slate-500">
-                      {lineNum}
+                    <div
+                      className={cn(
+                        "self-end flex-shrink-0 w-10 select-none text-slate-400 dark:text-slate-500",
+                        highlight
+                          ? `text-${highlights[lineNum].color}-600 dark:text-${highlights[lineNum].color}-400`
+                          : ""
+                      )}
+                    >
+                      {highlights[lineNum]?.label || lineNum}
                     </div>
 
                     <div className="block w-full">
-                      <Popover>
-                        <PopoverTrigger className="w-full text-left">
+                      {explanations ? (
+                        <Popover>
+                          <PopoverTrigger className="w-full text-left">
+                            {line.map((token, key) => {
+                              const tokenProps = getTokenProps({ token, key });
+
+                              return (
+                                <div
+                                  {...tokenProps}
+                                  key={key}
+                                  style={{
+                                    ...tokenProps.style,
+                                  }}
+                                  className="inline"
+                                />
+                              );
+                            })}
+                          </PopoverTrigger>
+
+                          <PopoverContent align="start" arrowPadding={25}>
+                            <HighlightExplanation
+                              title={
+                                title
+                                  ? `${title} > Line ${lineNum}`
+                                  : `Line ${lineNum}`
+                              }
+                            >
+                              {explanations.filter((e) =>
+                                e.lines?.includes(lineNum)
+                              )[0]?.content ?? null}
+                            </HighlightExplanation>
+                          </PopoverContent>
+                        </Popover>
+                      ) : (
+                        <>
                           {line.map((token, key) => {
                             const tokenProps = getTokenProps({ token, key });
 
@@ -195,22 +253,8 @@ export default function Highlight({
                               />
                             );
                           })}
-                        </PopoverTrigger>
-
-                        <PopoverContent align="start" arrowPadding={25}>
-                          <HighlightExplanation
-                            title={
-                              title
-                                ? `${title} > Line ${lineNum}`
-                                : `Line ${lineNum}`
-                            }
-                          >
-                            {explanations.filter((e) =>
-                              e.lines?.includes(lineNum)
-                            )[0]?.content ?? null}
-                          </HighlightExplanation>
-                        </PopoverContent>
-                      </Popover>
+                        </>
+                      )}
                     </div>
                   </div>
                 );

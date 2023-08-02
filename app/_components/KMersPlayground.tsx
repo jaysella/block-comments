@@ -113,7 +113,7 @@ export default function KMersPlayground({
 
         <div className="flex items-center">
           {!hideSteps && (
-            <span
+            <div
               className="mr-2 text-sm uppercase"
               aria-description={`Step ${step} of ${totalSteps}`}
             >
@@ -123,7 +123,7 @@ export default function KMersPlayground({
               <span className="hidden @sm:inline">
                 Step {step} of {totalSteps}
               </span>
-            </span>
+            </div>
           )}
 
           <Tooltip>

@@ -1,6 +1,11 @@
 "use client";
 
-import HighlightExplanation from "@/app/_components/HighlightExplanation";
+import {
+  Block,
+  BlockControls,
+  BlockHeader,
+  BlockTitle,
+} from "@/app/_components/ui/block";
 import {
   Popover,
   PopoverContent,
@@ -22,9 +27,6 @@ import {
   themes,
 } from "prism-react-renderer";
 import { ReactNode, useEffect, useState } from "react";
-import { Block, BlockControls, BlockHeader, BlockTitle } from "./ui/block";
-
-export type File = {};
 
 export type Explanation = {
   line?: number;
@@ -37,7 +39,7 @@ export type LineHighlight = {
   label?: string;
 };
 
-export default function Highlight({
+export default function Snippet({
   title,
   language,
   explanations,
@@ -229,7 +231,7 @@ export function SnippetContent({
                       </PopoverTrigger>
 
                       <PopoverContent align="start" arrowPadding={25}>
-                        <HighlightExplanation
+                        <SnippetExplanation
                           title={
                             title
                               ? `${title} > Line ${lineNum}`
@@ -239,7 +241,7 @@ export function SnippetContent({
                           {explanations.filter((e) =>
                             e.lines?.includes(lineNum)
                           )[0]?.content ?? null}
-                        </HighlightExplanation>
+                        </SnippetExplanation>
                       </PopoverContent>
                     </Popover>
                   ) : (
@@ -267,5 +269,24 @@ export function SnippetContent({
         </pre>
       )}
     </HighlightPrimitive>
+  );
+}
+
+function SnippetExplanation({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <>
+      <h2 className="px-4 pt-4 pb-2 font-mono text-xs text-blue-600 uppercase bg-blue-50 dark:bg-blue-900 dark:text-blue-200">
+        {title}
+      </h2>
+      <div className="p-4 text-sm">
+        {children || "No explanation is available for this line."}
+      </div>
+    </>
   );
 }

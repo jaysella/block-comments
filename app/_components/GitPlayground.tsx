@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { TooltipContent } from "./ui/tooltip";
 import { COMMITS as commits } from "../git/data";
-import Files, { File } from "./SnippetBlock";
+import Files, { File } from "./Files";
 
 const files: File[] = [
   {

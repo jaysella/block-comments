@@ -1,4 +1,4 @@
-import Highlight from "@/app/_components/Highlight";
+import Snippet from "@/app/_components/Snippet";
 import { Metadata } from "next";
 import { CONFLICT, CONFLICT_EXPLANATIONS } from "./data";
 
@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <Highlight
+      <Snippet
         title="random.txt"
         language="diff"
         explanations={CONFLICT_EXPLANATIONS}
       >
         {CONFLICT}
-      </Highlight>
+      </Snippet>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import Highlight from "@/app/_components/Highlight";
+import Snippet from "@/app/_components/Snippet";
 import KMersPlayground from "@/app/_components/KMersPlayground";
 import { Metadata } from "next";
 import { CODE, CODE_EXPLANATIONS, OUTPUT, OUTPUT_EXPLANATIONS } from "./data";
@@ -10,17 +10,13 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <Highlight title="Code" language="go" explanations={CODE_EXPLANATIONS}>
+      <Snippet title="Code" language="go" explanations={CODE_EXPLANATIONS}>
         {CODE}
-      </Highlight>
+      </Snippet>
 
-      <Highlight
-        title="Output"
-        language="go"
-        explanations={OUTPUT_EXPLANATIONS}
-      >
+      <Snippet title="Output" language="go" explanations={OUTPUT_EXPLANATIONS}>
         {OUTPUT}
-      </Highlight>
+      </Snippet>
 
       <KMersPlayground sequence="ACGAGGTACGA" playground={false} />
     </>

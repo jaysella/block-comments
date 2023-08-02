@@ -1,6 +1,6 @@
 "user client";
 import { useState } from "react";
-import { Explanation, LineHighlight, SnippetContent } from "./Highlight";
+import { Explanation, LineHighlight, SnippetContent } from "./Snippet";
 import { Block, BlockControls, BlockHeader, BlockTitle } from "./ui/block";
 import {
   DropdownMenu,
@@ -10,7 +10,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { ChevronDownIcon } from "lucide-react";
+import { AlignLeftIcon, ChevronDownIcon, WrapTextIcon } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { useToast } from "./ui/use-toast";
 
 export type File = {
   name: string;
@@ -21,6 +23,8 @@ export type File = {
 };
 
 export default function Files({ files }: { files: File[] }) {
+  const { toast } = useToast();
+
   const [currentFile, setCurrentFile] = useState(files[0]);
   const [wrapText, setWrapText] = useState<boolean>(false);
 
@@ -55,14 +59,14 @@ export default function Files({ files }: { files: File[] }) {
         </div>
 
         <BlockControls>
-          {/* <Tooltip>
+          <Tooltip>
             <TooltipTrigger
               className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
               onClick={() => {
                 setWrapText(!wrapText);
                 toast({
                   title: `Text ${wrapText ? "unwrapped" : "wrapped"}!`,
-                  description: `The ${title} section's formatting has been updated.`,
+                  description: "This section's formatting has been updated.",
                 });
               }}
             >
@@ -75,7 +79,7 @@ export default function Files({ files }: { files: File[] }) {
             <TooltipContent>
               <p>{wrapText ? "Unwrap text" : "Wrap text"}</p>
             </TooltipContent>
-          </Tooltip> */}
+          </Tooltip>
         </BlockControls>
       </BlockHeader>
       <SnippetContent

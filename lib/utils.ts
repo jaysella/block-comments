@@ -1,4 +1,4 @@
-import { LineHighlight } from "@/app/_components/Highlight";
+import { LineHighlight } from "@/app/_components/Snippet";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 

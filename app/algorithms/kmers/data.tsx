@@ -86,9 +86,8 @@ export const CODE_EXPLANATIONS: Explanation[] = [
           </li>
         </ul>
         <br />
-        The function returns a value of{" "}
-        <CodeSegment>map[string]int</CodeSegment>. This means the value will be
-        a map of strings to integers.
+        The function returns a <CodeSegment>map[string]int</CodeSegment>. This
+        means the value will be a map of strings to integers.
         <br />
         <br />
         <p>

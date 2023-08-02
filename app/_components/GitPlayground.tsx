@@ -21,7 +21,7 @@ import {
   GitCommitIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { COMMITS as commits } from "../git/playground/data";
+import { COMMITS as commits } from "../git/visualization/data";
 import { Block, BlockControls, BlockHeader, BlockTitle } from "./ui/block";
 
 export default function GitPlayground() {

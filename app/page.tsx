@@ -43,7 +43,7 @@ export default function Page() {
           <h2 className="font-semibold">Tools: Git</h2>
           <ul className="pl-4 mt-1">
             <li>
-              <Link href="/git/playground">Git Playground</Link>
+              <Link href="/git/visualization">Git Visualization</Link>
             </li>
             <li>
               <Link href="/git/conflict">Git Conflict (Plain Text)</Link>

@@ -59,6 +59,7 @@ export default function KMersPlayground({
     kTarget > sequence.length ? sequence.length : kTarget
   );
   const totalSteps = sequence.length - k;
+  const maxSequenceLength = 16;
 
   const sequenceVariants = {
     highlighted: {
@@ -122,11 +123,28 @@ export default function KMersPlayground({
               <PopoverContent align="end" className="w-full p-4 md:p-6">
                 <div className="flex flex-col gap-4">
                   <div className="grid gap-2">
-                    <Label htmlFor="sequence">Sequence</Label>
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="sequence">Sequence</Label>
+                      <span
+                        className={cn(
+                          "w-10 rounded-md border border-transparent px-2 py-0.5 text-right text-sm hover:border-slate-200 dark:hover:border-slate-800",
+                          sequence.length >
+                            maxSequenceLength - maxSequenceLength / 4
+                            ? "text-orange-400"
+                            : "",
+                          sequence.length > maxSequenceLength
+                            ? "text-red-700"
+                            : ""
+                        )}
+                      >
+                        {sequence.length}
+                      </span>
+                    </div>
                     <Input
                       id="sequence"
                       type="text"
                       value={sequence}
+                      maxLength={maxSequenceLength}
                       onChange={(value) =>
                         setSequence(value.target.value.toUpperCase())
                       }
@@ -147,7 +165,6 @@ export default function KMersPlayground({
                     value={[k]}
                     onValueChange={(value) => setK(value[0])}
                     className="[&_[role=slider]]:h-4 [&_[role=slider]]:w-4"
-                    aria-label="K Value"
                   />
                 </div>
               </PopoverContent>
@@ -156,7 +173,7 @@ export default function KMersPlayground({
         </div>
 
         <div className="flex flex-col justify-between gap-6 p-4 divide-y-2 md:divide-y-0 md:flex-row md:divide-x-2 md:pb-6 md:px-8 divide-slate-200 dark:divide-slate-800">
-          <div className="w-max">
+          <div>
             <div className="-ml-2 font-mono text-5xl font-bold text-black dark:text-white">
               {sequence.split("").map((char, index) => (
                 <motion.span

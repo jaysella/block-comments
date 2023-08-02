@@ -45,7 +45,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
             href="https://go.dev/doc/code"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-500 underline"
+            className="link"
           >
             Go
           </Link>
@@ -61,7 +61,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
           href="https://pkg.go.dev/fmt"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-500 underline"
+          className="link"
         >
           <CodeSegment>fmt</CodeSegment>
         </Link>{" "}

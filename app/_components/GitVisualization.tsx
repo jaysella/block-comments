@@ -24,7 +24,7 @@ import { useEffect, useState } from "react";
 import { COMMITS as commits } from "../git/visualization/data";
 import { Block, BlockControls, BlockHeader, BlockTitle } from "./ui/block";
 
-export default function GitPlayground() {
+export default function GitVisualization() {
   const DEFAULT_BRANCH = "main";
   const [step, setStep] = useState(0);
   const [branches, setBranches] = useState<{ [branch: string]: Set<string> }>(

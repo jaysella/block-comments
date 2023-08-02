@@ -1,14 +1,14 @@
-import GitPlayground from "@/app/_components/GitPlayground";
+import GitVisualization from "@/app/_components/GitVisualization";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Git: Playground",
+  title: "Git: Visualization",
 };
 
 export default function Page() {
   return (
     <div className="flex flex-col gap-4">
-      <GitPlayground />
+      <GitVisualization />
     </div>
   );
 }

@@ -1,7 +1,5 @@
 "use client";
-import Highlight from "@/app/_components/Highlight";
 import { CommitHistory } from "@/app/_components/ui/commit-history";
-import { processDiff, removeDiffChars } from "@/lib/utils";
 import { useState } from "react";
 import { Block, BlockControls, BlockHeader, BlockTitle } from "./ui/block";
 import { Tooltip, TooltipTrigger } from "@radix-ui/react-tooltip";
@@ -13,7 +11,20 @@ import {
 } from "lucide-react";
 import { TooltipContent } from "./ui/tooltip";
 import { COMMITS as commits } from "../git/data";
-import { CodeSegment } from "./ui/code-segment";
+import Files, { File } from "./SnippetBlock";
+
+const files: File[] = [
+  {
+    name: "README.md",
+    language: "markdown",
+    content: `code`,
+  },
+  {
+    name: "resume.md",
+    language: "markdown",
+    content: `codeses`,
+  },
+];
 
 export default function GitPlayground() {
   const [step, setStep] = useState(0);
@@ -26,13 +37,13 @@ export default function GitPlayground() {
 
           <BlockControls>
             <div className="mr-2 text-sm uppercase">
-              <code className="flex items-center gap-2 px-2 py-1 text-sm rounded-lg bg-slate-200">
+              <code className="flex items-center gap-2 px-2 py-1 text-sm rounded-lg bg-slate-200 dark:bg-slate-800">
                 <GitBranchIcon size={18} aria-label="branch" /> main
               </code>
             </div>
 
             <div className="mr-2 text-sm uppercase">
-              <code className="flex items-center gap-2 px-2 py-1 text-sm rounded-lg bg-slate-200">
+              <code className="flex items-center gap-2 px-2 py-1 text-sm rounded-lg bg-slate-200 dark:bg-slate-800">
                 <GitCommitIcon size={18} aria-label="commit" />{" "}
                 {commits[step].hash}
               </code>
@@ -67,14 +78,7 @@ export default function GitPlayground() {
       </Block>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <Highlight
-          title="README.md"
-          language="markdown"
-          highlights={processDiff(commits[step].diff)}
-        >
-          {removeDiffChars(commits[step].diff)}
-        </Highlight>
-
+        <Files files={files} />
         <CommitHistory commits={commits.filter((_, i) => i <= step)} />
       </div>
     </>

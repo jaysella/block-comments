@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
+import Footer from "./_components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 const spaceMono = Roboto_Mono({
@@ -30,6 +31,7 @@ export default function RootLayout({
         className={cn(inter.className, spaceMono.variable, "dark:bg-slate-950")}
       >
         <TooltipProvider>{children}</TooltipProvider>
+        <Footer />
         <Toaster />
       </body>
     </html>

@@ -126,7 +126,7 @@ function CommitMetaTag({
   children: ReactNode;
 }) {
   const variants = {
-    hidden: { opacity: 0, translateX: -5 },
+    hidden: { opacity: 0, translateX: -2.5 },
     show: { opacity: 1, translateX: 0 },
   };
   return (

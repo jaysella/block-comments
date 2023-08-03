@@ -11,4 +11,4 @@ export const CONFLICT = `;; greet : String -> String
 =======
 (define (get-avatar-url username)
   (string-append "https://beta.example.com/images/" username ".png"))
->>>>>>> update-profile`;
+>>>>>>> switch-image-host`;

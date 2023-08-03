@@ -9,11 +9,11 @@ export function cn(...inputs: ClassValue[]) {
 
 export function getRandomDate(): moment.Moment {
   const currentDate = moment();
-  const sixMonthsAgo = currentDate.clone().subtract(3, "months");
-  const daysDifference = currentDate.diff(sixMonthsAgo, "days");
-  const randomDaysOffset = Math.floor(Math.random() * daysDifference);
 
-  const randomDate = sixMonthsAgo.clone().add(randomDaysOffset, "days");
+  const monthsAgo = currentDate.clone().subtract(2, "months");
+  const daysDifference = currentDate.diff(monthsAgo, "days");
+  const randomDaysOffset = Math.floor(Math.random() * daysDifference);
+  const randomDate = monthsAgo.clone().add(randomDaysOffset, "days");
 
   const randomHours = Math.floor(Math.random() * 24);
   const randomMinutes = Math.floor(Math.random() * 60);

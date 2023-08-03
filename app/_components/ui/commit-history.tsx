@@ -12,7 +12,7 @@ import {
   UserCircle2Icon,
 } from "lucide-react";
 import moment from "moment";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 
 type CommitBase = {
   hash: string;
@@ -35,9 +35,16 @@ export function CommitHistory({
   branch?: string;
   setCurrentCommit?: (commit: Commit) => void;
 }) {
+  const [firstRender, setFirstRender] = useState(true);
+
   if (branch) {
     commits = commits.filter((c) => c.branches.includes(branch));
   }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    setFirstRender(false);
+  });
 
   return (
     <Block>
@@ -57,11 +64,7 @@ export function CommitHistory({
       <BlockContent>
         {commits.length === 0 && <>No commits.</>}
 
-        <motion.ol
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="relative flex flex-col gap-6 border-l border-slate-200 dark:border-slate-700"
-        >
+        <ol className="relative flex flex-col gap-6 border-l border-slate-200 dark:border-slate-700">
           <AnimatePresence>
             {commits
               .sort((a, b) => moment(b.ts).diff(a.ts))
@@ -72,12 +75,13 @@ export function CommitHistory({
                   ts={c.ts}
                   author={c.author}
                   message={c.message}
+                  firstRender={firstRender}
                   allCommits={commits}
                   setCurrentCommit={setCurrentCommit}
                 />
               ))}
           </AnimatePresence>
-        </motion.ol>
+        </ol>
       </BlockContent>
     </Block>
   );
@@ -88,15 +92,18 @@ function Commit({
   ts,
   author,
   message,
+  firstRender = true,
   allCommits,
   setCurrentCommit,
 }: CommitBase & {
+  firstRender?: boolean;
   allCommits: Commit[];
   setCurrentCommit?: (commit: Commit) => void;
 }) {
   return (
     <motion.li
-      initial={{ opacity: 0 }}
+      initial={{ opacity: firstRender ? 1 : 0 }}
+      viewport={{ once: true }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="ml-4"
@@ -116,7 +123,10 @@ function Commit({
           }
         }}
       >
-        <motion.div initial={{ translateY: -10 }} animate={{ translateY: 0 }}>
+        <motion.div
+          initial={{ translateY: firstRender ? 0 : -10 }}
+          animate={{ translateY: 0 }}
+        >
           <h3 className="font-semibold text-md text-slate-900 dark:text-white">
             {message}
           </h3>

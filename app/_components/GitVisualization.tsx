@@ -145,7 +145,10 @@ export default function GitVisualization() {
       </Block>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <Files files={currentCommit.files} />
+        <Files
+          files={currentCommit.files}
+          defaultFile={currentCommit.files[currentCommit.files.length - 1]}
+        />
         <CommitHistory
           commits={branchCommits.filter((_, i) => i <= step)}
           setCurrentCommit={setCurrentCommit}

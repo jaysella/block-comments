@@ -190,7 +190,7 @@ export function SnippetContent({
                 className={cn(
                   "flex flex-row w-full px-4 md:px-8",
                   highlight
-                    ? `bg-${highlights[lineNum].color}-100 dark:bg-${highlights[lineNum].color}-900`
+                    ? `bg-${highlights[lineNum].color}-100 dark:bg-${highlights[lineNum].color}-950`
                     : "",
                   explanations
                     ? highlight

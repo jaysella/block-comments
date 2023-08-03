@@ -30,16 +30,22 @@ export type File = {
   content: string;
 };
 
-export default function Files({ files }: { files: File[] }) {
+export default function Files({
+  files,
+  defaultFile,
+}: {
+  files: File[];
+  defaultFile?: File;
+}) {
   const { toast } = useToast();
 
-  const [currentFile, setCurrentFile] = useState(files[0]);
+  const [currentFile, setCurrentFile] = useState(defaultFile ?? files[0]);
   const [wrapText, setWrapText] = useState<boolean>(false);
   const [showDiff, setShowDiff] = useState(true);
 
   useEffect(() => {
-    setCurrentFile(files[0]);
-  }, [files]);
+    setCurrentFile(defaultFile ?? files[0]);
+  }, [defaultFile, files]);
 
   return (
     <Block>

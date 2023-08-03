@@ -1,12 +1,7 @@
 "use client";
 
 import { File } from "@/app/_components/Files";
-import {
-  Block,
-  BlockContent,
-  BlockHeader,
-  BlockTitle,
-} from "@/app/_components/ui/block";
+import { Block, BlockContent, BlockHeader } from "@/app/_components/ui/block";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -27,7 +22,7 @@ type CommitBase = {
 };
 
 export type Commit = CommitBase & {
-  files?: File[];
+  files: File[];
   branches: string[];
 };
 

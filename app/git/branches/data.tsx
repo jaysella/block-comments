@@ -17,6 +17,7 @@ export const COMMITS: Commit[] = [
     author: "Serif Purpleson",
     ts: randomDate1.toDate(),
     message: "Initial commit",
+    files: [],
   },
   {
     hash: "a7caf6a",
@@ -24,6 +25,7 @@ export const COMMITS: Commit[] = [
     author: "Serif Purpleson",
     ts: randomDate2.toDate(),
     message: "Scaffold out project",
+    files: [],
   },
   {
     hash: "ba27faa",
@@ -31,6 +33,7 @@ export const COMMITS: Commit[] = [
     author: "Serif Purpleson",
     ts: randomDate3.toDate(),
     message: "Update README with setup instructions",
+    files: [],
   },
   {
     hash: "bb77b1d",
@@ -38,6 +41,7 @@ export const COMMITS: Commit[] = [
     author: "Indigo Patel",
     ts: randomDate4.toDate(),
     message: "Tweak page count logic",
+    files: [],
   },
   {
     hash: "da8ffc2",
@@ -45,6 +49,7 @@ export const COMMITS: Commit[] = [
     author: "Geneve Benitez",
     ts: randomDate5.toDate(),
     message: "Add model for client notes",
+    files: [],
   },
   {
     hash: "afa326a",
@@ -52,6 +57,7 @@ export const COMMITS: Commit[] = [
     author: "Geneve Benitez",
     ts: randomDate7.toDate(),
     message: "Build out client notes page",
+    files: [],
   },
   {
     hash: "8ceb59d",
@@ -59,6 +65,7 @@ export const COMMITS: Commit[] = [
     author: "Indigo Patel",
     ts: randomDate6.toDate(),
     message: "Merge Pull Request #1 from fix-pagination",
+    files: [],
   },
   {
     hash: "fc6af2b",
@@ -66,5 +73,6 @@ export const COMMITS: Commit[] = [
     author: "Serif Purpleson",
     ts: randomDate8.toDate(),
     message: "Fix note creation bugs",
+    files: [],
   },
 ];

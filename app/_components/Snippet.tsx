@@ -224,7 +224,7 @@ export function SnippetContent({
                               style={{
                                 ...tokenProps.style,
                               }}
-                              className="inline"
+                              className={cn("inline")}
                             />
                           );
                         })}
@@ -256,7 +256,18 @@ export function SnippetContent({
                             style={{
                               ...tokenProps.style,
                             }}
-                            className="inline"
+                            className={cn(
+                              "inline",
+                              token.content.startsWith("<".repeat(7))
+                                ? "text-purple-600 dark:text-purple-400"
+                                : "",
+                              token.content.startsWith("=".repeat(7))
+                                ? "text-slate-500"
+                                : "",
+                              token.content.startsWith(">".repeat(7))
+                                ? "text-blue-600 dark:text-blue-400"
+                                : ""
+                            )}
                           />
                         );
                       })}

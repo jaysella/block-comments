@@ -7,17 +7,41 @@ module.exports = {
     "./src/**/*.{ts,tsx}",
   ],
   safelist: [
+    "bg-slate-100",
     "bg-green-100",
+    "bg-purple-100",
+    "bg-blue-100",
     "bg-red-100",
+
+    "hover:bg-slate-200",
     "hover:bg-green-200",
+    "hover:bg-purple-200",
+    "hover:bg-blue-200",
     "hover:bg-red-200",
+
+    "dark:bg-slate-950",
     "dark:bg-green-950",
+    "dark:bg-purple-950",
+    "dark:bg-blue-950",
     "dark:bg-red-950",
+
+    "dark:hover:bg-slate-800",
     "dark:hover:bg-green-800",
+    "dark:hover:bg-purple-800",
+    "dark:hover:bg-blue-800",
     "dark:hover:bg-red-800",
+
+    "text-slate-600",
     "text-green-600",
+    "text-slate-500",
+    "text-purple-600",
+    "text-blue-600",
     "text-red-600",
+
+    "dark:text-slate-400",
     "dark:text-green-400",
+    "dark:text-purple-400",
+    "dark:text-blue-400",
     "dark:text-red-400",
   ],
   theme: {

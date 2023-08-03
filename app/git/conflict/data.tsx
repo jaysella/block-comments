@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Explanation } from "@/app/_components/Snippet";
 import { CodeSegment } from "@/app/_components/ui/code-segment";
-import Link from "next/link";
 
 export const CONFLICT = `<<<<<<< HEAD
 This is some content

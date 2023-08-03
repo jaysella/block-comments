@@ -89,7 +89,7 @@ function Commit({
       <div className="absolute w-3 h-3 bg-slate-200 rounded-full mt-1.5 -left-[0.4rem] border-2 border-slate-50 dark:border-slate-900 dark:bg-slate-700"></div>
 
       <button
-        className="p-2 pt-1 -m-2 text-left border border-transparent rounded-lg hover:bg-slate-100 hover:border-slate-200 dark:hover:border-slate-800"
+        className="p-2 pt-1 -m-2 text-left border border-transparent rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:border-slate-200 dark:hover:border-slate-700"
         onClick={() =>
           setCurrentCommit(allCommits.filter((c) => c.hash === hash)[0])
         }

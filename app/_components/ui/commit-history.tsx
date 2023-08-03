@@ -108,7 +108,7 @@ function Commit({
           "p-2 pt-1 -m-2 text-left border border-transparent rounded-lg",
           setCurrentCommit
             ? "hover:bg-slate-100 dark:hover:bg-slate-800 hover:border-slate-200 dark:hover:border-slate-700"
-            : ""
+            : "cursor-default select-text"
         )}
         onClick={() => {
           if (setCurrentCommit) {

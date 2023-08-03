@@ -1,20 +1,43 @@
 import { LineHighlight } from "@/app/_components/Snippet";
 import { clsx, type ClassValue } from "clsx";
+import moment from "moment";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getRandomSeconds(min: number = 0, max: number = 60): number {
-  if (min < 0 || max < 0 || min >= max) {
-    throw new Error(
-      "Invalid input: min and max must be positive and min must be less than max"
-    );
-  }
+export function getRandomDate(): moment.Moment {
+  const currentDate = moment();
+  const sixMonthsAgo = currentDate.clone().subtract(3, "months");
+  const daysDifference = currentDate.diff(sixMonthsAgo, "days");
+  const randomDaysOffset = Math.floor(Math.random() * daysDifference);
 
-  const randomSeconds = Math.floor(Math.random() * (max - min + 1)) + min;
-  return randomSeconds;
+  const randomDate = sixMonthsAgo.clone().add(randomDaysOffset, "days");
+
+  const randomHours = Math.floor(Math.random() * 24);
+  const randomMinutes = Math.floor(Math.random() * 60);
+  const randomSeconds = Math.floor(Math.random() * 60);
+
+  randomDate.set({
+    hour: randomHours,
+    minute: randomMinutes,
+    second: randomSeconds,
+  });
+
+  return randomDate;
+}
+
+export function addRandomTime(initialDate: moment.Moment): moment.Moment {
+  const randomDays = Math.floor(Math.random() * 14);
+  const randomHours = Math.floor(Math.random() * 24);
+  const randomMinutes = Math.floor(Math.random() * 60);
+
+  return initialDate
+    .clone()
+    .add(randomDays, "days")
+    .add(randomHours, "hours")
+    .add(randomMinutes, "minutes");
 }
 
 export function findSubstrings(sequence: string, k: number): string[] {

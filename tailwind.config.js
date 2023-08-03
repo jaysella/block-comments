@@ -7,6 +7,7 @@ module.exports = {
     "./src/**/*.{ts,tsx}",
   ],
   safelist: [
+    // BACKGROUNDS
     "bg-slate-100",
     "bg-green-100",
     "bg-purple-100",
@@ -31,6 +32,8 @@ module.exports = {
     "dark:hover:bg-blue-800",
     "dark:hover:bg-red-800",
 
+    // ----
+    // TEXT
     "text-slate-600",
     "text-green-600",
     "text-slate-500",

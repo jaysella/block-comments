@@ -24,6 +24,9 @@ import { useRouter } from "next/navigation";
 import {
   Highlight as HighlightPrimitive,
   Prism,
+  Token,
+  TokenInputProps,
+  TokenOutputProps,
   themes,
 } from "prism-react-renderer";
 import { ReactNode, useEffect, useState } from "react";
@@ -188,7 +191,7 @@ export function SnippetContent({
                 key={i}
                 {...getLineProps({ line })}
                 className={cn(
-                  "flex flex-row w-full px-4 md:px-8",
+                  "flex flex-row w-full px-4 md:px-8 border-l-2 border-l-transparent",
                   highlight
                     ? `bg-${highlights[lineNum].color}-100 dark:bg-${highlights[lineNum].color}-950`
                     : "",
@@ -214,20 +217,10 @@ export function SnippetContent({
                   {explanations ? (
                     <Popover>
                       <PopoverTrigger className="w-full text-left">
-                        {line.map((token, key) => {
-                          const tokenProps = getTokenProps({ token, key });
-
-                          return (
-                            <div
-                              {...tokenProps}
-                              key={key}
-                              style={{
-                                ...tokenProps.style,
-                              }}
-                              className={cn("inline")}
-                            />
-                          );
-                        })}
+                        <SnippetLine
+                          line={line}
+                          getTokenProps={getTokenProps}
+                        />
                       </PopoverTrigger>
 
                       <PopoverContent align="start" arrowPadding={25}>
@@ -245,33 +238,7 @@ export function SnippetContent({
                       </PopoverContent>
                     </Popover>
                   ) : (
-                    <>
-                      {line.map((token, key) => {
-                        const tokenProps = getTokenProps({ token, key });
-
-                        return (
-                          <div
-                            {...tokenProps}
-                            key={key}
-                            style={{
-                              ...tokenProps.style,
-                            }}
-                            className={cn(
-                              "inline",
-                              token.content.startsWith("<".repeat(7))
-                                ? "text-purple-600 dark:text-purple-400"
-                                : "",
-                              token.content.startsWith("=".repeat(7))
-                                ? "text-slate-500"
-                                : "",
-                              token.content.startsWith(">".repeat(7))
-                                ? "text-blue-600 dark:text-blue-400"
-                                : ""
-                            )}
-                          />
-                        );
-                      })}
-                    </>
+                    <SnippetLine line={line} getTokenProps={getTokenProps} />
                   )}
                 </div>
               </div>
@@ -280,6 +247,42 @@ export function SnippetContent({
         </pre>
       )}
     </HighlightPrimitive>
+  );
+}
+
+function SnippetLine({
+  line,
+  getTokenProps,
+}: {
+  line: Token[];
+  getTokenProps: (input: TokenInputProps) => TokenOutputProps;
+}) {
+  return (
+    <>
+      {line.map((token, key) => {
+        const tokenProps = getTokenProps({ token, key });
+
+        return (
+          <div
+            {...tokenProps}
+            key={key}
+            style={{
+              ...tokenProps.style,
+            }}
+            className={cn(
+              "inline",
+              token.content.startsWith("<".repeat(7))
+                ? "text-purple-600 dark:text-purple-400"
+                : "",
+              token.content.startsWith("=".repeat(7)) ? "text-slate-500" : "",
+              token.content.startsWith(">".repeat(7))
+                ? "text-blue-600 dark:text-blue-400"
+                : ""
+            )}
+          />
+        );
+      })}
+    </>
   );
 }
 

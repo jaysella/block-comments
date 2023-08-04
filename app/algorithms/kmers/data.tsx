@@ -77,14 +77,14 @@ export const CODE_EXPLANATIONS: Explanation[] = [
       <>
         This line defines a <CodeSegment>func</CodeSegment>tion named{" "}
         <CodeSegment>countkmers</CodeSegment>. It consumes two (2) arguments:
-        <ul className="mt-2 ml-6 leading-relaxed list-decimal">
+        <ol className="mt-2 ml-6 leading-relaxed list-decimal">
           <li>
             <CodeSegment>sequence</CodeSegment>, which is a string
           </li>
           <li>
             <CodeSegment>k</CodeSegment>, which is an integer
           </li>
-        </ul>
+        </ol>
         <br />
         The function returns a <CodeSegment>map[string]int</CodeSegment>. This
         means the value will be a map of strings to integers.
@@ -180,6 +180,144 @@ export const CODE_EXPLANATIONS: Explanation[] = [
         If the key does not exist in the map, a new entry will be created with{" "}
         <CodeSegment>tempSequence</CodeSegment> as the key, and its value will
         be set to <CodeSegment>1</CodeSegment>.
+      </>
+    ),
+  },
+  {
+    lines: [15],
+    content: (
+      <>
+        This is a <CodeSegment>for</CodeSegment>-loop. Loops are recursive. It
+        processes the given <CodeSegment>sequence</CodeSegment>{" "}
+        character-by-character starting at the <CodeSegment>k</CodeSegment>-th
+        character and ending at the last character (
+        <CodeSegment>len(sequence) - 1</CodeSegment>).
+        <br />
+        <br />
+        <CodeSegment>i</CodeSegment> is the local variable which represents the
+        index of the current character in the{" "}
+        <CodeSegment>sequence</CodeSegment> being evaluated.
+        <br />
+        <br />
+        <CodeSegment>i++</CodeSegment> increments <CodeSegment>i</CodeSegment>{" "}
+        by 1 after each iteration of the loop.
+      </>
+    ),
+  },
+  {
+    lines: [16],
+    content: (
+      <>
+        <CodeSegment>tempSequence</CodeSegment> is a string variable that holds
+        the current k-mer being processed.
+        <br />
+        <br />
+        In each iteration, the k-mer is shifted right by one position. The first
+        character of the <CodeSegment>tempSequence</CodeSegment> is removed and
+        a new character is appended from the <CodeSegment>sequence</CodeSegment>
+        :
+        <ol className="mt-3 ml-6 space-y-2 leading-relaxed list-decimal">
+          <li>
+            <CodeSegment>tempSequence[1:]</CodeSegment> is a{" "}
+            <strong>slice</strong>. It removes the first character of{" "}
+            <CodeSegment>tempSequence</CodeSegment>.
+          </li>
+          <li>
+            <CodeSegment>sequence[i:i+1]</CodeSegment> is a{" "}
+            <strong>slice</strong>. It accesses the character at the{" "}
+            <CodeSegment>i</CodeSegment>-th index within the{" "}
+            <CodeSegment>sequence</CodeSegment>.
+          </li>
+        </ol>
+      </>
+    ),
+  },
+  {
+    lines: [17],
+    content: (
+      <>
+        This line looks up the key equal to the{" "}
+        <CodeSegment>tempSequence</CodeSegment> in the{" "}
+        <CodeSegment>kmers</CodeSegment> map. Then, it increments the value of
+        that key in the map by 1.
+      </>
+    ),
+  },
+  {
+    lines: [18],
+    content: (
+      <>
+        This closing curly brace (<CodeSegment>{"}"}</CodeSegment>) denotes the
+        end of the <CodeSegment>for</CodeSegment>-loop which was opened on line
+        15.
+      </>
+    ),
+  },
+  {
+    lines: [20],
+    content: (
+      <>
+        This <CodeSegment>return</CodeSegment> statement completes execution of
+        the <CodeSegment>countkmers()</CodeSegment> function. The final
+        <CodeSegment>kmers</CodeSegment> map is output.
+      </>
+    ),
+  },
+  {
+    lines: [21],
+    content: (
+      <>
+        This closing curly brace (<CodeSegment>{"}"}</CodeSegment>) denotes the
+        end of the function body for <CodeSegment>countkmers()</CodeSegment>{" "}
+        which was opened on line 5.
+      </>
+    ),
+  },
+  {
+    lines: [23],
+    content: (
+      <>
+        In Go, the <CodeSegment>main()</CodeSegment> function is the entry point
+        of the program. This is automatically called when program execution
+        begins.
+        <br />
+        <br />
+        This function does not take any arguments as there are no parameters
+        defined within the parentheses.
+      </>
+    ),
+  },
+  {
+    lines: [24],
+    content: (
+      <>
+        This line calls the <CodeSegment>countkmers()</CodeSegment> function
+        (defined above) with two arguments:
+        <ol className="mt-2 ml-6 leading-relaxed list-decimal">
+          <li>
+            <CodeSegment>"ACGAGGTACGA"</CodeSegment> as the string value for{" "}
+            <CodeSegment>sequence</CodeSegment>
+          </li>
+          <li>
+            <CodeSegment>3</CodeSegment> as the integer value for{" "}
+            <CodeSegment>k</CodeSegment>
+          </li>
+        </ol>
+        <br />
+        The result of this function call is then printed to the console via the
+        <CodeSegment>fmt.Println()</CodeSegment> function. Recall that{" "}
+        <CodeSegment>fmt</CodeSegment> is provided by the package imported on
+        line 3.
+      </>
+    ),
+  },
+  {
+    lines: [25],
+    content: (
+      <>
+        This closing curly brace (<CodeSegment>{"}"}</CodeSegment>) denotes the
+        end of the <CodeSegment>main()</CodeSegment> function body which was
+        opened on line 23.
       </>
     ),
   },

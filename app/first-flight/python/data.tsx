@@ -85,7 +85,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
       <>
         This creates a constant named <CodeSegment>GAME_CYBER</CodeSegment>. The
         value is an object containing two key-value pairs:
-        <ul className="mt-2 ml-6 leading-relaxed list-decimal">
+        <ol className="mt-2 ml-6 leading-relaxed list-decimal">
           <li>
             <CodeSegment>name</CodeSegment> with a value of "Cyberpunk 2077"
           </li>
@@ -93,7 +93,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
             <CodeSegment>type</CodeSegment> with a value of{" "}
             <CodeSegment>GameType.ACTION</CodeSegment>
           </li>
-        </ul>
+        </ol>
         <br />
         <CodeSegment>GameType.ACTION</CodeSegment> looks up the value of{" "}
         <CodeSegment>ACTION</CodeSegment> in the{" "}
@@ -107,7 +107,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
       <>
         This creates a constant named <CodeSegment>GAME_ZELDA</CodeSegment>. The
         value is an object containing two key-value pairs:
-        <ul className="mt-2 ml-6 leading-relaxed list-decimal">
+        <ol className="mt-2 ml-6 leading-relaxed list-decimal">
           <li>
             <CodeSegment>name</CodeSegment> with a value of "Legend of Zelda"
           </li>
@@ -115,7 +115,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
             <CodeSegment>type</CodeSegment> with a value of{" "}
             <CodeSegment>GameType.ADVENTURE</CodeSegment>
           </li>
-        </ul>
+        </ol>
         <br />
         <CodeSegment>GameType.ADVENTURE</CodeSegment> looks up the value of{" "}
         <CodeSegment>ADVENTURE</CodeSegment> in the{" "}
@@ -129,7 +129,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
       <>
         This creates a constant named <CodeSegment>GAME_ELDEN</CodeSegment>. The
         value is an object containing two key-value pairs:
-        <ul className="mt-2 ml-6 leading-relaxed list-decimal">
+        <ol className="mt-2 ml-6 leading-relaxed list-decimal">
           <li>
             <CodeSegment>name</CodeSegment> with a value of "Elden Ring"
           </li>
@@ -137,7 +137,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
             <CodeSegment>type</CodeSegment> with a value of{" "}
             <CodeSegment>GameType.RPG</CodeSegment>
           </li>
-        </ul>
+        </ol>
         <br />
         <CodeSegment>GameType.RPG</CodeSegment> looks up the value of{" "}
         <CodeSegment>RPG</CodeSegment> in the{" "}

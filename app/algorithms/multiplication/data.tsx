@@ -63,14 +63,14 @@ export const CODE_EXPLANATIONS: Explanation[] = [
         This line defines a <CodeSegment>func</CodeSegment>tion named{" "}
         <CodeSegment>multiplyTwoNumbers</CodeSegment>. It consumes two (2)
         arguments:
-        <ul className="mt-2 ml-6 leading-relaxed list-decimal">
+        <ol className="mt-2 ml-6 leading-relaxed list-decimal">
           <li>
             <CodeSegment>x</CodeSegment>, which is an integer
           </li>
           <li>
             <CodeSegment>y</CodeSegment>, which is (also) an integer
           </li>
-        </ul>
+        </ol>
         <br />
         The function returns an integer.
         <br />
@@ -120,9 +120,9 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     lines: [10],
     content: (
       <>
-        This line calls the <CodeSegment>multiplyTwoNumbers</CodeSegment>{" "}
+        This line calls the <CodeSegment>multiplyTwoNumbers()</CodeSegment>{" "}
         function (defined above) with two arguments:
-        <ul className="mt-2 ml-6 leading-relaxed list-decimal">
+        <ol className="mt-2 ml-6 leading-relaxed list-decimal">
           <li>
             <CodeSegment>4</CodeSegment> as the integer value for{" "}
             <CodeSegment>x</CodeSegment>
@@ -131,7 +131,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
             <CodeSegment>5</CodeSegment> as the integer value for{" "}
             <CodeSegment>y</CodeSegment>
           </li>
-        </ul>
+        </ol>
         <br />
         The result of this function call is then printed to the console via the
         <CodeSegment>fmt.Println()</CodeSegment> function. Recall that{" "}

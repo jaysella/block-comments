@@ -75,7 +75,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
       <>
         This creates an example named <CodeSegment>GAME-CYBER</CodeSegment>. The
         value is an instance of a struct with:
-        <ul className="mt-2 ml-6 leading-relaxed list-decimal">
+        <ol className="mt-2 ml-6 leading-relaxed list-decimal">
           <li>
             a <CodeSegment>name</CodeSegment> of "Cyberpunk 2077"
           </li>
@@ -83,7 +83,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
             a <CodeSegment>type</CodeSegment> of{" "}
             <CodeSegment>GT-ACTION</CodeSegment>
           </li>
-        </ul>
+        </ol>
         <br />
         <CodeSegment>GT-ACTION</CodeSegment> refers to the{" "}
         <CodeSegment>GameType</CodeSegment> example defined on line 7.
@@ -96,7 +96,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
       <>
         This creates an example named <CodeSegment>GAME-ZELDA</CodeSegment>. The
         value is an instance of a struct with:
-        <ul className="mt-2 ml-6 leading-relaxed list-decimal">
+        <ol className="mt-2 ml-6 leading-relaxed list-decimal">
           <li>
             a <CodeSegment>name</CodeSegment> of "Legend of Zelda"
           </li>
@@ -104,7 +104,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
             a <CodeSegment>type</CodeSegment> of{" "}
             <CodeSegment>GT-ADVENTURE</CodeSegment>
           </li>
-        </ul>
+        </ol>
         <br />
         <CodeSegment>GT-ADVENTURE</CodeSegment> refers to the{" "}
         <CodeSegment>GameType</CodeSegment> example defined on line 8.
@@ -117,7 +117,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
       <>
         This creates an example named <CodeSegment>GAME-ELDEN</CodeSegment>. The
         value is an instance of a struct with:
-        <ul className="mt-2 ml-6 leading-relaxed list-decimal">
+        <ol className="mt-2 ml-6 leading-relaxed list-decimal">
           <li>
             a <CodeSegment>name</CodeSegment> of "Elden Ring"
           </li>
@@ -125,7 +125,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
             a <CodeSegment>type</CodeSegment> of{" "}
             <CodeSegment>GT-RPG</CodeSegment>
           </li>
-        </ul>
+        </ol>
         <br />
         <CodeSegment>GT-RPG</CodeSegment> refers to the{" "}
         <CodeSegment>GameType</CodeSegment> example defined on line 9.

@@ -270,7 +270,7 @@ function SnippetLine({
               ...tokenProps.style,
             }}
             className={cn(
-              "inline",
+              "inline select-text",
               token.content.startsWith("<".repeat(7))
                 ? "text-purple-600 dark:text-purple-400"
                 : "",

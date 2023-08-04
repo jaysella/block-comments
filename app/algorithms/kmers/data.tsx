@@ -284,7 +284,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     content: (
       <>
         In Go, the <CodeSegment>main()</CodeSegment> function is the entry point
-        of the program. This is automatically called when program execution
+        to the program. This is automatically called when program execution
         begins.
         <br />
         <br />

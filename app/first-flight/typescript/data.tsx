@@ -45,7 +45,8 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     content: (
       <>
         This begins defining the <CodeSegment>GameType</CodeSegment>{" "}
-        enumeration, stored in a constant (immutable) object.
+        <CodeSegment>enum</CodeSegment>eration. Support for enumerations is
+        built into TypeScript.
       </>
     ),
   },
@@ -151,7 +152,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
         <br />
         <CodeSegment>GameType.ACTION</CodeSegment> looks up the value of{" "}
         <CodeSegment>ACTION</CodeSegment> in the{" "}
-        <CodeSegment>GameType</CodeSegment> enumeration (constant object).
+        <CodeSegment>GameType</CodeSegment> enumeration.
       </>
     ),
   },
@@ -174,7 +175,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
         <br />
         <CodeSegment>GameType.ADVENTURE</CodeSegment> looks up the value of{" "}
         <CodeSegment>ADVENTURE</CodeSegment> in the{" "}
-        <CodeSegment>GameType</CodeSegment> enumeration (constant object).
+        <CodeSegment>GameType</CodeSegment> enumeration.
       </>
     ),
   },
@@ -197,7 +198,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
         <br />
         <CodeSegment>GameType.RPG</CodeSegment> looks up the value of{" "}
         <CodeSegment>RPG</CodeSegment> in the{" "}
-        <CodeSegment>GameType</CodeSegment> enumeration (constant object).
+        <CodeSegment>GameType</CodeSegment> enumeration.
       </>
     ),
   },
@@ -229,7 +230,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
         equal to the value of <CodeSegment>GameType.ADVENTURE</CodeSegment>.{" "}
         <CodeSegment>GameType.ADVENTURE</CodeSegment> looks up the value of{" "}
         <CodeSegment>ADVENTURE</CodeSegment> in the{" "}
-        <CodeSegment>GameType</CodeSegment> enumeration (constant object).
+        <CodeSegment>GameType</CodeSegment> enumeration.
         <br />
         <br />
         The resulting boolean is returned to the caller.

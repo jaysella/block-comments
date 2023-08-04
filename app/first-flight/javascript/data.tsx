@@ -25,7 +25,7 @@ console.log(isAdventureGame(GAME_ELDEN)); // false`;
 
 export const CODE_EXPLANATIONS: Explanation[] = [
   {
-    line: 1,
+    lines: [1, 8, 13],
     content: (
       <>
         Similar to a <CodeSegment>;</CodeSegment> in Racket, two (2) forward
@@ -35,7 +35,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 2,
+    lines: [2],
     content: (
       <>
         This begins defining the <CodeSegment>GameType</CodeSegment>{" "}
@@ -44,7 +44,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 3,
+    lines: [3],
     content: (
       <>
         <CodeSegment>ACTION</CodeSegment> is created as a key with the string
@@ -53,7 +53,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 4,
+    lines: [4],
     content: (
       <>
         <CodeSegment>ADVENTURE</CodeSegment> is created as a constant with the
@@ -62,7 +62,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 5,
+    lines: [5],
     content: (
       <>
         <CodeSegment>RPG</CodeSegment> is created as a constant with the string
@@ -71,7 +71,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 6,
+    lines: [6],
     content: (
       <>
         This closing curly brace (<CodeSegment>{"}"}</CodeSegment>) denotes the
@@ -80,7 +80,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 9,
+    lines: [9],
     content: (
       <>
         This creates a constant named <CodeSegment>GAME_CYBER</CodeSegment>. The
@@ -102,7 +102,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 10,
+    lines: [10],
     content: (
       <>
         This creates a constant named <CodeSegment>GAME_ZELDA</CodeSegment>. The
@@ -124,7 +124,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 11,
+    lines: [11],
     content: (
       <>
         This creates a constant named <CodeSegment>GAME_ELDEN</CodeSegment>. The
@@ -146,7 +146,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 14,
+    lines: [14],
     content: (
       <>
         <CodeSegment>function</CodeSegment> defines a function. The name of this
@@ -160,7 +160,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 15,
+    lines: [15],
     content: (
       <>
         This accesses the given <CodeSegment>game</CodeSegment>'s{" "}
@@ -176,7 +176,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 16,
+    lines: [16],
     content: (
       <>
         This closing curly brace (<CodeSegment>{"}"}</CodeSegment>) denotes the
@@ -186,7 +186,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 18,
+    lines: [18],
     content: (
       <>
         <CodeSegment>console.log()</CodeSegment> outputs the given argument to
@@ -201,7 +201,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 19,
+    lines: [19],
     content: (
       <>
         <CodeSegment>console.log()</CodeSegment> outputs the given argument to
@@ -216,7 +216,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 20,
+    lines: [20],
     content: (
       <>
         <CodeSegment>console.log()</CodeSegment> outputs the given argument to
@@ -238,7 +238,7 @@ false`;
 
 export const OUTPUT_EXPLANATIONS: Explanation[] = [
   {
-    line: 1,
+    lines: [1],
     content: (
       <>
         This is the output from line 18 (
@@ -254,7 +254,7 @@ export const OUTPUT_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 2,
+    lines: [2],
     content: (
       <>
         This is the output from line 21 (
@@ -270,7 +270,7 @@ export const OUTPUT_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 3,
+    lines: [3],
     content: (
       <>
         This is the output from line 22 (

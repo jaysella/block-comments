@@ -32,7 +32,6 @@ import {
 import { ReactNode, useEffect, useState } from "react";
 
 export type Explanation = {
-  line?: number;
   lines?: number[];
   content: ReactNode;
 };

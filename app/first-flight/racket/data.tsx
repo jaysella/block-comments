@@ -33,7 +33,16 @@ export const CODE = `; A GameType (GT) is one of:
 
 export const CODE_EXPLANATIONS: Explanation[] = [
   {
-    line: 7,
+    lines: [1, 2, 3, 4, 5],
+    content: (
+      <>
+        This is a data definition for the custom{" "}
+        <CodeSegment>GameType</CodeSegment> enumeration.
+      </>
+    ),
+  },
+  {
+    lines: [7],
     content: (
       <>
         <CodeSegment>GT-ACTION</CodeSegment> is created as a constant with the
@@ -42,7 +51,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 8,
+    lines: [8],
     content: (
       <>
         <CodeSegment>GT-ADVENTURE</CodeSegment> is created as a constant with
@@ -51,7 +60,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 9,
+    lines: [9],
     content: (
       <>
         <CodeSegment>GT-RPG</CodeSegment> is created as a constant with the
@@ -60,7 +69,16 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 15,
+    lines: [11, 12, 13, 14],
+    content: (
+      <>
+        This is a data definition for the custom <CodeSegment>Game</CodeSegment>{" "}
+        struct.
+      </>
+    ),
+  },
+  {
+    lines: [15],
     content: (
       <>
         This defines a struct named <CodeSegment>Game</CodeSegment>. The struct
@@ -70,7 +88,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 17,
+    lines: [17],
     content: (
       <>
         This creates an example named <CodeSegment>GAME-CYBER</CodeSegment>. The
@@ -91,7 +109,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 18,
+    lines: [18],
     content: (
       <>
         This creates an example named <CodeSegment>GAME-ZELDA</CodeSegment>. The
@@ -112,7 +130,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 19,
+    lines: [19],
     content: (
       <>
         This creates an example named <CodeSegment>GAME-ELDEN</CodeSegment>. The
@@ -133,7 +151,25 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 23,
+    lines: [21],
+    content: (
+      <>
+        This is the signature for the <CodeSegment>adventure-game?</CodeSegment>{" "}
+        function.
+      </>
+    ),
+  },
+  {
+    lines: [22],
+    content: (
+      <>
+        This is the purpose statement for the{" "}
+        <CodeSegment>adventure-game?</CodeSegment> function.
+      </>
+    ),
+  },
+  {
+    lines: [23],
     content: (
       <>
         This line defines a predicate function named{" "}
@@ -143,7 +179,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 24,
+    lines: [24],
     content: (
       <>
         This line determines the <CodeSegment>game</CodeSegment>'s type and if
@@ -153,7 +189,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 26,
+    lines: [26],
     content: (
       <>
         This line determines if Cyberpunk 2077 is an adventure game by calling
@@ -164,7 +200,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 27,
+    lines: [27],
     content: (
       <>
         This line determines if Legend of Zelda is an adventure game by calling
@@ -175,7 +211,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 28,
+    lines: [28],
     content: (
       <>
         This line determines if Elden Ring is an adventure game by calling the{" "}
@@ -193,7 +229,7 @@ export const OUTPUT = `#false
 
 export const OUTPUT_EXPLANATIONS: Explanation[] = [
   {
-    line: 1,
+    lines: [1],
     content: (
       <>
         This is the output from line 26 (
@@ -209,7 +245,7 @@ export const OUTPUT_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 2,
+    lines: [2],
     content: (
       <>
         This is the output from line 27 (
@@ -225,7 +261,7 @@ export const OUTPUT_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    line: 3,
+    lines: [3],
     content: (
       <>
         This is the output from line 28 (

@@ -28,7 +28,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     line: 1,
     content: (
       <>
-        Similar to a <CodeSegment>;</CodeSegment> in Racket, a two (2) forward
+        Similar to a <CodeSegment>;</CodeSegment> in Racket, two (2) forward
         slashes (<CodeSegment>{"//"}</CodeSegment>) denote a comment in
         JavaScript.
       </>

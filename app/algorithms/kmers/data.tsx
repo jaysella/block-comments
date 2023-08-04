@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Explanation } from "@/app/_components/Snippet";
+import { Explanation, SnippetContent } from "@/app/_components/Snippet";
 import KMersPlayground from "@/app/_components/KMersPlayground";
 import { CodeSegment } from "@/app/_components/ui/code-segment";
 import Link from "next/link";
@@ -167,19 +167,69 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     content: (
       <>
         This statement looks up the <CodeSegment>tempSequence</CodeSegment> key
-        in the <CodeSegment>kmers</CodeSegment> map. If it already exists in the
-        map, its corresponding value (an integer) will be incremented by one
-        (1).
+        in the <CodeSegment>kmers</CodeSegment> map and increments its value by
+        1.
         <br />
         <br />
-        For example, a key named <CodeSegment>"ABC"</CodeSegment> with a value
-        of <CodeSegment>3</CodeSegment> will be updated to have a value of{" "}
+        <strong>If the key does not exist in the map yet</strong>, a new entry
+        will be created with <CodeSegment>tempSequence</CodeSegment> as the key.
+        Since the value must be an integer, Go will initialize the key's value
+        to <CodeSegment>0</CodeSegment>. The <CodeSegment>++</CodeSegment>{" "}
+        operator will immediately increment the value to{" "}
+        <CodeSegment>1</CodeSegment>.
+        <details className="px-3 py-2 mt-2 border rounded-lg border-slate-200">
+          <summary className="font-bold uppercase">More info</summary>
+          <div className="mt-1">
+            Consider this map:
+            <SnippetContent
+              language="go"
+              withLineNumbers={false}
+              className="mt-1 mb-3 border-0 rounded-md bg-slate-100 dark:bg-slate-900"
+            >
+              map[ACG:1]
+            </SnippetContent>
+            While key <CodeSegment>ACG</CodeSegment> exists, key{" "}
+            <CodeSegment>CGA</CodeSegment> does not. Running{" "}
+            <CodeSegment>kmers["CGA"]++</CodeSegment> would result in this
+            updated map:
+            <SnippetContent
+              language="go"
+              withLineNumbers={false}
+              className="mt-1 mb-1 border-0 rounded-md bg-slate-100 dark:bg-slate-900"
+            >
+              map[ACG:1 CGA:1]
+            </SnippetContent>
+          </div>
+        </details>
+        <br />
+        <strong>If the key already exists in the map</strong>, its corresponding
+        value (an integer) will be incremented by one (1). For example, a key
+        named <CodeSegment>"ABC"</CodeSegment> with a value of{" "}
+        <CodeSegment>3</CodeSegment> will be updated to have a value of{" "}
         <CodeSegment>4</CodeSegment>. The key will remain unchanged.
-        <br />
-        <br />
-        If the key does not exist in the map, a new entry will be created with{" "}
-        <CodeSegment>tempSequence</CodeSegment> as the key, and its value will
-        be set to <CodeSegment>1</CodeSegment>.
+        <details className="px-3 py-2 mt-2 border rounded-lg border-slate-200">
+          <summary className="font-bold uppercase">More info</summary>
+          <div className="mt-1">
+            Consider this map:
+            <SnippetContent
+              language="go"
+              withLineNumbers={false}
+              className="mt-1 mb-3 border-0 rounded-md bg-slate-100 dark:bg-slate-900"
+            >
+              map[ACG:1]
+            </SnippetContent>
+            Since key <CodeSegment>ACG</CodeSegment> exists, running{" "}
+            <CodeSegment>kmers["ACG"]++</CodeSegment> would result in its value
+            being increased by one (1):
+            <SnippetContent
+              language="go"
+              withLineNumbers={false}
+              className="mt-1 mb-1 border-0 rounded-md bg-slate-100 dark:bg-slate-900"
+            >
+              map[ACG:2]
+            </SnippetContent>
+          </div>
+        </details>
       </>
     ),
   },

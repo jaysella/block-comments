@@ -134,6 +134,8 @@ export function SnippetContent({
   explanations,
   highlights = {},
   wrapText = false,
+  withLineNumbers = true,
+  className,
   children: code,
 }: {
   title?: string;
@@ -141,6 +143,8 @@ export function SnippetContent({
   explanations?: Explanation[];
   highlights?: Record<string, LineHighlight>;
   wrapText?: boolean;
+  withLineNumbers?: boolean;
+  className?: string;
   children: string;
 }) {
   const router = useRouter();
@@ -175,7 +179,8 @@ export function SnippetContent({
       {({ tokens, getLineProps, getTokenProps }) => (
         <pre
           className={cn(
-            "text-sm md:text-base -mt-0.5 border-t-2 border-slate-200 dark:border-slate-800 py-4",
+            "text-sm md:text-base -mt-0.5 py-4 border-t-2 border-slate-200 dark:border-slate-800",
+            className,
             wrapText
               ? "overflow-hidden whitespace-break-spaces"
               : "overflow-auto"
@@ -190,7 +195,7 @@ export function SnippetContent({
                 key={i}
                 {...getLineProps({ line })}
                 className={cn(
-                  "flex flex-row w-full px-4 md:px-8 border-l-2 border-l-transparent",
+                  "flex flex-row w-full px-4 @md:px-8 border-l-2 border-l-transparent",
                   highlight
                     ? `bg-${highlights[lineNum].color}-100 dark:bg-${highlights[lineNum].color}-950`
                     : "",
@@ -201,16 +206,18 @@ export function SnippetContent({
                     : ""
                 )}
               >
-                <div
-                  className={cn(
-                    "self-end flex-shrink-0 w-10 select-none text-slate-400 dark:text-slate-500",
-                    highlight
-                      ? `text-${highlights[lineNum].color}-600 dark:text-${highlights[lineNum].color}-400`
-                      : ""
-                  )}
-                >
-                  {highlights[lineNum]?.label || lineNum}
-                </div>
+                {withLineNumbers && (
+                  <div
+                    className={cn(
+                      "self-end flex-shrink-0 w-10 select-none text-slate-400 dark:text-slate-500",
+                      highlight
+                        ? `text-${highlights[lineNum].color}-600 dark:text-${highlights[lineNum].color}-400`
+                        : ""
+                    )}
+                  >
+                    {highlights[lineNum]?.label || lineNum}
+                  </div>
+                )}
 
                 <div className="block w-full">
                   {explanations ? (

@@ -51,6 +51,8 @@ export default function KMersPlayground({
   hideDetails?: boolean;
   playground?: boolean;
 }) {
+  const MAX_SEQUENCE_LENGTH = 16;
+
   const darkMode = useThemeDetector();
   const searchParams = useSearchParams();
 
@@ -70,7 +72,6 @@ export default function KMersPlayground({
   const [kmersGroupSort, setKmersGroupSort] = useState("observation");
 
   const totalSteps = sequence.length - k;
-  const maxSequenceLength = 16;
 
   const sequenceVariants = {
     highlighted: {
@@ -106,7 +107,10 @@ export default function KMersPlayground({
     if (k > sequence.length) {
       setK(sequence.length);
     }
-  }, [sequence, k]);
+    if (step > totalSteps) {
+      setStep(totalSteps);
+    }
+  }, [sequence, k, step, totalSteps]);
 
   return (
     <div className="@container border-2 rounded-xl border-slate-200 dark:border-slate-800 bg-slate-50 text-slate-700 dark:text-slate-200 dark:bg-slate-900">
@@ -198,10 +202,10 @@ export default function KMersPlayground({
                         className={cn(
                           "w-8 rounded-md border border-transparent px-2 py-0.5 text-right text-sm hover:border-slate-200 dark:hover:border-slate-800",
                           sequence.length >
-                            maxSequenceLength - maxSequenceLength / 4
+                            MAX_SEQUENCE_LENGTH - MAX_SEQUENCE_LENGTH / 4
                             ? "text-orange-400"
                             : "",
-                          sequence.length > maxSequenceLength
+                          sequence.length > MAX_SEQUENCE_LENGTH
                             ? "text-red-700"
                             : ""
                         )}
@@ -214,7 +218,7 @@ export default function KMersPlayground({
                       id="sequence"
                       type="text"
                       value={sequence}
-                      maxLength={maxSequenceLength}
+                      maxLength={MAX_SEQUENCE_LENGTH}
                       onChange={(value) =>
                         setSequence(value.target.value.toUpperCase())
                       }

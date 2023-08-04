@@ -229,6 +229,12 @@ export const CODE_EXPLANATIONS: Explanation[] = [
             <CodeSegment>sequence</CodeSegment>.
           </li>
         </ol>
+        <br />
+        <KMersPlayground
+          title="Sliding Window"
+          sequence="ACGAGGTACGA"
+          hideDetails={true}
+        />
       </>
     ),
   },

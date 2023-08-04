@@ -39,12 +39,16 @@ import {
 export default function KMersPlayground({
   sequence: initialSequence,
   k: initialK = 3,
+  title,
   hideSteps = false,
+  hideDetails = false,
   playground = true,
 }: {
   sequence: string;
   k?: number;
+  title?: string;
   hideSteps?: boolean;
+  hideDetails?: boolean;
   playground?: boolean;
 }) {
   const darkMode = useThemeDetector();
@@ -108,7 +112,11 @@ export default function KMersPlayground({
     <div className="@container border-2 rounded-xl border-slate-200 dark:border-slate-800 bg-slate-50 text-slate-700 dark:text-slate-200 dark:bg-slate-900">
       <div className="flex items-center justify-between w-full px-4 py-2 border-b-2 @md:pl-8 border-b-slate-200 dark:border-b-slate-800">
         <h2 className="font-bold uppercase">
-          K-Mers {playground ? "Playground" : "Visualization"}
+          {title
+            ? title
+            : playground
+            ? "K-Mers Playground"
+            : "K-Mers Visualization"}
         </h2>
 
         <div className="flex items-center">
@@ -213,28 +221,30 @@ export default function KMersPlayground({
                     />
                   </div>
 
-                  <div className="grid gap-2">
-                    <Label htmlFor="group-sort">Group sort</Label>
-                    <Select
-                      defaultValue={kmersGroupSort}
-                      onValueChange={(value) => setKmersGroupSort(value)}
-                    >
-                      <SelectTrigger aria-labelledby="group-sort">
-                        <SelectValue placeholder="Sort by" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="observation">
-                          Observation <small>(1{"->"}9)</small>
-                        </SelectItem>
-                        <SelectItem value="alpha">
-                          Alphabetical <small>(A{"->"}Z)</small>
-                        </SelectItem>
-                        <SelectItem value="prevalence">
-                          Prevalence <small>(9{"->"}1)</small>
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                  {!hideDetails && (
+                    <div className="grid gap-2">
+                      <Label htmlFor="group-sort">Group sort</Label>
+                      <Select
+                        defaultValue={kmersGroupSort}
+                        onValueChange={(value) => setKmersGroupSort(value)}
+                      >
+                        <SelectTrigger aria-labelledby="group-sort">
+                          <SelectValue placeholder="Sort by" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="observation">
+                            Observation <small>(1{"->"}9)</small>
+                          </SelectItem>
+                          <SelectItem value="alpha">
+                            Alphabetical <small>(A{"->"}Z)</small>
+                          </SelectItem>
+                          <SelectItem value="prevalence">
+                            Prevalence <small>(9{"->"}1)</small>
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
 
                   <div className="flex items-center justify-between">
                     <Label htmlFor="k-value">Window size (k-value)</Label>
@@ -255,24 +265,28 @@ export default function KMersPlayground({
                     className="[&_[role=slider]]:h-4 [&_[role=slider]]:w-4"
                   />
 
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="step">Step</Label>
-                    <span
-                      className="w-8 rounded-md border border-transparent px-2 py-0.5 text-right text-sm hover:border-slate-200 dark:hover:border-slate-800"
-                      aria-hidden="true"
-                    >
-                      {step}
-                    </span>
-                  </div>
-                  <Slider
-                    id="step"
-                    min={0}
-                    max={totalSteps}
-                    step={1}
-                    value={[step]}
-                    onValueChange={(value) => setStep(value[0])}
-                    className="[&_[role=slider]]:h-4 [&_[role=slider]]:w-4"
-                  />
+                  {hideSteps && (
+                    <>
+                      <div className="flex items-center justify-between">
+                        <Label htmlFor="step">Step</Label>
+                        <span
+                          className="w-8 rounded-md border border-transparent px-2 py-0.5 text-right text-sm hover:border-slate-200 dark:hover:border-slate-800"
+                          aria-hidden="true"
+                        >
+                          {step}
+                        </span>
+                      </div>
+                      <Slider
+                        id="step"
+                        min={0}
+                        max={totalSteps}
+                        step={1}
+                        value={[step]}
+                        onValueChange={(value) => setStep(value[0])}
+                        className="[&_[role=slider]]:h-4 [&_[role=slider]]:w-4"
+                      />
+                    </>
+                  )}
                 </div>
               </PopoverContent>
             </Popover>
@@ -305,54 +319,64 @@ export default function KMersPlayground({
             ))}
           </motion.div>
 
-          <p className="mt-4">
-            Current {k}-mer:{" "}
-            <CodeSegment>{sequence.substring(step, step + k)}</CodeSegment>
-          </p>
-          <p className="mt-1">
-            Total {k}-mers identified: {step + 1}
-          </p>
+          {!hideDetails && (
+            <>
+              <p className="mt-4">
+                Current {k}-mer:{" "}
+                <CodeSegment>{sequence.substring(step, step + k)}</CodeSegment>
+              </p>
+              <p className="mt-1">
+                Total {k}-mers identified: {step + 1}
+              </p>
+            </>
+          )}
         </div>
 
-        <div className="flex flex-col pt-6 gap-y-4 sm:flex-row @md:divide-x-2 divide-slate-200 dark:divide-slate-800 gap-x-6 @md:pt-0 @sm:justify-between">
-          <div className="@md:px-4">
-            <h3 className="font-bold uppercase">{k}-mers Identified</h3>
-            <AnimatedList>
-              {findSubstrings(sequence, k)
-                .filter((_, i) => i <= step)
-                .map((s, i) => (
-                  <AnimatedListItem key={i}>{s}</AnimatedListItem>
-                ))}
-            </AnimatedList>
-          </div>
+        {!hideDetails && (
+          <div className="flex flex-col pt-6 gap-y-4 sm:flex-row @md:divide-x-2 divide-slate-200 dark:divide-slate-800 gap-x-6 @md:pt-0 @sm:justify-between">
+            <div className="@md:px-4">
+              <h3 className="font-bold uppercase">{k}-mers Identified</h3>
+              <AnimatedList>
+                {findSubstrings(sequence, k)
+                  .filter((_, i) => i <= step)
+                  .map((s, i) => (
+                    <AnimatedListItem key={i}>{s}</AnimatedListItem>
+                  ))}
+              </AnimatedList>
+            </div>
 
-          <div className="@sm:px-4">
-            <h3 className="font-bold uppercase">{k}-mers, Grouped</h3>
-            <AnimatedList>
-              {groupSubstrings(
-                findSubstrings(sequence, k).filter((_, i) => i <= step)
-              )
-                .sort((a, b) => {
-                  const textA = a.string.toLowerCase();
-                  const textB = b.string.toLowerCase();
+            <div className="@sm:px-4">
+              <h3 className="font-bold uppercase">{k}-mers, Grouped</h3>
+              <AnimatedList>
+                {groupSubstrings(
+                  findSubstrings(sequence, k).filter((_, i) => i <= step)
+                )
+                  .sort((a, b) => {
+                    const textA = a.string.toLowerCase();
+                    const textB = b.string.toLowerCase();
 
-                  switch (kmersGroupSort) {
-                    case "alpha":
-                      return textA < textB ? -1 : textA > textB ? 1 : 0;
-                    case "prevalence":
-                      return a.count < b.count ? 1 : a.count > b.count ? -1 : 0;
-                    default:
-                      return 0;
-                  }
-                })
-                .map((s, i) => (
-                  <AnimatedListItem key={i}>
-                    {s.string} <span className="text-sm">x{s.count}</span>
-                  </AnimatedListItem>
-                ))}
-            </AnimatedList>
+                    switch (kmersGroupSort) {
+                      case "alpha":
+                        return textA < textB ? -1 : textA > textB ? 1 : 0;
+                      case "prevalence":
+                        return a.count < b.count
+                          ? 1
+                          : a.count > b.count
+                          ? -1
+                          : 0;
+                      default:
+                        return 0;
+                    }
+                  })
+                  .map((s, i) => (
+                    <AnimatedListItem key={i}>
+                      {s.string} <span className="text-sm">x{s.count}</span>
+                    </AnimatedListItem>
+                  ))}
+              </AnimatedList>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

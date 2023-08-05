@@ -203,7 +203,9 @@ export const CODE_EXPLANATIONS: Explanation[] = [
         <CodeSegment>0</CodeSegment>. The <CodeSegment>++</CodeSegment> operator
         increments that value to <CodeSegment>1</CodeSegment>.
         <details className="px-3 py-2 mt-2 border rounded-lg border-slate-200">
-          <summary className="font-bold uppercase text-slate-yellow"></summary>
+          <summary className="font-bold text-blue-500 uppercase">
+            Example
+          </summary>
           <div className="mt-1">
             Consider this map:
             <SnippetContent

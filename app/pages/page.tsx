@@ -47,7 +47,7 @@ export default function Page() {
               </Link>
             </li>
             <li>
-              <Link href="/algorithms/big-o">Big O (Go)</Link>
+              <Link href="/algorithms/big-o">Big O Analysis (Go)</Link>
             </li>
             <li>
               <Link href="/algorithms/playground">K-Mers Playground</Link>

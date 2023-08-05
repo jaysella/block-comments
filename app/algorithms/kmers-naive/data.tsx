@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Explanation, SnippetContent } from "@/app/_components/Snippet";
-import KMersPlayground from "@/app/_components/KMersPlayground";
 import { CodeSegment } from "@/app/_components/ui/code-segment";
 import Link from "next/link";
 
@@ -15,12 +14,9 @@ func countkmers(sequence string, k int) map[string]int {
 		return kmers
 	}
 
-	var tempSequence = sequence[:k]
-	kmers[tempSequence]++
-
-	for i := k; i < len(sequence); i++ {
-		tempSequence = tempSequence[1:] + sequence[i:i+1]
-		kmers[tempSequence]++
+	for i := 0; i < len(sequence) - k + 1; i++ {
+		var kmer = sequence[i:i+k]
+		kmers[kmer]++
 	}
 
 	return kmers
@@ -117,7 +113,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     content: (
       <>
         This is a conditional statement. The contents on lines 9 will only be
-        evaluated if <CodeSegment>k</CodeSegment> is greater than than (
+        evaluated if <CodeSegment>k</CodeSegment> is greater than (
         <CodeSegment>{">"}</CodeSegment>) the length of the given{" "}
         <CodeSegment>sequence</CodeSegment>.
         <br />
@@ -131,8 +127,9 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     lines: [9],
     content: (
       <>
-        This <CodeSegment>countkmers</CodeSegment> function will return with the
-        current value of the <CodeSegment>kmers</CodeSegment> variable.
+        If the above conditional is true, the <CodeSegment>kmers</CodeSegment>{" "}
+        variable will be output as the result of the{" "}
+        <CodeSegment>countkmers</CodeSegment> function.
       </>
     ),
   },
@@ -149,16 +146,19 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     lines: [12],
     content: (
       <>
-        <CodeSegment>var</CodeSegment> defines a variable to store data. This
-        variable is named <CodeSegment>tempSequence</CodeSegment>.
+        This is a <CodeSegment>for</CodeSegment>-loop. Loops are recursive. It
+        processes the given <CodeSegment>sequence</CodeSegment>{" "}
+        character-by-character starting at the <CodeSegment>0</CodeSegment>-th
+        (first) character and ending at the last substring-able character.
         <br />
         <br />
-        Its value is determined by taking part of the provided{" "}
-        <CodeSegment>sequence</CodeSegment> string. This part, or{" "}
-        <em>substring</em>, starts from the beginning (index zero (0)) of the{" "}
-        <CodeSegment>sequence</CodeSegment> string and includes all characters
-        up to, but not including, the "<CodeSegment>k</CodeSegment>"-th
-        character in the sequence.
+        <CodeSegment>i</CodeSegment> is the local variable which represents the
+        index of the current character in the{" "}
+        <CodeSegment>sequence</CodeSegment> being evaluated.
+        <br />
+        <br />
+        <CodeSegment>i++</CodeSegment> increments <CodeSegment>i</CodeSegment>{" "}
+        by one (1) after each iteration of the loop.
       </>
     ),
   },
@@ -166,19 +166,43 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     lines: [13],
     content: (
       <>
-        This statement looks up the <CodeSegment>tempSequence</CodeSegment> key
-        in the <CodeSegment>kmers</CodeSegment> map and increments its value by
-        1.
+        <CodeSegment>kmer</CodeSegment> is a string variable that holds the
+        current k-mer being processed.
         <br />
         <br />
-        <strong>If the key does not exist in the map yet</strong>, a new entry
-        will be created with <CodeSegment>tempSequence</CodeSegment> as the key.
-        Since the value must be an integer, Go will initialize the key's value
-        to <CodeSegment>0</CodeSegment>. The <CodeSegment>++</CodeSegment>{" "}
-        operator will immediately increment the value to{" "}
-        <CodeSegment>1</CodeSegment>.
+        In each iteration, the appropiate k-mer is computed according to the
+        current <CodeSegment>i</CodeSegment>ndex. :
+        <ol className="mt-3 ml-6 space-y-2 leading-relaxed list-decimal">
+          <li>
+            <CodeSegment>sequence[i:i+k]</CodeSegment> is a{" "}
+            <strong>slice</strong>. It substrings the characters starting at the{" "}
+            <CodeSegment>i</CodeSegment>-th index within the{" "}
+            <CodeSegment>sequence</CodeSegment> up to, but not including, the
+            <CodeSegment>i+k</CodeSegment>-th index.
+          </li>
+        </ol>
+      </>
+    ),
+  },
+  {
+    lines: [14],
+    content: (
+      <>
+        This line looks up the key equal to the{" "}
+        <CodeSegment>tempSequence</CodeSegment> in the{" "}
+        <CodeSegment>kmers</CodeSegment> map. Then, it increments the value of
+        that key by one (1).
+        <br />
+        <br />
+        If the key does <strong>not</strong> exist in the map, a new key equal
+        to the <CodeSegment>tempSequence</CodeSegment> will be created. Since
+        the value must be an integer, Go defaults the key's value to{" "}
+        <CodeSegment>0</CodeSegment>. The <CodeSegment>++</CodeSegment> operator
+        increments that value to <CodeSegment>1</CodeSegment>.
         <details className="px-3 py-2 mt-2 border rounded-lg border-slate-200">
-          <summary className="font-bold uppercase">More info</summary>
+          <summary className="font-bold text-blue-500 uppercase">
+            Example
+          </summary>
           <div className="mt-1">
             Consider this map:
             <SnippetContent
@@ -186,10 +210,10 @@ export const CODE_EXPLANATIONS: Explanation[] = [
               withLineNumbers={false}
               className="mt-1 mb-3 border-0 rounded-md bg-slate-100 dark:bg-slate-900"
             >
-              map[ACG:1]
+              map[ACG:2]
             </SnippetContent>
-            While key <CodeSegment>ACG</CodeSegment> exists, key{" "}
-            <CodeSegment>CGA</CodeSegment> does not. Running{" "}
+            While key <CodeSegment>"ACG"</CodeSegment> exists, key{" "}
+            <CodeSegment>"CGA"</CodeSegment> does not. Running{" "}
             <CodeSegment>kmers["CGA"]++</CodeSegment> would result in this
             updated map:
             <SnippetContent
@@ -197,36 +221,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
               withLineNumbers={false}
               className="mt-1 mb-1 border-0 rounded-md bg-slate-100 dark:bg-slate-900"
             >
-              map[ACG:1 CGA:1]
-            </SnippetContent>
-          </div>
-        </details>
-        <br />
-        <strong>If the key already exists in the map</strong>, its corresponding
-        value (an integer) will be incremented by one (1). For example, a key
-        named <CodeSegment>"ABC"</CodeSegment> with a value of{" "}
-        <CodeSegment>3</CodeSegment> will be updated to have a value of{" "}
-        <CodeSegment>4</CodeSegment>. The key will remain unchanged.
-        <details className="px-3 py-2 mt-2 border rounded-lg border-slate-200">
-          <summary className="font-bold uppercase">More info</summary>
-          <div className="mt-1">
-            Consider this map:
-            <SnippetContent
-              language="go"
-              withLineNumbers={false}
-              className="mt-1 mb-3 border-0 rounded-md bg-slate-100 dark:bg-slate-900"
-            >
-              map[ACG:1]
-            </SnippetContent>
-            Since key <CodeSegment>ACG</CodeSegment> exists, running{" "}
-            <CodeSegment>kmers["ACG"]++</CodeSegment> would result in its value
-            being increased by one (1):
-            <SnippetContent
-              language="go"
-              withLineNumbers={false}
-              className="mt-1 mb-1 border-0 rounded-md bg-slate-100 dark:bg-slate-900"
-            >
-              map[ACG:2]
+              map[ACG:2 CGA:1]
             </SnippetContent>
           </div>
         </details>
@@ -237,54 +232,9 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     lines: [15],
     content: (
       <>
-        This is a <CodeSegment>for</CodeSegment>-loop. Loops are recursive. It
-        processes the given <CodeSegment>sequence</CodeSegment>{" "}
-        character-by-character starting at the <CodeSegment>k</CodeSegment>-th
-        character and ending at the last character (
-        <CodeSegment>len(sequence) - 1</CodeSegment>).
-        <br />
-        <br />
-        <CodeSegment>i</CodeSegment> is the local variable which represents the
-        index of the current character in the{" "}
-        <CodeSegment>sequence</CodeSegment> being evaluated.
-        <br />
-        <br />
-        <CodeSegment>i++</CodeSegment> increments <CodeSegment>i</CodeSegment>{" "}
-        by 1 after each iteration of the loop.
-      </>
-    ),
-  },
-  {
-    lines: [16],
-    content: (
-      <>
-        <CodeSegment>tempSequence</CodeSegment> is a string variable that holds
-        the current k-mer being processed.
-        <br />
-        <br />
-        In each iteration, the k-mer is shifted right by one position. The first
-        character of the <CodeSegment>tempSequence</CodeSegment> is removed and
-        a new character is appended from the <CodeSegment>sequence</CodeSegment>
-        :
-        <ol className="mt-3 ml-6 space-y-2 leading-relaxed list-decimal">
-          <li>
-            <CodeSegment>tempSequence[1:]</CodeSegment> is a{" "}
-            <strong>slice</strong>. It removes the first character of{" "}
-            <CodeSegment>tempSequence</CodeSegment>.
-          </li>
-          <li>
-            <CodeSegment>sequence[i:i+1]</CodeSegment> is a{" "}
-            <strong>slice</strong>. It accesses the character at the{" "}
-            <CodeSegment>i</CodeSegment>-th index within the{" "}
-            <CodeSegment>sequence</CodeSegment>.
-          </li>
-        </ol>
-        <br />
-        <KMersPlayground
-          title="Sliding Window"
-          sequence="ACGAGGTACGA"
-          hideDetails={true}
-        />
+        This closing curly brace (<CodeSegment>{"}"}</CodeSegment>) denotes the
+        end of the <CodeSegment>for</CodeSegment>-loop which was opened on line
+        12.
       </>
     ),
   },
@@ -292,35 +242,14 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     lines: [17],
     content: (
       <>
-        This line looks up the key equal to the{" "}
-        <CodeSegment>tempSequence</CodeSegment> in the{" "}
-        <CodeSegment>kmers</CodeSegment> map. Then, it increments the value of
-        that key in the map by 1.
-      </>
-    ),
-  },
-  {
-    lines: [18],
-    content: (
-      <>
-        This closing curly brace (<CodeSegment>{"}"}</CodeSegment>) denotes the
-        end of the <CodeSegment>for</CodeSegment>-loop which was opened on line
-        15.
-      </>
-    ),
-  },
-  {
-    lines: [20],
-    content: (
-      <>
         This <CodeSegment>return</CodeSegment> statement completes execution of
-        the <CodeSegment>countkmers()</CodeSegment> function. The final
+        the <CodeSegment>countkmers()</CodeSegment> function. The final{" "}
         <CodeSegment>kmers</CodeSegment> map is output.
       </>
     ),
   },
   {
-    lines: [21],
+    lines: [18],
     content: (
       <>
         This closing curly brace (<CodeSegment>{"}"}</CodeSegment>) denotes the
@@ -330,7 +259,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    lines: [23],
+    lines: [20],
     content: (
       <>
         In Go, the <CodeSegment>main()</CodeSegment> function is the entry point
@@ -344,7 +273,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    lines: [24],
+    lines: [21],
     content: (
       <>
         This line calls the <CodeSegment>countkmers()</CodeSegment> function
@@ -368,12 +297,12 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    lines: [25],
+    lines: [22],
     content: (
       <>
         This closing curly brace (<CodeSegment>{"}"}</CodeSegment>) denotes the
         end of the <CodeSegment>main()</CodeSegment> function body which was
-        opened on line 23.
+        opened on line 20.
       </>
     ),
   },
@@ -386,7 +315,7 @@ export const OUTPUT_EXPLANATIONS: Explanation[] = [
     lines: [1],
     content: (
       <>
-        This is the output from line 24 (
+        This is the output from line 21 (
         <CodeSegment>fmt.Println(...)</CodeSegment>). It tells us that there are
         seven (7) unique 3-mers in the <CodeSegment>"ACGAGGTACGA"</CodeSegment>{" "}
         sequence. These are: ACG, AGG, CGA, GAG, GGT, GTA, and TAC.
@@ -395,10 +324,7 @@ export const OUTPUT_EXPLANATIONS: Explanation[] = [
         The count of each 3-mer identified is also returned as the value for
         each key. Note that this matches the format of our{" "}
         <CodeSegment>kmers</CodeSegment> map which is returned by the{" "}
-        <CodeSegment>countkmers</CodeSegment> function.
-        <br />
-        <br />
-        <KMersPlayground sequence="ACGAGGTACGA" hideSteps playground={false} />
+        <CodeSegment>countkmers()</CodeSegment> function.
       </>
     ),
   },

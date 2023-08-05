@@ -37,7 +37,14 @@ export default function Page() {
               <Link href="/algorithms/multiplication">Multiplication (Go)</Link>
             </li>
             <li>
-              <Link href="/algorithms/kmers">K-Mers (Go)</Link>
+              <Link href="/algorithms/kmers-naive">
+                Counting k-mers: Naive (Go)
+              </Link>
+            </li>
+            <li>
+              <Link href="/algorithms/kmers-window">
+                Counting k-mers: Sliding Window Technique (Go)
+              </Link>
             </li>
             <li>
               <Link href="/algorithms/playground">K-Mers Playground</Link>

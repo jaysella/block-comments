@@ -37,7 +37,7 @@ export type Explanation = {
 };
 
 export type LineHighlight = {
-  color: string;
+  color?: string;
   label?: string;
 };
 
@@ -196,11 +196,11 @@ export function SnippetContent({
                 {...getLineProps({ line })}
                 className={cn(
                   "flex flex-row w-full px-4 @md:px-8 border-l-2 border-l-transparent",
-                  highlight
+                  highlight && highlights[lineNum].color
                     ? `bg-${highlights[lineNum].color}-100 dark:bg-${highlights[lineNum].color}-950`
                     : "",
                   explanations
-                    ? highlight
+                    ? highlight && highlights[lineNum].color
                       ? `hover:bg-${highlights[lineNum].color}-200 dark:bg-${highlights[lineNum].color}-800`
                       : "hover:bg-slate-200 dark:hover:bg-slate-800"
                     : ""
@@ -210,12 +210,12 @@ export function SnippetContent({
                   <div
                     className={cn(
                       "self-end flex-shrink-0 w-10 select-none text-slate-400 dark:text-slate-500",
-                      highlight
+                      highlight && highlights[lineNum].color
                         ? `text-${highlights[lineNum].color}-600 dark:text-${highlights[lineNum].color}-400`
                         : ""
                     )}
                   >
-                    {highlights[lineNum]?.label || lineNum}
+                    {highlights[lineNum]?.label ?? lineNum}
                   </div>
                 )}
 

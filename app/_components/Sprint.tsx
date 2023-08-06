@@ -26,9 +26,7 @@ import {
   ArrowRightIcon,
   CheckCircleIcon,
   GemIcon,
-  dynamicIconImports,
 } from "lucide-react";
-import dynamic from "next/dynamic";
 import {
   Dispatch,
   ReactNode,
@@ -37,11 +35,20 @@ import {
   useState,
 } from "react";
 import {
+  ACTION_ITEMS,
   PRODUCT_BACKLOG,
   SPRINT_BACKLOG,
   Story,
   Ticket,
 } from "../product/sprint/data";
+import {
+  KanbanCard,
+  KanbanColumn,
+  KanbanContent,
+  KanbanHeader,
+  KanbanLabel,
+} from "./Kanban";
+import StoryPoint from "./StoryPoint";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { Checkbox } from "./ui/checkbox";
 
@@ -113,47 +120,15 @@ export default function Sprint() {
 
           <BlockContent>
             <div className="space-y-12">
-              {stage === 2 && (
-                <ActionItem title="We've reached Stage 3.">
-                  <p>
-                    You have selected a collection of tickets for your team to
-                    work on this Sprint.
-                  </p>
-                </ActionItem>
-              )}
-
-              {stage === 1 && (
-                <ActionItem title="It's time for stage #2!">
-                  <p>
-                    You and your team have completed Product Backlog Refinement!
-                    Each Story is now broken down into smaller, more manageable
-                    tickets and prioritized appropriately.
-                  </p>
-                  <div
-                    role="alert"
-                    className="p-4 !mt-4 border border-amber-500 rounded-lg bg-amber-50 dark:bg-amber-950/50 dark:border-amber-900"
-                  >
-                    <AlertTriangleIcon
-                      size={24}
-                      className="mb-2 text-amber-500"
-                    />
-                    <strong>Be mindful of each ticket's Story Points!</strong>{" "}
-                    Your development team has informed you that their maximum
-                    capacity for this Sprint is 15 Story Points.
-                  </div>
-                </ActionItem>
-              )}
-
-              {stage === 0 && (
-                <ActionItem title="Welcome to the first stage of this sprint!">
-                  <p>This stage is all about Product Backlog Refinement.</p>
-                  <p>
-                    Select three (3) Stories from your Product Backlog to break
-                    down into smaller, more manageable tickets for your Sprint
-                    Backlog.
-                  </p>
-                </ActionItem>
-              )}
+              {ACTION_ITEMS.map((action, i) => {
+                if (action.stage === stage) {
+                  return (
+                    <ActionItem key={i} title={action.title}>
+                      {action.message}
+                    </ActionItem>
+                  );
+                }
+              })}
             </div>
           </BlockContent>
         </Block>
@@ -424,8 +399,8 @@ function SprintBacklog({ tickets }: { tickets: Ticket[] }) {
                 />
               </KanbanHeader>
               <KanbanContent>
-                <KanbanCard title="Something" points={0}></KanbanCard>
-                <KanbanCard title="Something" points={0}></KanbanCard>
+                <KanbanCard title="Something" points={0} />
+                <KanbanCard title="Something" points={0} />
               </KanbanContent>
             </KanbanColumn>
 
@@ -438,91 +413,13 @@ function SprintBacklog({ tickets }: { tickets: Ticket[] }) {
                 />
               </KanbanHeader>
               <KanbanContent>
-                <KanbanCard title="Something" points={0}></KanbanCard>
+                <KanbanCard title="Something" points={0} />
               </KanbanContent>
             </KanbanColumn>
           </div>
         </div>
-
-        {/* <div className="flex flex-col w-full gap-2">
-          <div className="flex flex-col w-full gap-1 p-4 bg-white border rounded-lg border-slate-200">
-            <span className="flex flex-row items-center gap-1.5 px-2 py-1 text-xs font-bold text-green-600 uppercase bg-green-100 border border-green-200 rounded-lg w-max">
-              <CheckCircle2Icon size={18} /> Complete
-            </span>
-            <span className="text-lg font-bold">Task</span>
-          </div>
-          <div className="flex flex-col w-full gap-1 p-4 bg-white border rounded-lg border-slate-200">
-            <span className="flex flex-row items-center gap-1.5 px-2 py-1 text-xs font-bold uppercase border rounded-lg border-yellow-200 text-yellow-600 bg-yellow-100 w-max">
-              <CircleDotIcon size={18} /> In Progress
-            </span>
-            <span className="text-lg font-bold">Task</span>
-          </div>
-          <div className="flex flex-col w-full gap-1 p-4 bg-white border rounded-lg border-slate-200">
-            <span className="flex flex-row items-center gap-1.5 px-2 py-1 text-xs font-bold uppercase border rounded-lg border-slate-200 text-slate-600 bg-slate-100 w-max">
-              <CircleIcon size={18} /> Not Started
-            </span>
-            <span className="text-lg font-bold">Task</span>
-          </div>
-        </div> */}
       </BlockContent>
     </Block>
-  );
-}
-
-function KanbanColumn({ children }: { children: ReactNode }) {
-  return <div>{children}</div>;
-}
-
-function KanbanHeader({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex flex-row items-center justify-between mb-2 mr-1">
-      <div className="flex items-center gap-2">
-        {children}
-        <span className="text-sm text-slate-500">3</span>
-      </div>
-    </div>
-  );
-}
-
-function KanbanContent({ children }: { children: ReactNode }) {
-  return <div className="grid grid-rows-2 gap-2">{children}</div>;
-}
-
-function KanbanCard({ title, points }: { title: string; points: number }) {
-  return (
-    <div className="p-2 border rounded-md shadow-sm bg-slate-100 dark:bg-slate-950 border-slate-200 dark:border-slate-800">
-      {/* <span className="flex flex-row items-center gap-1 px-2 py-1 text-[0.55rem] font-bold uppercase border rounded-md border-slate-200 text-slate-600 bg-slate-100 w-max">
-        <CircleIcon size={10} /> Not Started
-      </span> */}
-      <h3 className="mb-2 text-sm text-slate-700">{title}</h3>
-      <StoryPoint points={points} />
-    </div>
-  );
-}
-
-function KanbanLabel({
-  icon,
-  name,
-  color,
-  size = "default",
-}: {
-  icon?: keyof typeof dynamicIconImports;
-  name: string;
-  color: string;
-  size?: "small" | "default";
-}) {
-  const Icon = dynamic(dynamicIconImports[icon || "circle"]);
-
-  return (
-    <h3
-      className={cn(
-        `flex flex-row items-center gap-1.5 px-2 py-1 font-bold uppercase border rounded-md border-${color}-200 text-${color}-600 bg-${color}-100 w-max dark:border-${color}-700 dark:text-${color}-400 dark:bg-${color}-900`,
-        size === "small" ? "text-[0.55rem]" : "text-xs"
-      )}
-    >
-      {icon ? <Icon size={size === "small" ? 10 : 16} /> : null}
-      {name}
-    </h3>
   );
 }
 
@@ -635,26 +532,5 @@ function Story({
         </div>
       </div>
     </div>
-  );
-}
-
-function StoryPoint({
-  points,
-  estimate = false,
-}: {
-  points: number;
-  estimate?: boolean;
-}) {
-  return (
-    <Tooltip>
-      <TooltipTrigger className="px-2 py-0.5 cursor-help rounded-md bg-slate-200 dark:bg-slate-700 text-sm font-bold flex flex-row gap-1 items-center">
-        <GemIcon size={14} aria-label="story points" />
-        {points}
-      </TooltipTrigger>
-      <TooltipContent className="not-sr-only">
-        Story Points
-        {estimate ? " (estimate)" : null}
-      </TooltipContent>
-    </Tooltip>
   );
 }

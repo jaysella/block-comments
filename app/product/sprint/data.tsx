@@ -1,3 +1,13 @@
+/* eslint-disable react/no-unescaped-entities */
+import { AlertTriangleIcon } from "lucide-react";
+import { ReactNode } from "react";
+
+export type ActionItem = {
+  stage: number;
+  title: string;
+  message: ReactNode;
+};
+
 export type Story = {
   id: string;
   points: number;
@@ -13,6 +23,56 @@ export type Ticket = {
   title: string;
   points: number;
 };
+
+export const ACTION_ITEMS: ActionItem[] = [
+  {
+    stage: 0,
+    title: "Welcome to the first stage of this sprint!",
+    message: (
+      <>
+        <p>This stage is all about Product Backlog Refinement.</p>
+        <p>
+          Select three (3) Stories from your Product Backlog to break down into
+          smaller, more manageable tickets for your Sprint Backlog.
+        </p>
+      </>
+    ),
+  },
+  {
+    stage: 1,
+    title: "It's time for stage #2!",
+    message: (
+      <>
+        <p>
+          You and your team have completed Product Backlog Refinement! Each
+          Story is now broken down into smaller, more manageable tickets and
+          prioritized appropriately.
+        </p>
+        <div
+          role="alert"
+          className="p-4 !mt-4 border border-amber-500 rounded-lg bg-amber-50 dark:bg-amber-950/50 dark:border-amber-900"
+        >
+          <AlertTriangleIcon size={24} className="mb-2 text-amber-500" />
+          <strong>Be mindful of each ticket's Story Points!</strong> Your
+          development team has informed you that their maximum capacity for this
+          Sprint is 15 Story Points.
+        </div>
+      </>
+    ),
+  },
+  {
+    stage: 2,
+    title: "We've reached Stage 3.",
+    message: (
+      <>
+        <p>
+          You have selected a collection of tickets for your team to work on
+          this Sprint.
+        </p>
+      </>
+    ),
+  },
+];
 
 export const PRODUCT_BACKLOG: Story[] = [
   {

@@ -206,7 +206,7 @@ export default function KMersPlayground({
                             ? "text-orange-400"
                             : "",
                           sequence.length > MAX_SEQUENCE_LENGTH
-                            ? "text-red-700"
+                            ? "text-red-500"
                             : ""
                         )}
                         aria-label="Sequence length"

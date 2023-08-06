@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import {
@@ -12,7 +13,13 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  animate,
+  motion,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
 import {
   AlertTriangleIcon,
   ArrowRightIcon,
@@ -21,17 +28,25 @@ import {
   dynamicIconImports,
 } from "lucide-react";
 import { ReactNode, useEffect, useState } from "react";
-import { PRODUCT_BACKLOG, Story } from "../product/sprint/data";
+import {
+  PRODUCT_BACKLOG,
+  SPRINT_BACKLOG,
+  Story,
+  Ticket,
+} from "../product/sprint/data";
 import { Checkbox } from "./ui/checkbox";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
+import InfoBlock from "./InfoBlock";
+import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 
 export default function Sprint() {
-  const MAX_STORIES = 3;
+  const MAX_STORIES = 2;
   const [stage, setStage] = useState(0);
   const [stories, setStories] = useState<Record<string, boolean>>(
     PRODUCT_BACKLOG.reduce((acc, p) => ({ ...acc, [p.id]: false }), {})
   );
+  const [tickets, setTickets] = useState<Ticket[]>(SPRINT_BACKLOG);
 
   useEffect(() => {
     if (Object.values(stories).filter((s) => s).length === MAX_STORIES) {
@@ -87,9 +102,7 @@ export default function Sprint() {
                       size={24}
                       className="mb-2 text-amber-500"
                     />
-                    <strong>
-                      Pay close attention to each ticket&lsquo;s Story Points!
-                    </strong>{" "}
+                    <strong>Be mindful of each ticket's Story Points!</strong>{" "}
                     Your development team has informed you that their maximum
                     capacity for this Sprint is 15 Story Points.
                   </div>
@@ -112,7 +125,9 @@ export default function Sprint() {
           <ProductBacklog stories={stories} setStories={setStories} />
         )}
 
-        {stage === 1 && <SprintBacklog />}
+        {stage === 1 && <SprintPlanning />}
+
+        {stage === 2 && <SprintBacklog />}
       </div>
     </>
   );
@@ -144,7 +159,7 @@ function ProductBacklog({
   stories: Record<string, boolean>;
   setStories: (stories: Record<string, boolean>) => void;
 }) {
-  const MAX_STORIES = 3;
+  const MAX_STORIES = 2;
 
   function handleCheckChanged(storyId: string, checked: boolean) {
     let storyMap = { ...stories };
@@ -202,31 +217,69 @@ function ProductBacklog({
   );
 }
 
-function SprintPlanning({
-  stories,
-}: // setStories,
+function SprintPlanning({}: // stories,
+// setStories,
 {
-  stories: Record<string, boolean>;
+  // stories: Record<string, boolean>;
   // setStories: (stories: Record<string, boolean>) => void;
 }) {
-  // const MAX_STORIES = 3;
+  const MAX_POINTS = 15;
 
-  // function handleCheckChanged(storyId: string, checked: boolean) {
-  //   let storyMap = { ...stories };
-  //   storyMap[storyId] = checked;
-  //   setStories(storyMap);
-  // }
+  const [selectedTickets, setSelectedTickets] = useState<Ticket[]>([]);
+
+  function handleCheckChanged(ticket: Ticket, checked: boolean) {
+    setSelectedTickets((prevSelected) => {
+      if (checked) {
+        return [...prevSelected, ticket];
+      } else {
+        return prevSelected.filter((item) => item !== ticket);
+      }
+    });
+  }
+
+  let selectedPoints = selectedTickets.reduce(
+    (prev, curr) => prev + curr.points,
+    0
+  );
+  const initialValue = useMotionValue(0);
+  const rounded = useTransform(initialValue, (latest) => Math.round(latest));
+
+  useEffect(() => {
+    const controls = animate(initialValue, selectedPoints);
+    return controls.stop;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedTickets]);
 
   return (
     <Block>
       <BlockHeader>
-        <BlockTitle title="Sprint Backlog" />
+        <BlockTitle title="Sprint Planning" />
 
         <BlockControls>
-          <span className="mr-2 text-sm uppercase">
-            {/* Selected: {Object.values(stories).filter((s) => s).length} of{" "}
-            {MAX_STORIES} */}
-          </span>
+          <Tooltip>
+            <TooltipTrigger>
+              <div className="flex flex-row items-center gap-2 mr-2 text-sm uppercase">
+                <div>
+                  <motion.span
+                    className={cn(
+                      "transition-colors font-mono",
+                      selectedPoints > MAX_POINTS - MAX_POINTS / 4
+                        ? "text-orange-400 font-bold"
+                        : "",
+                      selectedPoints > MAX_POINTS
+                        ? "text-red-500 font-bold"
+                        : ""
+                    )}
+                  >
+                    {rounded}
+                  </motion.span>{" "}
+                  of {MAX_POINTS}
+                </div>
+                <GemIcon size={18} />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>Total Story Points Selected</TooltipContent>
+          </Tooltip>
 
           {/* <AnimatePresence>
             {Object.values(stories).filter((s) => s).length === MAX_STORIES && (
@@ -245,19 +298,39 @@ function SprintPlanning({
 
       <BlockContent>
         <div className="flex flex-col w-full gap-2">
-          {PRODUCT_BACKLOG.map((p) => (
-            <Story
-              key={p.id}
-              id={p.id}
-              persona={p.persona}
-              action={p.action}
-              goal={p.goal}
-              // checked={stories[p.id]}
-              // disabled={
-              //   !stories[p.id] &&
-              //   Object.values(stories).filter((s) => s).length >= MAX_STORIES
-              // }
-              // onCheckedChange={(value) => handleCheckChanged(p.id, value)}
+          {selectedPoints > MAX_POINTS && (
+            <AnimatePresence>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.5 }}
+                className="mb-2 -mx-3"
+              >
+                <Alert variant="destructive">
+                  <AlertTriangleIcon className="w-4 h-4" />
+                  <AlertTitle>Too much work!</AlertTitle>
+                  <AlertDescription>
+                    The tickets you have selected exceed your development team's
+                    capacity. Please adjust your plan to stay within 15 Story
+                    Points.
+                  </AlertDescription>
+                </Alert>
+              </motion.div>
+            </AnimatePresence>
+          )}
+
+          {SPRINT_BACKLOG.map((t) => (
+            <Ticket
+              key={t.id}
+              id={t.id}
+              storyId={t.storyId}
+              title={t.title}
+              points={t.points}
+              checked={selectedTickets.includes(t)}
+              disabled={
+                !selectedTickets.includes(t) && selectedPoints >= MAX_POINTS
+              }
+              onCheckedChange={(value) => handleCheckChanged(t, value)}
             />
           ))}
         </div>
@@ -398,6 +471,49 @@ function KanbanLabel({
   );
 }
 
+function Ticket({
+  id,
+  storyId,
+  title,
+  points,
+  checked = false,
+  disabled = false,
+  onCheckedChange,
+}: Ticket & {
+  checked?: boolean;
+  disabled?: boolean;
+  onCheckedChange?: (checked: boolean) => void;
+}) {
+  return (
+    <div className="-mx-3">
+      <div
+        className={cn(
+          "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950 group",
+          checked
+            ? "border-slate-700 dark:border-slate-300"
+            : "border-slate-200 dark:border-slate-800"
+        )}
+      >
+        <Checkbox
+          id={id}
+          checked={checked}
+          disabled={disabled}
+          onCheckedChange={(value) => {
+            if (onCheckedChange && typeof value === "boolean") {
+              onCheckedChange(value);
+            }
+          }}
+        />
+
+        <div className="flex flex-row items-start justify-between w-full gap-4">
+          <label htmlFor={id}>{title}</label>
+          <StoryPoint points={points} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Story({
   id,
   points,
@@ -414,7 +530,14 @@ function Story({
 }) {
   return (
     <div className="-mx-3">
-      <div className="flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 border-slate-200 dark:hover:bg-slate-950 dark:border-slate-800">
+      <div
+        className={cn(
+          "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950 group",
+          checked
+            ? "border-slate-700 dark:border-slate-300"
+            : "border-slate-200 dark:border-slate-800"
+        )}
+      >
         <Checkbox
           id={id}
           checked={checked}
@@ -432,44 +555,51 @@ function Story({
         <div className="flex flex-row items-start justify-between w-full gap-4 not-sr-only">
           <div className="flex flex-col gap-2">
             <p>
-              <span className="text-sm font-light uppercase">As a</span>{" "}
-              <mark className="px-1 font-semibold text-blue-700 bg-blue-100 rounded-md">
+              <span className="text-sm font-bold uppercase">As a</span>{" "}
+              <mark className="transition-colors bg-transparent dark:text-slate-100 group-hover:text-blue-800 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 dark:group-hover:text-blue-100 -mx-0.5 px-0.5 rounded-sm">
                 {persona}
               </mark>
               ,
             </p>
             <p>
-              <span className="text-sm font-light uppercase">I want to</span>{" "}
-              <mark className="px-1 font-semibold text-purple-700 bg-purple-100 rounded-md">
+              <span className="text-sm font-bold uppercase">I want to</span>{" "}
+              <mark className="transition-colors bg-transparent dark:text-slate-100 group-hover:text-purple-800 group-hover:bg-purple-200 dark:group-hover:bg-purple-800 dark:group-hover:text-purple-100 -mx-0.5 px-0.5 rounded-sm">
                 {action}
               </mark>
             </p>
             <p>
-              <span className="text-sm font-light uppercase">
-                so that I can
-              </span>{" "}
-              <mark className="px-1 font-semibold text-green-700 bg-green-100 rounded-md">
+              <span className="text-sm font-bold uppercase">so that I can</span>{" "}
+              <mark className="transition-colors bg-transparent dark:text-slate-100 group-hover:text-green-800 group-hover:bg-green-200 dark:group-hover:bg-green-800 dark:group-hover:text-green-100 -mx-0.5 px-0.5 rounded-sm">
                 {goal}
               </mark>
               .
             </p>
           </div>
 
-          <StoryPoint points={points} />
+          <StoryPoint points={points} estimate />
         </div>
       </div>
     </div>
   );
 }
 
-function StoryPoint({ points }: { points: number }) {
+function StoryPoint({
+  points,
+  estimate = false,
+}: {
+  points: number;
+  estimate?: boolean;
+}) {
   return (
     <Tooltip>
       <TooltipTrigger className="px-2 py-0.5 cursor-help rounded-md bg-slate-200 dark:bg-slate-700 text-sm font-bold flex flex-row gap-1 items-center">
         <GemIcon size={14} aria-label="story points" />
         {points}
       </TooltipTrigger>
-      <TooltipContent>Story Points</TooltipContent>
+      <TooltipContent className="not-sr-only">
+        Story Points
+        {estimate ? " (estimate)" : null}
+      </TooltipContent>
     </Tooltip>
   );
 }

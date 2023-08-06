@@ -27,7 +27,13 @@ import {
   GemIcon,
   dynamicIconImports,
 } from "lucide-react";
-import { ReactNode, useEffect, useState } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import {
   PRODUCT_BACKLOG,
   SPRINT_BACKLOG,
@@ -37,22 +43,29 @@ import {
 import { Checkbox } from "./ui/checkbox";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
-import InfoBlock from "./InfoBlock";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 
 export default function Sprint() {
   const MAX_STORIES = 2;
   const [stage, setStage] = useState(0);
-  const [stories, setStories] = useState<Record<string, boolean>>(
-    PRODUCT_BACKLOG.reduce((acc, p) => ({ ...acc, [p.id]: false }), {})
-  );
-  const [tickets, setTickets] = useState<Ticket[]>(SPRINT_BACKLOG);
+  const [selectedStories, setSelectedStories] = useState<Story[]>([]);
+
+  const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [selectedTickets, setSelectedTickets] = useState<Ticket[]>([]);
 
   useEffect(() => {
-    if (Object.values(stories).filter((s) => s).length === MAX_STORIES) {
+    if (selectedStories.length === MAX_STORIES) {
       setStage(1);
     }
-  }, [stories]);
+
+    let availableTickets: Ticket[] = [];
+    selectedStories.map((story) => {
+      availableTickets = availableTickets.concat([
+        ...SPRINT_BACKLOG.filter((ticket) => ticket.storyId === story.id),
+      ]);
+    });
+    setTickets(availableTickets);
+  }, [selectedStories]);
 
   return (
     <>
@@ -122,10 +135,19 @@ export default function Sprint() {
         </Block>
 
         {stage === 0 && (
-          <ProductBacklog stories={stories} setStories={setStories} />
+          <ProductBacklog
+            selectedStories={selectedStories}
+            setSelectedStories={setSelectedStories}
+          />
         )}
 
-        {stage === 1 && <SprintPlanning />}
+        {stage === 1 && (
+          <SprintPlanning
+            tickets={tickets}
+            selectedTickets={selectedTickets}
+            setSelectedTickets={setSelectedTickets}
+          />
+        )}
 
         {stage === 2 && <SprintBacklog />}
       </div>
@@ -153,18 +175,22 @@ function ActionItem({
 }
 
 function ProductBacklog({
-  stories,
-  setStories,
+  selectedStories,
+  setSelectedStories,
 }: {
-  stories: Record<string, boolean>;
-  setStories: (stories: Record<string, boolean>) => void;
+  selectedStories: Story[];
+  setSelectedStories: Dispatch<SetStateAction<Story[]>>;
 }) {
   const MAX_STORIES = 2;
 
-  function handleCheckChanged(storyId: string, checked: boolean) {
-    let storyMap = { ...stories };
-    storyMap[storyId] = checked;
-    setStories(storyMap);
+  function handleCheckChanged(story: Story, checked: boolean) {
+    setSelectedStories((prevSelected) => {
+      if (checked) {
+        return [...prevSelected, story];
+      } else {
+        return prevSelected.filter((item) => item.id !== story.id);
+      }
+    });
   }
 
   return (
@@ -174,12 +200,11 @@ function ProductBacklog({
 
         <BlockControls>
           <span className="mr-2 text-sm uppercase">
-            Selected: {Object.values(stories).filter((s) => s).length} of{" "}
-            {MAX_STORIES}
+            Selected: {selectedStories.length} of {MAX_STORIES}
           </span>
 
           <AnimatePresence>
-            {Object.values(stories).filter((s) => s).length === MAX_STORIES && (
+            {selectedStories.length === MAX_STORIES && (
               <motion.div
                 initial={{ opacity: 0, scale: 0, translateX: -15 }}
                 animate={{ opacity: 1, scale: 1, translateX: 0 }}
@@ -195,20 +220,20 @@ function ProductBacklog({
 
       <BlockContent>
         <div className="flex flex-col w-full gap-2">
-          {PRODUCT_BACKLOG.map((p) => (
+          {PRODUCT_BACKLOG.map((story) => (
             <Story
-              key={p.id}
-              id={p.id}
-              points={p.points}
-              persona={p.persona}
-              action={p.action}
-              goal={p.goal}
-              checked={stories[p.id]}
+              key={story.id}
+              id={story.id}
+              points={story.points}
+              persona={story.persona}
+              action={story.action}
+              goal={story.goal}
+              checked={selectedStories.some((item) => item.id === story.id)}
               disabled={
-                !stories[p.id] &&
-                Object.values(stories).filter((s) => s).length >= MAX_STORIES
+                !selectedStories.includes(story) &&
+                selectedStories.length >= MAX_STORIES
               }
-              onCheckedChange={(value) => handleCheckChanged(p.id, value)}
+              onCheckedChange={(value) => handleCheckChanged(story, value)}
             />
           ))}
         </div>
@@ -217,22 +242,23 @@ function ProductBacklog({
   );
 }
 
-function SprintPlanning({}: // stories,
-// setStories,
-{
-  // stories: Record<string, boolean>;
-  // setStories: (stories: Record<string, boolean>) => void;
+function SprintPlanning({
+  tickets,
+  selectedTickets = [],
+  setSelectedTickets,
+}: {
+  tickets: Ticket[];
+  selectedTickets: Ticket[];
+  setSelectedTickets: Dispatch<SetStateAction<Ticket[]>>;
 }) {
   const MAX_POINTS = 15;
-
-  const [selectedTickets, setSelectedTickets] = useState<Ticket[]>([]);
 
   function handleCheckChanged(ticket: Ticket, checked: boolean) {
     setSelectedTickets((prevSelected) => {
       if (checked) {
         return [...prevSelected, ticket];
       } else {
-        return prevSelected.filter((item) => item !== ticket);
+        return prevSelected.filter((item) => item.id !== ticket.id);
       }
     });
   }
@@ -319,18 +345,19 @@ function SprintPlanning({}: // stories,
             </AnimatePresence>
           )}
 
-          {SPRINT_BACKLOG.map((t) => (
+          {tickets.map((ticket) => (
             <Ticket
-              key={t.id}
-              id={t.id}
-              storyId={t.storyId}
-              title={t.title}
-              points={t.points}
-              checked={selectedTickets.includes(t)}
+              key={ticket.id}
+              id={ticket.id}
+              storyId={ticket.storyId}
+              title={ticket.title}
+              points={ticket.points}
+              checked={selectedTickets.some((item) => item.id === ticket.id)}
               disabled={
-                !selectedTickets.includes(t) && selectedPoints >= MAX_POINTS
+                !selectedTickets.includes(ticket) &&
+                selectedPoints >= MAX_POINTS
               }
-              onCheckedChange={(value) => handleCheckChanged(t, value)}
+              onCheckedChange={(value) => handleCheckChanged(ticket, value)}
             />
           ))}
         </div>

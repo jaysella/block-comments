@@ -13,6 +13,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
+import { cn } from "@/lib/utils";
 import {
   AnimatePresence,
   animate,
@@ -27,6 +28,7 @@ import {
   GemIcon,
   dynamicIconImports,
 } from "lucide-react";
+import dynamic from "next/dynamic";
 import {
   Dispatch,
   ReactNode,
@@ -40,18 +42,23 @@ import {
   Story,
   Ticket,
 } from "../product/sprint/data";
-import { Checkbox } from "./ui/checkbox";
-import { cn } from "@/lib/utils";
-import dynamic from "next/dynamic";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
+import { Checkbox } from "./ui/checkbox";
 
 export default function Sprint() {
   const MAX_STORIES = 2;
+  const MAX_POINTS = 14;
+
   const [stage, setStage] = useState(0);
   const [selectedStories, setSelectedStories] = useState<Story[]>([]);
 
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [selectedTickets, setSelectedTickets] = useState<Ticket[]>([]);
+
+  let selectedPoints = selectedTickets.reduce(
+    (prev, curr) => prev + curr.points,
+    0
+  );
 
   useEffect(() => {
     if (selectedStories.length === MAX_STORIES) {
@@ -66,6 +73,12 @@ export default function Sprint() {
     });
     setTickets(availableTickets);
   }, [selectedStories]);
+
+  useEffect(() => {
+    if (selectedPoints === MAX_POINTS) {
+      setStage(2);
+    }
+  }, [selectedPoints]);
 
   return (
     <>
@@ -100,6 +113,15 @@ export default function Sprint() {
 
           <BlockContent>
             <div className="space-y-12">
+              {stage === 2 && (
+                <ActionItem title="We've reached Stage 3.">
+                  <p>
+                    You have selected a collection of tickets for your team to
+                    work on this Sprint.
+                  </p>
+                </ActionItem>
+              )}
+
               {stage === 1 && (
                 <ActionItem title="It's time for stage #2!">
                   <p>
@@ -122,14 +144,16 @@ export default function Sprint() {
                 </ActionItem>
               )}
 
-              <ActionItem title="Welcome to the first stage of this sprint!">
-                <p>This stage is all about Product Backlog Refinement.</p>
-                <p>
-                  Select three (3) Stories from your Product Backlog to break
-                  down into smaller, more manageable tickets for your Sprint
-                  Backlog.
-                </p>
-              </ActionItem>
+              {stage === 0 && (
+                <ActionItem title="Welcome to the first stage of this sprint!">
+                  <p>This stage is all about Product Backlog Refinement.</p>
+                  <p>
+                    Select three (3) Stories from your Product Backlog to break
+                    down into smaller, more manageable tickets for your Sprint
+                    Backlog.
+                  </p>
+                </ActionItem>
+              )}
             </div>
           </BlockContent>
         </Block>
@@ -149,7 +173,7 @@ export default function Sprint() {
           />
         )}
 
-        {stage === 2 && <SprintBacklog />}
+        {stage === 2 && <SprintBacklog tickets={selectedTickets} />}
       </div>
     </>
   );
@@ -366,11 +390,11 @@ function SprintPlanning({
   );
 }
 
-function SprintBacklog() {
+function SprintBacklog({ tickets }: { tickets: Ticket[] }) {
   return (
     <Block>
       <BlockHeader>
-        <BlockTitle title="Sprint Backlog" />
+        <BlockTitle title="Daily Scrum" />
       </BlockHeader>
 
       <BlockContent>
@@ -381,9 +405,13 @@ function SprintBacklog() {
                 <KanbanLabel icon="circle" name="Not Started" color="slate" />
               </KanbanHeader>
               <KanbanContent>
-                <KanbanCard title="Something"></KanbanCard>
-                <KanbanCard title="Something"></KanbanCard>
-                <KanbanCard title="Something"></KanbanCard>
+                {tickets.map((ticket) => (
+                  <KanbanCard
+                    key={ticket.id}
+                    title={ticket.title}
+                    points={ticket.points}
+                  />
+                ))}
               </KanbanContent>
             </KanbanColumn>
 
@@ -396,8 +424,8 @@ function SprintBacklog() {
                 />
               </KanbanHeader>
               <KanbanContent>
-                <KanbanCard title="Something"></KanbanCard>
-                <KanbanCard title="Something"></KanbanCard>
+                <KanbanCard title="Something" points={0}></KanbanCard>
+                <KanbanCard title="Something" points={0}></KanbanCard>
               </KanbanContent>
             </KanbanColumn>
 
@@ -410,7 +438,7 @@ function SprintBacklog() {
                 />
               </KanbanHeader>
               <KanbanContent>
-                <KanbanCard title="Something"></KanbanCard>
+                <KanbanCard title="Something" points={0}></KanbanCard>
               </KanbanContent>
             </KanbanColumn>
           </div>
@@ -460,14 +488,14 @@ function KanbanContent({ children }: { children: ReactNode }) {
   return <div className="grid grid-rows-2 gap-2">{children}</div>;
 }
 
-function KanbanCard({ title }: { title: string }) {
+function KanbanCard({ title, points }: { title: string; points: number }) {
   return (
     <div className="p-2 border rounded-md shadow-sm bg-slate-100 dark:bg-slate-950 border-slate-200 dark:border-slate-800">
       {/* <span className="flex flex-row items-center gap-1 px-2 py-1 text-[0.55rem] font-bold uppercase border rounded-md border-slate-200 text-slate-600 bg-slate-100 w-max">
         <CircleIcon size={10} /> Not Started
       </span> */}
       <h3 className="mb-2 text-sm text-slate-700">{title}</h3>
-      <StoryPoint points={12} />
+      <StoryPoint points={points} />
     </div>
   );
 }

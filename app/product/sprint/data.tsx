@@ -23,7 +23,6 @@ export type Story = {
 export type Ticket = {
   id: string;
   storyId: string;
-  // status: "backlog" | "in-progress" | "complete";
   title: string;
   points: number;
 };

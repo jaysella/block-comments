@@ -195,7 +195,7 @@ export function SnippetContent({
                 key={i}
                 {...getLineProps({ line })}
                 className={cn(
-                  "flex flex-row w-full px-4 @md:px-8 border-l-2 border-l-transparent",
+                  "flex flex-row w-full px-4 @md:px-6 border-l-2 border-l-transparent",
                   highlight && highlights[lineNum].color
                     ? `bg-${highlights[lineNum].color}-100 dark:bg-${highlights[lineNum].color}-950`
                     : "",

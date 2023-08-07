@@ -54,8 +54,8 @@ export default function ProductBacklog({
         </BlockControls>
       </BlockHeader>
 
-      <BlockContent>
-        <div className="flex flex-col w-full gap-2">
+      <BlockContent withPadding={false}>
+        <div className="flex flex-col w-full gap-2 p-2 @md:p-3">
           {PRODUCT_BACKLOG.map((story) => (
             <Story
               key={story.id}
@@ -93,55 +93,53 @@ function Story({
   onCheckedChange?: (checked: boolean) => void;
 }) {
   return (
-    <div className="-mx-3">
-      <div
-        className={cn(
-          "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950 group",
-          checked
-            ? "border-slate-700 dark:border-slate-300"
-            : "border-slate-200 dark:border-slate-800"
-        )}
-      >
-        <Checkbox
-          id={id}
-          checked={checked}
-          disabled={disabled}
-          onCheckedChange={(value) => {
-            if (onCheckedChange && typeof value === "boolean") {
-              onCheckedChange(value);
-            }
-          }}
-        />
-        <label htmlFor={id} className="sr-only">
-          As a {persona}, I want to {action} so that I can {goal}.
-        </label>
+    <div
+      className={cn(
+        "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950 group",
+        checked
+          ? "border-slate-700 dark:border-slate-300"
+          : "border-slate-200 dark:border-slate-800"
+      )}
+    >
+      <Checkbox
+        id={id}
+        checked={checked}
+        disabled={disabled}
+        onCheckedChange={(value) => {
+          if (onCheckedChange && typeof value === "boolean") {
+            onCheckedChange(value);
+          }
+        }}
+      />
+      <label htmlFor={id} className="sr-only">
+        As a {persona}, I want to {action} so that I can {goal}.
+      </label>
 
-        <div className="flex flex-row items-start justify-between w-full gap-4 not-sr-only">
-          <div className="flex flex-col gap-2">
-            <p>
-              <span className="text-sm font-bold uppercase">As a</span>{" "}
-              <mark className="transition-colors bg-transparent dark:text-slate-100 group-hover:text-blue-800 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 dark:group-hover:text-blue-100 -mx-0.5 px-0.5 rounded-sm">
-                {persona}
-              </mark>
-              ,
-            </p>
-            <p>
-              <span className="text-sm font-bold uppercase">I want to</span>{" "}
-              <mark className="transition-colors bg-transparent dark:text-slate-100 group-hover:text-purple-800 group-hover:bg-purple-200 dark:group-hover:bg-purple-800 dark:group-hover:text-purple-100 -mx-0.5 px-0.5 rounded-sm">
-                {action}
-              </mark>
-            </p>
-            <p>
-              <span className="text-sm font-bold uppercase">so that I can</span>{" "}
-              <mark className="transition-colors bg-transparent dark:text-slate-100 group-hover:text-green-800 group-hover:bg-green-200 dark:group-hover:bg-green-800 dark:group-hover:text-green-100 -mx-0.5 px-0.5 rounded-sm">
-                {goal}
-              </mark>
-              .
-            </p>
-          </div>
-
-          <StoryPoint points={points} estimate />
+      <div className="flex flex-row items-start justify-between w-full gap-4 not-sr-only">
+        <div className="flex flex-col gap-2">
+          <p>
+            <span className="text-sm font-bold uppercase">As a</span>{" "}
+            <mark className="transition-colors bg-transparent dark:text-slate-100 group-hover:text-blue-800 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 dark:group-hover:text-blue-100 -mx-0.5 px-0.5 rounded-sm">
+              {persona}
+            </mark>
+            ,
+          </p>
+          <p>
+            <span className="text-sm font-bold uppercase">I want to</span>{" "}
+            <mark className="transition-colors bg-transparent dark:text-slate-100 group-hover:text-purple-800 group-hover:bg-purple-200 dark:group-hover:bg-purple-800 dark:group-hover:text-purple-100 -mx-0.5 px-0.5 rounded-sm">
+              {action}
+            </mark>
+          </p>
+          <p>
+            <span className="text-sm font-bold uppercase">so that I can</span>{" "}
+            <mark className="transition-colors bg-transparent dark:text-slate-100 group-hover:text-green-800 group-hover:bg-green-200 dark:group-hover:bg-green-800 dark:group-hover:text-green-100 -mx-0.5 px-0.5 rounded-sm">
+              {goal}
+            </mark>
+            .
+          </p>
         </div>
+
+        <StoryPoint points={points} estimate />
       </div>
     </div>
   );

@@ -107,8 +107,8 @@ export default function SprintPlanning({
         </BlockControls>
       </BlockHeader>
 
-      <BlockContent>
-        <div className="flex flex-col w-full gap-2 -mx-3">
+      <BlockContent withPadding={false}>
+        <div className="flex flex-col w-full gap-2 p-2 @md:p-3">
           {selectedPoints > maxStoryPoints && (
             <AnimatePresence>
               <motion.div

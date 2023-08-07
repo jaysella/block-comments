@@ -1,3 +1,8 @@
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/app/_components/ui/alert";
 import { AlertTriangleIcon } from "lucide-react";
 import { ReactNode } from "react";
 
@@ -47,15 +52,14 @@ export const ACTION_ITEMS: ActionItem[] = [
           Story is now broken down into smaller, more manageable tickets and
           prioritized appropriately.
         </p>
-        <div
-          role="alert"
-          className="p-4 !mt-4 border border-amber-500 rounded-lg bg-amber-50 dark:bg-amber-950/50 dark:border-amber-900"
-        >
-          <AlertTriangleIcon size={24} className="mb-2 text-amber-500" />
-          <strong>Be mindful of each ticket's Story Points!</strong> Your
-          development team has informed you that their maximum capacity for this
-          Sprint is 15 Story Points.
-        </div>
+        <Alert>
+          <AlertTriangleIcon className="w-4 h-4" />
+          <AlertTitle>Be mindful of each ticket's Story Points!</AlertTitle>
+          <AlertDescription>
+            Your development team has informed you that their maximum capacity
+            for this Sprint is 15 Story Points.
+          </AlertDescription>
+        </Alert>
       </>
     ),
   },

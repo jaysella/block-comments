@@ -24,6 +24,7 @@ import {
 import ProductBacklog from "./sprint/ProductBacklog";
 import SprintPlanning from "./sprint/SprintPlanning";
 import SprintBacklog from "./sprint/SprintBacklog";
+import SprintRetro from "./sprint/SprintRetro";
 
 export default function Sprint() {
   const MAX_STORIES = 3;
@@ -134,6 +135,8 @@ export default function Sprint() {
         )}
 
         {stage === 2 && <SprintBacklog tickets={selectedTickets} />}
+
+        {stage === 3 && <SprintRetro tickets={selectedTickets} />}
       </div>
     </>
   );

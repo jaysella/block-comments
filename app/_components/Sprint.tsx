@@ -23,7 +23,7 @@ import {
 } from "../product/sprint/data";
 import ProductBacklog from "./sprint/ProductBacklog";
 import SprintPlanning from "./sprint/SprintPlanning";
-import SprintBacklog from "./sprint/SprintBacklog";
+import DailyScrum from "./sprint/DailyScrum";
 import SprintRetro from "./sprint/SprintRetro";
 
 export default function Sprint() {
@@ -76,8 +76,8 @@ export default function Sprint() {
           <BlockControls>
             <span className="mr-2 text-sm uppercase">
               {canProgress
-                ? "Proceed to the next stage"
-                : "Complete action items!"}
+                ? `Proceed to stage ${stage + 2}`
+                : "TODO: action items"}
             </span>
 
             <Tooltip>
@@ -89,7 +89,7 @@ export default function Sprint() {
                 <ArrowRightIcon size={18} />
               </TooltipTrigger>
               <TooltipContent>
-                <p>Next</p>
+                <p>{canProgress ? "Next" : "Complete all action items"}</p>
               </TooltipContent>
             </Tooltip>
           </BlockControls>
@@ -134,7 +134,7 @@ export default function Sprint() {
           />
         )}
 
-        {stage === 2 && <SprintBacklog tickets={selectedTickets} />}
+        {stage === 2 && <DailyScrum tickets={selectedTickets} />}
 
         {stage === 3 && <SprintRetro tickets={selectedTickets} />}
       </div>

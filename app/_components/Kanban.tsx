@@ -26,7 +26,7 @@ export function KanbanHeader({
 }
 
 export function KanbanContent({ children }: { children?: ReactNode }) {
-  return <div className="grid grid-rows-2 gap-2">{children}</div>;
+  return <div className="flex flex-col gap-2">{children}</div>;
 }
 
 export function KanbanCard({

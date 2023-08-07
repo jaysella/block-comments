@@ -86,7 +86,7 @@ export default function SprintPlanning({
                 <div>
                   <motion.span
                     className={cn(
-                      "transition-colors font-mono",
+                      "transition-colors",
                       selectedPoints > maxStoryPoints - maxStoryPoints / 4
                         ? "text-orange-400 font-bold"
                         : "",
@@ -108,7 +108,7 @@ export default function SprintPlanning({
       </BlockHeader>
 
       <BlockContent withPadding={false}>
-        <div className="flex flex-col w-full gap-2 p-2 @md:p-3">
+        <div className="flex flex-col w-full gap-4 p-2 @md:p-3">
           {selectedPoints > maxStoryPoints && (
             <AnimatePresence>
               <motion.div
@@ -131,7 +131,7 @@ export default function SprintPlanning({
           {Object.keys(ticketsByStory).map((story) => (
             <div
               key={story}
-              className="p-3 mt-4 border rounded-lg first-of-type:mt-0 bg-slate-100"
+              className="p-3 border rounded-lg first-of-type:mt-0 bg-slate-100"
             >
               <div className="flex flex-row w-full gap-3">
                 <Contact2Icon className="w-8 h-8 shrink-0" />

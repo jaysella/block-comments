@@ -69,7 +69,7 @@ export default function SprintBacklog({ tickets }: { tickets: Ticket[] }) {
 
       <BlockContent>
         <div className="@container w-full">
-          <div className="grid gap-5 @lg:grid-cols-3 @md:grid-cols-3 @sm:grid-cols-2">
+          <div className="grid gap-5 grid-cols-1 @sm:grid-cols-2 @lg:grid-cols-3">
             <KanbanColumn>
               <KanbanHeader
                 count={

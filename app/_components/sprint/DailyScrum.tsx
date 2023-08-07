@@ -84,8 +84,9 @@ export default function SprintBacklog({ tickets }: { tickets: Ticket[] }) {
                   .filter((ticket) => ticket.status === "backlog")
                   .map((ticket) => (
                     <KanbanCard
-                      key={ticket.id}
+                      key={ticket.title}
                       title={ticket.title}
+                      label={ticket.label}
                       points={ticket.points}
                     />
                   ))}
@@ -111,8 +112,9 @@ export default function SprintBacklog({ tickets }: { tickets: Ticket[] }) {
                   .filter((ticket) => ticket.status === "in-progress")
                   .map((ticket) => (
                     <KanbanCard
-                      key={ticket.id}
+                      key={ticket.title}
                       title={ticket.title}
+                      label={ticket.label}
                       points={ticket.points}
                     />
                   ))}
@@ -137,8 +139,9 @@ export default function SprintBacklog({ tickets }: { tickets: Ticket[] }) {
                   .filter((ticket) => ticket.status === "complete")
                   .map((ticket) => (
                     <KanbanCard
-                      key={ticket.id}
+                      key={ticket.title}
                       title={ticket.title}
+                      label={ticket.label}
                       points={ticket.points}
                     />
                   ))}

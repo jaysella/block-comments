@@ -63,7 +63,7 @@ export default function SprintPlanning({
       if (checked) {
         return [...prevSelected, ticket];
       } else {
-        return prevSelected.filter((item) => item.id !== ticket.id);
+        return prevSelected.filter((item) => item.label !== ticket.label);
       }
     });
   }
@@ -141,13 +141,13 @@ export default function SprintPlanning({
               <div className="flex flex-col gap-2 mt-4">
                 {ticketsByStory[story].map((ticket) => (
                   <Ticket
-                    key={ticket.id}
-                    id={ticket.id}
+                    key={ticket.label}
+                    label={ticket.label}
                     storyId={ticket.storyId}
                     title={ticket.title}
                     points={ticket.points}
                     checked={selectedTickets.some(
-                      (item) => item.id === ticket.id
+                      (item) => item.label === ticket.label
                     )}
                     disabled={
                       !selectedTickets.includes(ticket) &&
@@ -168,7 +168,7 @@ export default function SprintPlanning({
 }
 
 function Ticket({
-  id,
+  label,
   storyId,
   title,
   points,
@@ -190,7 +190,7 @@ function Ticket({
       )}
     >
       <Checkbox
-        id={id}
+        id={label}
         checked={checked}
         disabled={disabled}
         onCheckedChange={(value) => {
@@ -201,7 +201,7 @@ function Ticket({
       />
 
       <div className="flex flex-row items-start justify-between w-full gap-4">
-        <label htmlFor={id}>{title}</label>
+        <label htmlFor={label}>{title}</label>
         <StoryPoint points={points} />
       </div>
     </div>

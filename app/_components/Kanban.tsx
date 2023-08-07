@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { dynamicIconImports } from "lucide-react";
+import { TagIcon, dynamicIconImports } from "lucide-react";
 import dynamic from "next/dynamic";
 import { ReactNode } from "react";
 import StoryPoint from "./sprint/StoryPoint";
@@ -31,9 +31,11 @@ export function KanbanContent({ children }: { children?: ReactNode }) {
 
 export function KanbanCard({
   title,
+  label,
   points,
 }: {
   title: string;
+  label: string;
   points: number;
 }) {
   return (
@@ -41,7 +43,12 @@ export function KanbanCard({
       <h3 className="mb-2 text-sm text-slate-700 dark:text-slate-300">
         {title}
       </h3>
-      <StoryPoint points={points} />
+      <div className="flex flex-row gap-1">
+        <StoryPoint points={points} />
+        <div className="px-2 py-0.5 font-mono rounded-md bg-slate-200 dark:bg-slate-800 text-sm font-bold">
+          {label}
+        </div>
+      </div>
     </div>
   );
 }

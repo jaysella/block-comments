@@ -21,7 +21,7 @@ export type Story = {
 };
 
 export type Ticket = {
-  id: string;
+  label: string;
   storyId: string;
   title: string;
   points: number;
@@ -111,73 +111,73 @@ export const PRODUCT_BACKLOG: Story[] = [
 
 export const SPRINT_BACKLOG: Ticket[] = [
   {
-    id: "ljejvf",
+    label: "ENG-1",
     storyId: "virtual-tastings",
     title: "Build virtual tasting registration page",
     points: 5,
   },
   {
-    id: "slvm1g",
+    label: "ENG-2",
     storyId: "virtual-tastings",
     title: "Set up email reminders for virtual tasting events",
     points: 2,
   },
   {
-    id: "lwtsum",
+    label: "ENG-3",
     storyId: "virtual-tastings",
     title: "Build virtual tasting livestream page",
     points: 2,
   },
   {
-    id: "zzw9uz",
+    label: "ENG-4",
     storyId: "read-testimonials",
     title: "Add reviews section to product pages",
     points: 3,
   },
   {
-    id: "amox0g",
+    label: "ENG-5",
     storyId: "read-testimonials",
     title: "Email customers 3 days after order delivery requesting a review",
     points: 1,
   },
   {
-    id: "d9w9vo",
+    label: "ENG-6",
     storyId: "read-testimonials",
     title: 'Add "Write a Review" form to customer dashboard',
     points: 2,
   },
   {
-    id: "05sp9r",
+    label: "ENG-7",
     storyId: "join-loyalty",
     title: "Create marketing page for loyalty program",
     points: 2,
   },
   {
-    id: "bfscp9",
+    label: "ENG-8",
     storyId: "join-loyalty",
     title: "Add pricing page to customer dashboard",
     points: 1,
   },
   {
-    id: "syjfgo",
+    label: "ENG-9",
     storyId: "join-loyalty",
     title: "Add membership management page to customer dashboard",
     points: 5,
   },
   {
-    id: "bjmg0q",
+    label: "ENG-10",
     storyId: "order-coffee",
     title: "Set up Stripe integration for payment processing",
     points: 5,
   },
   {
-    id: "5rqk09",
+    label: "ENG-11",
     storyId: "order-coffee",
     title: "Create shopping cart logic",
     points: 3,
   },
   {
-    id: "cucidp",
+    label: "ENG-12",
     storyId: "order-coffee",
     title: "Display past orders in customer dashboard",
     points: 3,

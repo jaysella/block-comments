@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { dynamicIconImports } from "lucide-react";
 import dynamic from "next/dynamic";
 import { ReactNode } from "react";
-import StoryPoint from "./StoryPoint";
+import StoryPoint from "./sprint/StoryPoint";
 
 export function KanbanColumn({ children }: { children: ReactNode }) {
   return <div>{children}</div>;

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { AlertTriangleIcon } from "lucide-react";
 import { ReactNode } from "react";
 

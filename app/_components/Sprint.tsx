@@ -25,7 +25,9 @@ import {
   AlertTriangleIcon,
   ArrowRightIcon,
   CheckIcon,
+  Contact2Icon,
   GemIcon,
+  UserSquare2Icon,
 } from "lucide-react";
 import {
   Dispatch,
@@ -261,6 +263,24 @@ function SprintPlanning({
   selectedTickets: Ticket[];
   setSelectedTickets: Dispatch<SetStateAction<Ticket[]>>;
 }) {
+  const ticketsByStory: { [story: string]: Ticket[] } = {};
+  tickets.forEach((ticket) => {
+    const story = PRODUCT_BACKLOG.find((s) => s.id === ticket.storyId) as Story;
+    const key = `As a ${story.persona}, I want to ${story.action} so that I can ${story.goal}`;
+
+    if (!ticketsByStory[key]) {
+      ticketsByStory[key] = [];
+    }
+    ticketsByStory[key].push(ticket);
+  });
+
+  let selectedPoints = selectedTickets.reduce(
+    (prev, curr) => prev + curr.points,
+    0
+  );
+  const initialValue = useMotionValue(0);
+  const rounded = useTransform(initialValue, (latest) => Math.round(latest));
+
   function handleCheckChanged(ticket: Ticket, checked: boolean) {
     setSelectedTickets((prevSelected) => {
       if (checked) {
@@ -270,13 +290,6 @@ function SprintPlanning({
       }
     });
   }
-
-  let selectedPoints = selectedTickets.reduce(
-    (prev, curr) => prev + curr.points,
-    0
-  );
-  const initialValue = useMotionValue(0);
-  const rounded = useTransform(initialValue, (latest) => Math.round(latest));
 
   useEffect(() => {
     const controls = animate(initialValue, selectedPoints);
@@ -318,14 +331,14 @@ function SprintPlanning({
       </BlockHeader>
 
       <BlockContent>
-        <div className="flex flex-col w-full gap-2">
+        <div className="flex flex-col w-full gap-2 -mx-3">
           {selectedPoints > maxStoryPoints && (
             <AnimatePresence>
               <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.5 }}
-                className="mb-2 -mx-3"
+                className="mb-2"
               >
                 <Alert variant="destructive">
                   <AlertTriangleIcon className="w-4 h-4" />
@@ -339,22 +352,39 @@ function SprintPlanning({
               </motion.div>
             </AnimatePresence>
           )}
+          {Object.keys(ticketsByStory).map((story) => (
+            <div
+              key={story}
+              className="p-3 mt-4 border rounded-lg first-of-type:mt-0 bg-slate-100"
+            >
+              <div className="flex flex-row w-full gap-3">
+                <Contact2Icon className="w-8 h-8 shrink-0" />
+                <h3 className="font-bold">{story}</h3>
+              </div>
 
-          {tickets.map((ticket) => (
-            <Ticket
-              key={ticket.id}
-              id={ticket.id}
-              storyId={ticket.storyId}
-              title={ticket.title}
-              points={ticket.points}
-              checked={selectedTickets.some((item) => item.id === ticket.id)}
-              disabled={
-                !selectedTickets.includes(ticket) &&
-                selectedPoints >= maxStoryPoints
-              }
-              onCheckedChange={(value) => handleCheckChanged(ticket, value)}
-            />
-          ))}
+              <div className="flex flex-col gap-2 mt-4">
+                {ticketsByStory[story].map((ticket) => (
+                  <Ticket
+                    key={ticket.id}
+                    id={ticket.id}
+                    storyId={ticket.storyId}
+                    title={ticket.title}
+                    points={ticket.points}
+                    checked={selectedTickets.some(
+                      (item) => item.id === ticket.id
+                    )}
+                    disabled={
+                      !selectedTickets.includes(ticket) &&
+                      selectedPoints >= maxStoryPoints
+                    }
+                    onCheckedChange={(value) =>
+                      handleCheckChanged(ticket, value)
+                    }
+                  />
+                ))}
+              </div>
+            </div>
+          ))}{" "}
         </div>
       </BlockContent>
     </Block>
@@ -433,30 +463,28 @@ function Ticket({
   onCheckedChange?: (checked: boolean) => void;
 }) {
   return (
-    <div className="-mx-3">
-      <div
-        className={cn(
-          "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950 group",
-          checked
-            ? "border-slate-700 dark:border-slate-300"
-            : "border-slate-200 dark:border-slate-800"
-        )}
-      >
-        <Checkbox
-          id={id}
-          checked={checked}
-          disabled={disabled}
-          onCheckedChange={(value) => {
-            if (onCheckedChange && typeof value === "boolean") {
-              onCheckedChange(value);
-            }
-          }}
-        />
+    <div
+      className={cn(
+        "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950 group",
+        checked
+          ? "border-slate-700 dark:border-slate-300"
+          : "border-slate-200 dark:border-slate-800"
+      )}
+    >
+      <Checkbox
+        id={id}
+        checked={checked}
+        disabled={disabled}
+        onCheckedChange={(value) => {
+          if (onCheckedChange && typeof value === "boolean") {
+            onCheckedChange(value);
+          }
+        }}
+      />
 
-        <div className="flex flex-row items-start justify-between w-full gap-4">
-          <label htmlFor={id}>{title}</label>
-          <StoryPoint points={points} />
-        </div>
+      <div className="flex flex-row items-start justify-between w-full gap-4">
+        <label htmlFor={id}>{title}</label>
+        <StoryPoint points={points} />
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ export default function StoryPoint({
 }) {
   return (
     <Tooltip>
-      <TooltipTrigger className="px-2 py-0.5 font-mono cursor-help rounded-md bg-slate-200 dark:bg-slate-700 text-sm font-bold flex flex-row gap-1 items-center">
+      <TooltipTrigger className="px-2 py-0.5 font-mono cursor-help rounded-md bg-slate-200 dark:bg-slate-800 text-sm font-bold flex flex-row gap-1 items-center">
         <GemIcon size={14} aria-label="story points" />
         {points}
       </TooltipTrigger>

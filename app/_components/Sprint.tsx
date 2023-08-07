@@ -24,7 +24,7 @@ import {
 import {
   AlertTriangleIcon,
   ArrowRightIcon,
-  CheckCircleIcon,
+  CheckIcon,
   GemIcon,
 } from "lucide-react";
 import {
@@ -53,10 +53,12 @@ import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { Checkbox } from "./ui/checkbox";
 
 export default function Sprint() {
-  const MAX_STORIES = 2;
-  const MAX_POINTS = 14;
+  const MAX_STORIES = 3;
+  const MAX_POINTS = 15;
 
   const [stage, setStage] = useState(0);
+  const [canProgress, setCanProgress] = useState(false);
+
   const [selectedStories, setSelectedStories] = useState<Story[]>([]);
 
   const [tickets, setTickets] = useState<Ticket[]>([]);
@@ -68,8 +70,12 @@ export default function Sprint() {
   );
 
   useEffect(() => {
+    setCanProgress(false);
+  }, [stage]);
+
+  useEffect(() => {
     if (selectedStories.length === MAX_STORIES) {
-      setStage(1);
+      setCanProgress(true);
     }
 
     let availableTickets: Ticket[] = [];
@@ -82,8 +88,8 @@ export default function Sprint() {
   }, [selectedStories]);
 
   useEffect(() => {
-    if (selectedPoints === MAX_POINTS) {
-      setStage(2);
+    if (selectedPoints > 1 && selectedPoints <= MAX_POINTS) {
+      setCanProgress(true);
     }
   }, [selectedPoints]);
 
@@ -94,13 +100,17 @@ export default function Sprint() {
           <BlockTitle title="Sprint Simulation" />
 
           <BlockControls>
-            <span className="mr-2 text-sm uppercase">Proceed</span>
+            <span className="mr-2 text-sm uppercase">
+              {canProgress
+                ? "Proceed to the next stage"
+                : "Complete action items!"}
+            </span>
 
             <Tooltip>
               <TooltipTrigger
                 className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
-                // disabled={step === branchCommits.length - 1}
-                // onClick={() => setStep(step + 1)}
+                disabled={!canProgress}
+                onClick={() => setStage(stage + 1)}
               >
                 <ArrowRightIcon size={18} />
               </TooltipTrigger>
@@ -135,6 +145,7 @@ export default function Sprint() {
 
         {stage === 0 && (
           <ProductBacklog
+            maxStories={MAX_STORIES}
             selectedStories={selectedStories}
             setSelectedStories={setSelectedStories}
           />
@@ -142,6 +153,7 @@ export default function Sprint() {
 
         {stage === 1 && (
           <SprintPlanning
+            maxStoryPoints={MAX_POINTS}
             tickets={tickets}
             selectedTickets={selectedTickets}
             setSelectedTickets={setSelectedTickets}
@@ -174,14 +186,14 @@ function ActionItem({
 }
 
 function ProductBacklog({
+  maxStories,
   selectedStories,
   setSelectedStories,
 }: {
+  maxStories: number;
   selectedStories: Story[];
   setSelectedStories: Dispatch<SetStateAction<Story[]>>;
 }) {
-  const MAX_STORIES = 2;
-
   function handleCheckChanged(story: Story, checked: boolean) {
     setSelectedStories((prevSelected) => {
       if (checked) {
@@ -198,22 +210,19 @@ function ProductBacklog({
         <BlockTitle title="Product Backlog" />
 
         <BlockControls>
-          <span className="mr-2 text-sm uppercase">
-            Selected: {selectedStories.length} of {MAX_STORIES}
+          <span className="mr-2 text-sm uppercase ">
+            Selected: {selectedStories.length} of {maxStories}
           </span>
 
-          <AnimatePresence>
-            {selectedStories.length === MAX_STORIES && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0, translateX: -15 }}
-                animate={{ opacity: 1, scale: 1, translateX: 0 }}
-                exit={{ opacity: 0, scale: 0, translateX: -15 }}
-                className="p-2 bg-green-600 rounded-lg"
-              >
-                <CheckCircleIcon size={18} />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {selectedStories.length === maxStories && (
+            <motion.div
+              initial={{ scale: 2 }}
+              animate={{ scale: 1 }}
+              className="p-2 text-green-600"
+            >
+              <CheckIcon size={18} />
+            </motion.div>
+          )}
         </BlockControls>
       </BlockHeader>
 
@@ -230,7 +239,7 @@ function ProductBacklog({
               checked={selectedStories.some((item) => item.id === story.id)}
               disabled={
                 !selectedStories.includes(story) &&
-                selectedStories.length >= MAX_STORIES
+                selectedStories.length >= maxStories
               }
               onCheckedChange={(value) => handleCheckChanged(story, value)}
             />
@@ -242,16 +251,16 @@ function ProductBacklog({
 }
 
 function SprintPlanning({
+  maxStoryPoints,
   tickets,
   selectedTickets = [],
   setSelectedTickets,
 }: {
+  maxStoryPoints: number;
   tickets: Ticket[];
   selectedTickets: Ticket[];
   setSelectedTickets: Dispatch<SetStateAction<Ticket[]>>;
 }) {
-  const MAX_POINTS = 15;
-
   function handleCheckChanged(ticket: Ticket, checked: boolean) {
     setSelectedTickets((prevSelected) => {
       if (checked) {
@@ -288,42 +297,29 @@ function SprintPlanning({
                   <motion.span
                     className={cn(
                       "transition-colors font-mono",
-                      selectedPoints > MAX_POINTS - MAX_POINTS / 4
+                      selectedPoints > maxStoryPoints - maxStoryPoints / 4
                         ? "text-orange-400 font-bold"
                         : "",
-                      selectedPoints > MAX_POINTS
+                      selectedPoints > maxStoryPoints
                         ? "text-red-500 font-bold"
                         : ""
                     )}
                   >
                     {rounded}
                   </motion.span>{" "}
-                  of {MAX_POINTS}
+                  of {maxStoryPoints}
                 </div>
                 <GemIcon size={18} />
               </div>
             </TooltipTrigger>
             <TooltipContent>Total Story Points Selected</TooltipContent>
           </Tooltip>
-
-          {/* <AnimatePresence>
-            {Object.values(stories).filter((s) => s).length === MAX_STORIES && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0, translateX: -15 }}
-                animate={{ opacity: 1, scale: 1, translateX: 0 }}
-                exit={{ opacity: 0, scale: 0, translateX: -15 }}
-                className="p-2 bg-green-600 rounded-lg"
-              >
-                <CheckCircleIcon size={18} />
-              </motion.div>
-            )}
-          </AnimatePresence> */}
         </BlockControls>
       </BlockHeader>
 
       <BlockContent>
         <div className="flex flex-col w-full gap-2">
-          {selectedPoints > MAX_POINTS && (
+          {selectedPoints > maxStoryPoints && (
             <AnimatePresence>
               <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
@@ -354,7 +350,7 @@ function SprintPlanning({
               checked={selectedTickets.some((item) => item.id === ticket.id)}
               disabled={
                 !selectedTickets.includes(ticket) &&
-                selectedPoints >= MAX_POINTS
+                selectedPoints >= maxStoryPoints
               }
               onCheckedChange={(value) => handleCheckChanged(ticket, value)}
             />

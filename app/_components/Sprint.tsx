@@ -17,6 +17,8 @@ import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { ReactNode, useEffect, useState } from "react";
 import {
   ACTION_ITEMS,
+  PROBLEMS,
+  Problem,
   SPRINT_BACKLOG,
   Story,
   Ticket,
@@ -58,6 +60,8 @@ export default function Sprint() {
   const DEV_MODE = process.env.NODE_ENV === "development";
   const MAX_STORIES = 3;
   const MAX_POINTS = 15;
+  const MAX_PROBLEMS = 2;
+  const MAX_IMPROVEMENTS = 1;
 
   const [stage, setStage] = useState(1);
   const [canProgress, setCanProgress] = useState(false);
@@ -67,13 +71,18 @@ export default function Sprint() {
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [selectedTickets, setSelectedTickets] = useState<Ticket[]>([]);
 
+  const [problems, setProblems] = useState<Problem[]>([]);
+  const [selectedImprovements, setSelectedImprovements] = useState<Problem[]>(
+    []
+  );
+
   let selectedPoints = selectedTickets.reduce(
     (prev, curr) => prev + curr.points,
     0
   );
 
   useEffect(() => {
-    if (stage === 3) {
+    if (stage === 3 || stage === 4) {
       setCanProgress(true);
     } else {
       setCanProgress(false);
@@ -85,6 +94,19 @@ export default function Sprint() {
           determineTicketStatus(ticket, index, tickets.length, selectedPoints)
         )
       );
+    }
+
+    if (stage === 5) {
+      let i = 0;
+      while (i < MAX_PROBLEMS) {
+        const randomIndex = Math.floor(Math.random() * PROBLEMS.length);
+        if (
+          !problems.find(({ title }) => title === PROBLEMS[randomIndex].title)
+        ) {
+          setProblems((p) => [...p, PROBLEMS[randomIndex]]);
+        }
+        i++;
+      }
     }
   }, [stage]);
 
@@ -111,6 +133,17 @@ export default function Sprint() {
       setCanProgress(false);
     }
   }, [selectedPoints]);
+
+  useEffect(() => {
+    if (
+      selectedImprovements.length >= 1 &&
+      selectedImprovements.length <= MAX_POINTS
+    ) {
+      setCanProgress(true);
+    } else {
+      setCanProgress(false);
+    }
+  }, [selectedImprovements]);
 
   return (
     <>
@@ -202,7 +235,14 @@ export default function Sprint() {
 
         {stage === 4 && <DailyScrum tickets={selectedTickets} />}
 
-        {stage === 5 && <SprintRetro tickets={selectedTickets} />}
+        {stage === 5 && (
+          <SprintRetro
+            maxImprovements={MAX_IMPROVEMENTS}
+            problems={problems}
+            selectedImprovements={selectedImprovements}
+            setSelectedImprovements={setSelectedImprovements}
+          />
+        )}
       </div>
     </>
   );

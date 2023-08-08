@@ -145,12 +145,13 @@ export default function SprintPlanning({
               </motion.div>
             </AnimatePresence>
           )}
+
           {Object.keys(ticketsByStory).map((story) => (
             <div
               key={story}
               className="p-3 border rounded-lg first-of-type:mt-0 border-slate-200 bg-slate-100 dark:bg-slate-950 dark:border-slate-800"
             >
-              <div className="flex flex-row w-full gap-3">
+              <div className="flex flex-row w-full gap-3 px-1">
                 <Contact2Icon className="w-8 h-8 shrink-0" />
                 <h3 className="font-bold">{story}</h3>
               </div>

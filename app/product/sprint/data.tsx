@@ -23,6 +23,12 @@ export type Ticket = {
   status?: "backlog" | "in-progress" | "complete";
 };
 
+export type Problem = {
+  title: string;
+  description: string;
+  improvement: string;
+};
+
 export const ACTION_ITEMS: ActionItem[] = [
   {
     stage: 1,
@@ -41,7 +47,7 @@ export const ACTION_ITEMS: ActionItem[] = [
   },
   {
     stage: 2,
-    title: "Ticket Selection",
+    title: "Selecting Tickets",
     message: (
       <>
         <p>
@@ -71,7 +77,7 @@ export const ACTION_ITEMS: ActionItem[] = [
   },
   {
     stage: 4,
-    title: "Ticket Status Review",
+    title: "Reviewing Development Progress",
     message: (
       <>
         <p>
@@ -81,6 +87,20 @@ export const ACTION_ITEMS: ActionItem[] = [
       </>
     ),
     task: "Review each ticket's status.",
+  },
+  {
+    stage: 5,
+    title: "Identifying Potential Improvements",
+    message: (
+      <>
+        <p>
+          The Sprint Retro is the final stage of the Sprint. It's important to
+          routinely review what went well, what didn't, and how processes can be
+          improved for future Sprints.
+        </p>
+      </>
+    ),
+    task: "Review the identified problems and select one (1) improvement to work on during the next Sprint.",
   },
 ];
 
@@ -189,5 +209,64 @@ export const SPRINT_BACKLOG: Ticket[] = [
     storyId: "order-coffee",
     title: "Display past orders in customer dashboard",
     points: 3,
+  },
+];
+
+export const PROBLEMS: Problem[] = [
+  {
+    title: "Lack of User Testing",
+    description:
+      "New features and updates are launched without thorough user testing, leading to usability problems and negative customer experiences.",
+    improvement:
+      "Implement a structured user testing process before launching any significant updates. Gather feedback from a diverse group of customers to identify and address issues early on.",
+  },
+  {
+    title: "Scope Creep",
+    description:
+      "Constantly adding new features or changes to the project scope disrupts timelines and impacts project delivery.",
+    improvement:
+      "Implement a change request process to assess the impact of any proposed changes on timeline, prioritization, and development resources.",
+  },
+  {
+    title: "Inadequate Code Documentation",
+    description:
+      "Insufficient documentation in the codebase makes it challenging for developers to understand and maintain the code.",
+    improvement:
+      "Enforce a documentation standard that includes comments, API documentation, and explanations of code logic.",
+  },
+  {
+    title: "Inconsistent Code Quality",
+    description:
+      "Developers follow different coding standards and practices, leading to inconsistencies and difficulty in maintaining code.",
+    improvement:
+      "Establish coding guidelines and conduct code reviews to ensure consistency and maintainability.",
+  },
+  {
+    title: "Lack of Tests",
+    description:
+      "The absence of comprehensive unit and integration tests results in frequent regressions and makes it harder to catch bugs early.",
+    improvement:
+      "Devote development time each Sprint to writing unit and integration tests. Ensure that all new features include comprehensive tests before deploying into production.",
+  },
+  {
+    title: "Limited Design Collaboration",
+    description:
+      "Lack of collaboration between developers and designers results in implementation misalignment with design intent.",
+    improvement:
+      "Involve designers earlier in the development process and hold regular meetings to address design-implementation gaps.",
+  },
+  {
+    title: "Underestimation of Technical Debt",
+    description:
+      "Ignoring or underestimating technical debt accumulation leads to increasing maintenance challenges over time.",
+    improvement:
+      "Prioritize addressing technical debt alongside feature development to maintain a healthy codebase.",
+  },
+  {
+    title: "Insufficient Knowledge Sharing",
+    description:
+      "Lack of knowledge sharing leads to silos of expertise and makes the team reliant on specific individuals.",
+    improvement:
+      "Encourage knowledge sharing through code reviews, tech talks, and documentation to distribute expertise within the team.",
   },
 ];

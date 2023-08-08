@@ -13,7 +13,7 @@ import {
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
 import { motion } from "framer-motion";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { ReactNode, useEffect, useState } from "react";
 import {
   ACTION_ITEMS,
@@ -27,7 +27,35 @@ import SprintPlanning from "./sprint/SprintPlanning";
 import SprintRetro from "./sprint/SprintRetro";
 import TicketPrioritization from "./sprint/TicketPrioritization";
 
+function determineTicketStatus(
+  ticket: Ticket,
+  index: number,
+  totalTickets: number,
+  totalPoints: number
+): Ticket {
+  if (ticket.status) {
+    return ticket;
+  }
+
+  const priority = 1 - (index + 1) / totalTickets;
+  const randomSign = Math.random();
+  const random = randomSign < 0.5 ? Math.random() * -0.5 : Math.random();
+  const timeCommitment = ticket.points / totalPoints;
+  const likelihood = priority - timeCommitment + random / 4;
+
+  if (likelihood > 0.25) {
+    ticket.status = "complete";
+  } else if (likelihood > 0) {
+    ticket.status = "in-progress";
+  } else {
+    ticket.status = "backlog";
+  }
+
+  return ticket;
+}
+
 export default function Sprint() {
+  const DEV_MODE = process.env.NODE_ENV === "development";
   const MAX_STORIES = 3;
   const MAX_POINTS = 15;
 
@@ -49,6 +77,14 @@ export default function Sprint() {
       setCanProgress(true);
     } else {
       setCanProgress(false);
+    }
+
+    if (stage === 4) {
+      setSelectedTickets((tickets) =>
+        tickets.map((ticket, index) =>
+          determineTicketStatus(ticket, index, tickets.length, selectedPoints)
+        )
+      );
     }
   }, [stage]);
 
@@ -88,6 +124,20 @@ export default function Sprint() {
                 ? `Proceed to Stage ${stage + 1}`
                 : "See Action Items"}
             </span>
+
+            {DEV_MODE && (
+              <Tooltip>
+                <TooltipTrigger
+                  className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+                  onClick={() => setStage(stage - 1)}
+                >
+                  <ArrowLeftIcon size={18} />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Previous</p>
+                </TooltipContent>
+              </Tooltip>
+            )}
 
             <Tooltip>
               <TooltipTrigger

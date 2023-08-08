@@ -1,9 +1,3 @@
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/app/_components/ui/alert";
-import { AlertTriangleIcon } from "lucide-react";
 import { ReactNode } from "react";
 
 export type ActionItem = {
@@ -26,6 +20,7 @@ export type Ticket = {
   storyId: string;
   title: string;
   points: number;
+  status?: "backlog" | "in-progress" | "complete";
 };
 
 export const ACTION_ITEMS: ActionItem[] = [

@@ -23,6 +23,7 @@ import {
 } from "../product/sprint/data";
 import ProductBacklog from "./sprint/ProductBacklog";
 import SprintPlanning from "./sprint/SprintPlanning";
+import SprintPrioritization from "./sprint/SprintPrioritization";
 import DailyScrum from "./sprint/DailyScrum";
 import SprintRetro from "./sprint/SprintRetro";
 
@@ -30,7 +31,7 @@ export default function Sprint() {
   const MAX_STORIES = 3;
   const MAX_POINTS = 15;
 
-  const [stage, setStage] = useState(0);
+  const [stage, setStage] = useState(1);
   const [canProgress, setCanProgress] = useState(false);
 
   const [selectedStories, setSelectedStories] = useState<Story[]>([]);
@@ -44,26 +45,34 @@ export default function Sprint() {
   );
 
   useEffect(() => {
-    setCanProgress(false);
+    if (stage === 3) {
+      setCanProgress(true);
+    } else {
+      setCanProgress(false);
+    }
   }, [stage]);
 
   useEffect(() => {
     if (selectedStories.length === MAX_STORIES) {
       setCanProgress(true);
+    } else {
+      setCanProgress(false);
     }
 
     let availableTickets: Ticket[] = [];
     selectedStories.map((story) => {
-      availableTickets = availableTickets.concat([
-        ...SPRINT_BACKLOG.filter((ticket) => ticket.storyId === story.id),
-      ]);
+      availableTickets = availableTickets.concat(
+        SPRINT_BACKLOG.filter((ticket) => ticket.storyId === story.id)
+      );
     });
     setTickets(availableTickets);
   }, [selectedStories]);
 
   useEffect(() => {
-    if (selectedPoints > 1 && selectedPoints <= MAX_POINTS) {
+    if (selectedPoints > MAX_POINTS / 4 && selectedPoints <= MAX_POINTS) {
       setCanProgress(true);
+    } else {
+      setCanProgress(false);
     }
   }, [selectedPoints]);
 
@@ -76,8 +85,8 @@ export default function Sprint() {
           <BlockControls>
             <span className="mr-2 text-sm uppercase">
               {canProgress
-                ? `Proceed to stage ${stage + 2}`
-                : "TODO: action items"}
+                ? `Proceed to Stage ${stage + 1}`
+                : "See Action Items"}
             </span>
 
             <Tooltip>
@@ -107,7 +116,7 @@ export default function Sprint() {
               {ACTION_ITEMS.map((action, i) => {
                 if (action.stage === stage) {
                   return (
-                    <ActionItem key={i} title={action.title}>
+                    <ActionItem key={i} title={action.title} task={action.task}>
                       {action.message}
                     </ActionItem>
                   );
@@ -117,7 +126,7 @@ export default function Sprint() {
           </BlockContent>
         </Block>
 
-        {stage === 0 && (
+        {stage === 1 && (
           <ProductBacklog
             maxStories={MAX_STORIES}
             selectedStories={selectedStories}
@@ -125,7 +134,7 @@ export default function Sprint() {
           />
         )}
 
-        {stage === 1 && (
+        {stage === 2 && (
           <SprintPlanning
             maxStoryPoints={MAX_POINTS}
             tickets={tickets}
@@ -134,9 +143,16 @@ export default function Sprint() {
           />
         )}
 
-        {stage === 2 && <DailyScrum tickets={selectedTickets} />}
+        {stage === 3 && (
+          <SprintPrioritization
+            selectedTickets={selectedTickets}
+            setSelectedTickets={setSelectedTickets}
+          />
+        )}
 
-        {stage === 3 && <SprintRetro tickets={selectedTickets} />}
+        {stage === 4 && <DailyScrum tickets={selectedTickets} />}
+
+        {stage === 5 && <SprintRetro tickets={selectedTickets} />}
       </div>
     </>
   );
@@ -144,19 +160,23 @@ export default function Sprint() {
 
 function ActionItem({
   title,
+  task,
   children,
 }: {
   title: string;
+  task: string;
   children: ReactNode;
 }) {
   return (
     <motion.div
       initial={{ opacity: 0, translateY: -15 }}
       animate={{ opacity: 1, translateY: 0 }}
-      className="space-y-2"
+      className="prose"
     >
       <h3 className="font-bold">{title}</h3>
       {children}
+      <h3 className="font-bold">Current Task</h3>
+      <p>{task}</p>
     </motion.div>
   );
 }

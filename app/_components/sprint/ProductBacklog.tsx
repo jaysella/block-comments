@@ -119,20 +119,20 @@ function Story({
         <div className="flex flex-col gap-2">
           <p>
             <span className="text-sm font-bold uppercase">As a</span>{" "}
-            <mark className="transition-colors bg-transparent dark:text-slate-100 group-hover:text-blue-800 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 dark:group-hover:text-blue-100 -mx-0.5 px-0.5 rounded-sm">
+            <mark className="bg-transparent dark:text-slate-100 group-hover:text-blue-800 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 dark:group-hover:text-blue-100 -mx-0.5 px-0.5 rounded-sm">
               {persona}
             </mark>
             ,
           </p>
           <p>
             <span className="text-sm font-bold uppercase">I want to</span>{" "}
-            <mark className="transition-colors bg-transparent dark:text-slate-100 group-hover:text-purple-800 group-hover:bg-purple-200 dark:group-hover:bg-purple-800 dark:group-hover:text-purple-100 -mx-0.5 px-0.5 rounded-sm">
+            <mark className="bg-transparent dark:text-slate-100 group-hover:text-purple-800 group-hover:bg-purple-200 dark:group-hover:bg-purple-800 dark:group-hover:text-purple-100 -mx-0.5 px-0.5 rounded-sm">
               {action}
             </mark>
           </p>
           <p>
             <span className="text-sm font-bold uppercase">so that I can</span>{" "}
-            <mark className="transition-colors bg-transparent dark:text-slate-100 group-hover:text-green-800 group-hover:bg-green-200 dark:group-hover:bg-green-800 dark:group-hover:text-green-100 -mx-0.5 px-0.5 rounded-sm">
+            <mark className="bg-transparent dark:text-slate-100 group-hover:text-green-800 group-hover:bg-green-200 dark:group-hover:bg-green-800 dark:group-hover:text-green-100 -mx-0.5 px-0.5 rounded-sm">
               {goal}
             </mark>
             .

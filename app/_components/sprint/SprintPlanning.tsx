@@ -25,7 +25,12 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import { AlertTriangleIcon, Contact2Icon, GemIcon } from "lucide-react";
+import {
+  AlertTriangleIcon,
+  CheckIcon,
+  Contact2Icon,
+  GemIcon,
+} from "lucide-react";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import StoryPoint from "./StoryPoint";
 
@@ -99,10 +104,22 @@ export default function SprintPlanning({
                   </motion.span>{" "}
                   of {maxStoryPoints}
                 </div>
-                <GemIcon size={18} />
+
+                {selectedPoints > maxStoryPoints / 4 &&
+                selectedPoints <= maxStoryPoints ? (
+                  <motion.div
+                    initial={{ scale: 2 }}
+                    animate={{ scale: 1 }}
+                    className="p-2 text-green-600"
+                  >
+                    <CheckIcon size={18} />
+                  </motion.div>
+                ) : (
+                  <GemIcon size={18} />
+                )}
               </div>
             </TooltipTrigger>
-            <TooltipContent>Total Story Points Selected</TooltipContent>
+            <TooltipContent>Selected Story Points</TooltipContent>
           </Tooltip>
         </BlockControls>
       </BlockHeader>
@@ -160,7 +177,7 @@ export default function SprintPlanning({
                 ))}
               </div>
             </div>
-          ))}{" "}
+          ))}
         </div>
       </BlockContent>
     </Block>
@@ -169,7 +186,6 @@ export default function SprintPlanning({
 
 function Ticket({
   label,
-  storyId,
   title,
   points,
   checked = false,

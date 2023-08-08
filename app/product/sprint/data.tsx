@@ -10,6 +10,7 @@ export type ActionItem = {
   stage: number;
   title: string;
   message: ReactNode;
+  task: string;
 };
 
 export type Story = {
@@ -29,50 +30,62 @@ export type Ticket = {
 
 export const ACTION_ITEMS: ActionItem[] = [
   {
-    stage: 0,
-    title: "Welcome to the first stage of this sprint!",
-    message: (
-      <>
-        <p>This stage is all about Product Backlog Refinement.</p>
-        <p>
-          Select three (3) Stories from your Product Backlog to break down into
-          smaller, more manageable tickets for your Sprint Backlog.
-        </p>
-      </>
-    ),
-  },
-  {
     stage: 1,
-    title: "It's time for stage #2!",
+    title: "Welcome to the Sprint!",
     message: (
       <>
         <p>
-          You and your team have completed Product Backlog Refinement! Each
-          Story is now broken down into smaller, more manageable tickets and
-          prioritized appropriately.
+          This first stage is all about Product Backlog Refinement. This is
+          where User Stories are selected and broken down into smaller, more
+          manageable tickets. These smaller tickets will be moved to your Sprint
+          Backlog.
         </p>
-        <Alert>
-          <AlertTriangleIcon className="w-4 h-4" />
-          <AlertTitle>Be mindful of each ticket's Story Points!</AlertTitle>
-          <AlertDescription>
-            Your development team has informed you that their maximum capacity
-            for this Sprint is 15 Story Points.
-          </AlertDescription>
-        </Alert>
       </>
     ),
+    task: "Select three (3) Stories from the Product Backlog to break down.",
   },
   {
     stage: 2,
-    title: "We've reached Stage 3.",
+    title: "Ticket Selection",
     message: (
       <>
         <p>
-          You have selected a collection of tickets for your team to work on
-          this Sprint.
+          Nice job! Each Story is now broken down into smaller, more manageable
+          tickets.
+        </p>
+        <p>
+          You just wrapped up a meeting with your development team. The result:
+          their maximum capacity for this Sprint is 15 Story Points.
         </p>
       </>
     ),
+    task: "Choose which tickets your team will be working on this Sprint.",
+  },
+  {
+    stage: 3,
+    title: "Setting Priorities",
+    message: (
+      <>
+        <p>
+          Alright! Tickets set. Let's prioritize these now so the team knows
+          which tickets are most important.
+        </p>
+      </>
+    ),
+    task: "Order this Sprint's tickets in order of decreasing priority. The topmost is the most important.",
+  },
+  {
+    stage: 4,
+    title: "Ticket Status Review",
+    message: (
+      <>
+        <p>
+          Development has just wrapped up. Here is the status of each ticket you
+          planned to complete this cycle.
+        </p>
+      </>
+    ),
+    task: "Review each ticket's status.",
   },
 ];
 

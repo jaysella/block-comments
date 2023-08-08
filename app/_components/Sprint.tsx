@@ -21,11 +21,11 @@ import {
   Story,
   Ticket,
 } from "../product/sprint/data";
+import DailyScrum from "./sprint/DailyScrum";
 import ProductBacklog from "./sprint/ProductBacklog";
 import SprintPlanning from "./sprint/SprintPlanning";
-import SprintPrioritization from "./sprint/SprintPrioritization";
-import DailyScrum from "./sprint/DailyScrum";
 import SprintRetro from "./sprint/SprintRetro";
+import TicketPrioritization from "./sprint/TicketPrioritization";
 
 export default function Sprint() {
   const MAX_STORIES = 3;
@@ -144,7 +144,7 @@ export default function Sprint() {
         )}
 
         {stage === 3 && (
-          <SprintPrioritization
+          <TicketPrioritization
             selectedTickets={selectedTickets}
             setSelectedTickets={setSelectedTickets}
           />

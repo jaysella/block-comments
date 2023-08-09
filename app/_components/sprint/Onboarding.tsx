@@ -53,7 +53,6 @@ export default function Onboarding({
             <Label htmlFor="first-name">First Name</Label>
             <Input
               type="text"
-              pattern="[0-9]*"
               id="first-name"
               placeholder="Carnegie"
               value={firstName}
@@ -65,6 +64,7 @@ export default function Onboarding({
             <Input
               type="text"
               id="nuid"
+              pattern="[0-9]*"
               placeholder="001234567"
               value={nuid}
               onChange={(e) => setNuid(e.target.value)}

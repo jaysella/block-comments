@@ -62,9 +62,9 @@ export default function SprintRetro({
 
       <BlockContent withPadding={false}>
         <div className="flex flex-col w-full gap-4 p-2 @md:p-3">
-          {problems.map((problem) => (
+          {problems.map((problem, i) => (
             <Problem
-              key={problem.title}
+              key={i}
               title={problem.title}
               description={problem.description}
               improvement={problem.improvement}

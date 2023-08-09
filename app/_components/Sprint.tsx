@@ -104,7 +104,7 @@ export default function Sprint() {
         if (
           !problems.find(({ title }) => title === PROBLEMS[randomIndex].title)
         ) {
-          setProblems((p) => [...p, PROBLEMS[randomIndex]]);
+          setProblems((p) => [PROBLEMS[randomIndex], ...p]);
         }
         i++;
       }
@@ -252,6 +252,7 @@ export default function Sprint() {
           <SprintRecap
             stories={selectedStories}
             tickets={selectedTickets}
+            problems={problems}
             improvements={selectedImprovements}
           />
         )}

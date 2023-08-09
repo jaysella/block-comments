@@ -118,10 +118,14 @@ export function unDiff(input: string, hideDeleted: boolean = false): string {
   return processedLines.join("\n");
 }
 
-export function moveArrayItem(array: any[], fromIndex: number, toIndex: number): any[] {
+export function moveArrayItem(
+  array: any[],
+  fromIndex: number,
+  toIndex: number
+): any[] {
   const updatedArray = [...array];
   const movedItem = updatedArray[fromIndex];
   updatedArray.splice(fromIndex, 1);
   updatedArray.splice(toIndex, 0, movedItem);
   return updatedArray;
-};
+}

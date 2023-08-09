@@ -4,21 +4,84 @@ import {
   BlockHeader,
   BlockTitle,
 } from "@/app/_components/ui/block";
-import { Problem, Story, Ticket } from "@/app/product/sprint/data";
-import { cn } from "@/lib/utils";
-import { Contact2Icon, ListTodoIcon, SmileIcon } from "lucide-react";
+import {
+  PROBLEMS,
+  PRODUCT_BACKLOG,
+  Problem,
+  SPRINT_BACKLOG,
+  Story,
+  Ticket,
+} from "@/app/product/sprint/data";
+import { AwardIcon, Contact2Icon, ListTodoIcon, SmileIcon } from "lucide-react";
 import { ReactNode } from "react";
 import { KanbanLabel } from "../Kanban";
+import { CodeSegment } from "../ui/code-segment";
+import { Tooltip } from "@radix-ui/react-tooltip";
+import { TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { useToast } from "../ui/use-toast";
 
 export default function SprintRecap({
   stories,
   tickets,
+  problems,
   improvements,
 }: {
   stories: Story[];
   tickets: Ticket[];
+  problems: Problem[];
   improvements: Problem[];
 }) {
+  const { toast } = useToast();
+
+  const ICON_CLASSES = "w-8 h-8 shrink-0";
+
+  function getIdentifier(): string {
+    const SEPARATOR = "|";
+
+    // add stories
+    let identifier = "s";
+    stories.forEach((story) => {
+      identifier += PRODUCT_BACKLOG.findIndex((s) => s.id === story.id);
+    });
+
+    // add tickets
+    identifier += SEPARATOR + "t";
+    tickets.forEach((ticket) => {
+      identifier += SPRINT_BACKLOG.findIndex((t) => t.label === ticket.label);
+      switch (ticket.status) {
+        case "backlog":
+          identifier += "b";
+          break;
+
+        case "in-progress":
+          identifier += "i";
+          break;
+
+        case "complete":
+          identifier += "c";
+          break;
+
+        default:
+          identifier += "e";
+          break;
+      }
+    });
+
+    // add problems
+    identifier += SEPARATOR + "p";
+    problems.forEach((problem) => {
+      identifier += PROBLEMS.findIndex((p) => p.title === problem.title);
+    });
+
+    // add improvements
+    identifier += SEPARATOR + "i";
+    improvements.forEach((improvement) => {
+      identifier += PROBLEMS.findIndex((i) => i.title === improvement.title);
+    });
+
+    return identifier;
+  }
+
   return (
     <Block>
       <BlockHeader>
@@ -28,7 +91,44 @@ export default function SprintRecap({
       <BlockContent withPadding={false}>
         <div className="flex flex-col w-full gap-4 p-2 @md:p-3">
           <Section
-            icon={<Contact2Icon className="w-8 h-8 shrink-0" />}
+            icon={<AwardIcon className={ICON_CLASSES} />}
+            title="About You"
+          >
+            <div className="px-3">
+              Your unique identifier for this Sprint is:{" "}
+              <Tooltip>
+                <TooltipTrigger
+                  onClick={() => {
+                    navigator.clipboard.writeText(getIdentifier()).then(
+                      () => {
+                        toast({
+                          title: "Copied!",
+                          description:
+                            "The identifier this Sprint has been copied to your clipboard.",
+                          icon: "success",
+                        });
+                      },
+                      () => {
+                        toast({
+                          title: "Unable to copy",
+                          description: "Please copy this identifier manually.",
+                          icon: "error",
+                        });
+                      }
+                    );
+                  }}
+                >
+                  <CodeSegment className="transition-colors hover:bg-slate-300 dark:hover:bg-slate-600">
+                    {getIdentifier()}
+                  </CodeSegment>
+                </TooltipTrigger>
+                <TooltipContent>Click to Copy Identifier</TooltipContent>
+              </Tooltip>
+            </div>
+          </Section>
+
+          <Section
+            icon={<Contact2Icon className={ICON_CLASSES} />}
             title="User Stories"
           >
             {stories.map((story) => (
@@ -44,7 +144,7 @@ export default function SprintRecap({
           </Section>
 
           <Section
-            icon={<ListTodoIcon className="w-8 h-8 shrink-0" />}
+            icon={<ListTodoIcon className={ICON_CLASSES} />}
             title="Tickets"
           >
             {tickets.map((ticket) => (
@@ -60,7 +160,7 @@ export default function SprintRecap({
           </Section>
 
           <Section
-            icon={<SmileIcon className="w-8 h-8 shrink-0" />}
+            icon={<SmileIcon className={ICON_CLASSES} />}
             title="Improvements"
           >
             {improvements.map((problem) => (
@@ -89,7 +189,7 @@ function Section({
 }) {
   return (
     <div className="p-3 border rounded-lg first-of-type:mt-0 border-slate-200 bg-slate-100 dark:bg-slate-950 dark:border-slate-800">
-      <div className="flex flex-row w-full gap-3 px-1">
+      <div className="flex flex-row gap-3 px-1">
         {icon}
         <h3 className="mt-1.5 font-bold">{title}</h3>
       </div>
@@ -101,11 +201,7 @@ function Section({
 
 function Ticket({ label, title, status }: Ticket) {
   return (
-    <div
-      className={cn(
-        "flex flex-row w-full gap-3 p-3 border rounded-lg border-slate-200 dark:border-slate-800"
-      )}
-    >
+    <div className="flex flex-row gap-3 p-3 border rounded-lg border-slate-200 dark:border-slate-800">
       <div className="flex flex-col-reverse items-start justify-between w-full gap-2 @lg:gap-4 @lg:flex-row">
         <p>
           <strong>{label}:</strong> {title}
@@ -118,28 +214,18 @@ function Ticket({ label, title, status }: Ticket) {
 
 function Story({ persona, action, goal }: Story) {
   return (
-    <div
-      className={cn(
-        "flex flex-row w-full gap-3 p-3 border rounded-lg border-slate-200 dark:border-slate-800"
-      )}
-    >
-      <div className="flex flex-row items-start justify-between w-full gap-4">
+    <div className="p-3 border rounded-lg border-slate-200 dark:border-slate-800">
+      <p>
         As a {persona}, I want to {action} so that I can {goal}.
-      </div>
+      </p>
     </div>
   );
 }
 
 function Problem({ improvement }: Problem) {
   return (
-    <div
-      className={cn(
-        "flex flex-row w-full gap-3 p-3 border rounded-lg border-slate-200 dark:border-slate-800"
-      )}
-    >
-      <div className="flex flex-row items-start justify-between w-full gap-4">
-        {improvement}
-      </div>
+    <div className="p-3 border rounded-lg border-slate-200 dark:border-slate-800">
+      <p>{improvement}</p>
     </div>
   );
 }

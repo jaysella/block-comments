@@ -26,9 +26,9 @@ import {
 import DailyScrum from "./sprint/DailyScrum";
 import ProductBacklog from "./sprint/ProductBacklog";
 import SprintPlanning from "./sprint/SprintPlanning";
-import SprintRetro from "./sprint/SprintRetro";
-import TicketPrioritization from "./sprint/TicketPrioritization";
+import SprintPrioritization from "./sprint/SprintPrioritization";
 import SprintRecap from "./sprint/SprintRecap";
+import SprintRetro from "./sprint/SprintRetro";
 
 function determineTicketStatus(
   ticket: Ticket,
@@ -228,7 +228,7 @@ export default function Sprint() {
         )}
 
         {stage === 3 && (
-          <TicketPrioritization
+          <SprintPrioritization
             selectedTickets={selectedTickets}
             setSelectedTickets={setSelectedTickets}
           />
@@ -271,7 +271,7 @@ function ActionItem({
     <motion.div
       initial={{ opacity: 0, translateY: -15 }}
       animate={{ opacity: 1, translateY: 0 }}
-      className="prose"
+      className="prose dark:prose-invert"
     >
       <h3 className="font-bold">{title}</h3>
       {children}

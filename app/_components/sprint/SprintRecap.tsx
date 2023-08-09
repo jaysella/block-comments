@@ -105,10 +105,10 @@ function Ticket({ label, title, status }: Ticket) {
   return (
     <div
       className={cn(
-        "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950 group"
+        "flex flex-row w-full gap-3 p-3 border rounded-lg border-slate-200 dark:border-slate-800"
       )}
     >
-      <div className="flex flex-row items-start justify-between w-full gap-4">
+      <div className="flex flex-col-reverse items-start justify-between w-full gap-2 @lg:gap-4 @lg:flex-row">
         <p>
           <strong>{label}:</strong> {title}
         </p>
@@ -122,7 +122,7 @@ function Story({ persona, action, goal }: Story) {
   return (
     <div
       className={cn(
-        "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950 group"
+        "flex flex-row w-full gap-3 p-3 border rounded-lg border-slate-200 dark:border-slate-800"
       )}
     >
       <div className="flex flex-row items-start justify-between w-full gap-4">
@@ -132,11 +132,11 @@ function Story({ persona, action, goal }: Story) {
   );
 }
 
-function Problem({ title, description, improvement }: Problem) {
+function Problem({ improvement }: Problem) {
   return (
     <div
       className={cn(
-        "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950 group"
+        "flex flex-row w-full gap-3 p-3 border rounded-lg border-slate-200 dark:border-slate-800"
       )}
     >
       <div className="flex flex-row items-start justify-between w-full gap-4">

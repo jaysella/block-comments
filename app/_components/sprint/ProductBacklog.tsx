@@ -95,7 +95,7 @@ function Story({
   return (
     <div
       className={cn(
-        "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950 group",
+        "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950 group border-slate-200 dark:border-slate-800",
         checked
           ? "border-slate-700 dark:border-slate-300"
           : "border-slate-200 dark:border-slate-800"

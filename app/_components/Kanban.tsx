@@ -26,7 +26,9 @@ export function KanbanHeader({
     <div className="flex flex-row items-center justify-between mb-2 mr-1">
       <div className="flex items-center gap-2.5">
         {children}
-        <span className="text-sm text-slate-500">{count}</span>
+        <span className="text-sm text-slate-500 dark:text-slate-400">
+          {count}
+        </span>
       </div>
     </div>
   );
@@ -47,7 +49,7 @@ export function KanbanCard({
 }) {
   return (
     <div className="p-2 border rounded-md shadow-sm bg-slate-100 dark:bg-slate-950 border-slate-200 dark:border-slate-800">
-      <h3 className="mb-2 text-sm text-slate-700 dark:text-slate-300">
+      <h3 className="mb-2 text-sm text-slate-800 dark:text-slate-200">
         {title}
       </h3>
       <div className="flex flex-row gap-1">
@@ -63,20 +65,24 @@ export function KanbanCard({
 export function KanbanLabel({
   type,
 }: {
-  type: "backlog" | "in-progress" | "complete";
+  type?: "backlog" | "in-progress" | "complete";
 }) {
   const ICON_SIZE = 16;
+
+  if (!type) {
+    return null;
+  }
 
   return (
     <h3
       className={cn(
-        `flex flex-row items-center px-2 py-1 font-bold uppercase border rounded-md  w-max text-xs gap-1.5`,
+        `flex flex-row items-center px-2 py-1 font-bold uppercase border rounded-md  w-max text-xs gap-1.5 whitespace-nowrap`,
         type === "backlog" &&
-          "border-red-200 text-red-600 bg-red-100 dark:border-red-700 dark:text-red-400 dark:bg-red-900",
+          "border-red-200 text-red-600 bg-red-100 dark:border-red-700 dark:text-red-400 dark:bg-red-950",
         type === "in-progress" &&
-          "border-amber-200 text-amber-600 bg-amber-100 dark:border-amber-700 dark:text-amber-400 dark:bg-amber-900",
+          "border-amber-200 text-amber-600 bg-amber-100 dark:border-amber-700 dark:text-amber-400 dark:bg-amber-950",
         type === "complete" &&
-          "border-green-200 text-green-600 bg-green-100 dark:border-green-700 dark:text-green-400 dark:bg-green-900"
+          "border-green-200 text-green-600 bg-green-100 dark:border-green-700 dark:text-green-400 dark:bg-green-950"
       )}
     >
       {

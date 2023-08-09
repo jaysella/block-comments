@@ -21,11 +21,15 @@ import { TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { useToast } from "../ui/use-toast";
 
 export default function SprintRecap({
+  firstName,
+  nuid,
   stories,
   tickets,
   problems,
   improvements,
 }: {
+  firstName: string;
+  nuid: string;
   stories: Story[];
   tickets: Ticket[];
   problems: Problem[];
@@ -38,8 +42,24 @@ export default function SprintRecap({
   function getIdentifier(): string {
     const SEPARATOR = "|";
 
+    // add first name
+    let identifier = "@";
+    firstName
+      .substring(0, Math.min(2, firstName.length))
+      .split("")
+      .forEach((char) => {
+        identifier += char.charCodeAt(0) + SEPARATOR;
+      });
+    identifier = identifier.substring(0, identifier.length - 1);
+
+    // add nuid
+    identifier += "#";
+    nuid.split("").forEach((char) => {
+      identifier += char.charCodeAt(0);
+    });
+
     // add stories
-    let identifier = "s";
+    identifier += SEPARATOR + "s";
     stories.forEach((story) => {
       identifier += PRODUCT_BACKLOG.findIndex((s) => s.id === story.id);
     });

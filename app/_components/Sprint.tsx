@@ -14,7 +14,7 @@ import {
 } from "@/app/_components/ui/tooltip";
 import { motion } from "framer-motion";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ACTION_ITEMS,
   PROBLEMS,
@@ -29,6 +29,7 @@ import SprintPlanning from "./sprint/SprintPlanning";
 import SprintPrioritization from "./sprint/SprintPrioritization";
 import SprintRecap from "./sprint/SprintRecap";
 import SprintRetro from "./sprint/SprintRetro";
+import Onboarding from "./sprint/Onboarding";
 
 function determineTicketStatus(
   ticket: Ticket,
@@ -64,8 +65,11 @@ export default function Sprint() {
   const MAX_PROBLEMS = 2;
   const MAX_IMPROVEMENTS = 1;
 
-  const [stage, setStage] = useState(1);
+  const [stage, setStage] = useState(0);
   const [canProgress, setCanProgress] = useState(false);
+
+  const [firstName, setFirstName] = useState("");
+  const [nuid, setNuid] = useState("");
 
   const [selectedStories, setSelectedStories] = useState<Story[]>([]);
 
@@ -83,33 +87,12 @@ export default function Sprint() {
   );
 
   useEffect(() => {
-    if (stage === 3 || stage === 4) {
+    if (firstName && nuid && nuid.length > 6 && nuid.length < 10) {
       setCanProgress(true);
     } else {
       setCanProgress(false);
     }
-
-    if (stage === 4) {
-      setSelectedTickets((tickets) =>
-        tickets.map((ticket, index) =>
-          determineTicketStatus(ticket, index, tickets.length, selectedPoints)
-        )
-      );
-    }
-
-    if (stage === 5) {
-      let i = 0;
-      while (i < MAX_PROBLEMS) {
-        const randomIndex = Math.floor(Math.random() * PROBLEMS.length);
-        if (
-          !problems.find(({ title }) => title === PROBLEMS[randomIndex].title)
-        ) {
-          setProblems((p) => [PROBLEMS[randomIndex], ...p]);
-        }
-        i++;
-      }
-    }
-  }, [stage]);
+  }, [firstName, nuid]);
 
   useEffect(() => {
     if (selectedStories.length === MAX_STORIES) {
@@ -145,6 +128,35 @@ export default function Sprint() {
       setCanProgress(false);
     }
   }, [selectedImprovements]);
+
+  useEffect(() => {
+    if (stage === 3 || stage === 4) {
+      setCanProgress(true);
+    } else {
+      setCanProgress(false);
+    }
+
+    if (stage === 4) {
+      setSelectedTickets((tickets) =>
+        tickets.map((ticket, index) =>
+          determineTicketStatus(ticket, index, tickets.length, selectedPoints)
+        )
+      );
+    }
+
+    if (stage === 5 && problems.length === 0) {
+      let i = 0;
+      while (i < MAX_PROBLEMS) {
+        const randomIndex = Math.floor(Math.random() * PROBLEMS.length);
+        if (
+          !problems.find(({ title }) => title === PROBLEMS[randomIndex].title)
+        ) {
+          setProblems((p) => [PROBLEMS[randomIndex], ...p]);
+        }
+        i++;
+      }
+    }
+  }, [stage]);
 
   return (
     <>
@@ -213,6 +225,15 @@ export default function Sprint() {
           </BlockContent>
         </Block>
 
+        {stage === 0 && (
+          <Onboarding
+            firstName={firstName}
+            setFirstName={setFirstName}
+            nuid={nuid}
+            setNuid={setNuid}
+          />
+        )}
+
         {stage === 1 && (
           <ProductBacklog
             maxStories={MAX_STORIES}
@@ -250,6 +271,8 @@ export default function Sprint() {
 
         {stage === 6 && (
           <SprintRecap
+            firstName={firstName}
+            nuid={nuid}
             stories={selectedStories}
             tickets={selectedTickets}
             problems={problems}

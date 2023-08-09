@@ -29,6 +29,14 @@ export type Problem = {
 
 export const ACTION_ITEMS: ActionItem[] = [
   {
+    stage: 0,
+    title: "Welcome to Malden Consulting Group!",
+    message: [
+      "Before you can begin working with Midnight Coffee, our People team has requested some information about you.",
+    ],
+    task: "Complete all required information.",
+  },
+  {
     stage: 1,
     title: "Welcome to the Sprint!",
     message: [

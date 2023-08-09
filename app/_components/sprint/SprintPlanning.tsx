@@ -138,8 +138,8 @@ export default function SprintPlanning({
                   <AlertTitle>Too much work!</AlertTitle>
                   <AlertDescription>
                     The tickets you have selected exceed your development team's
-                    capacity. Please adjust your plan to stay within 15 Story
-                    Points.
+                    capacity. Please adjust your plan to stay within{" "}
+                    {maxStoryPoints} Story Points.
                   </AlertDescription>
                 </Alert>
               </motion.div>

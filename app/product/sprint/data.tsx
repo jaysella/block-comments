@@ -49,7 +49,7 @@ export const ACTION_ITEMS: ActionItem[] = [
     title: "Selecting Tickets",
     message: [
       "Nice job! Each Story is now broken down into smaller, more manageable tickets.",
-      "You just wrapped up a meeting with your development team. The result: their maximum capacity for this Sprint is 15 Story Points.",
+      "You just wrapped up a meeting with your development team. The result: their maximum capacity for this Sprint is {MAX_POINTS} Story Points.",
     ],
     task: "Choose which tickets your team will be working on this Sprint.",
   },

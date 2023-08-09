@@ -30,6 +30,7 @@ import SprintPrioritization from "./sprint/SprintPrioritization";
 import SprintRecap from "./sprint/SprintRecap";
 import SprintRetro from "./sprint/SprintRetro";
 import Onboarding from "./sprint/Onboarding";
+import { getRandomInt } from "@/lib/utils";
 
 function determineTicketStatus(
   ticket: Ticket,
@@ -58,12 +59,12 @@ function determineTicketStatus(
   return ticket;
 }
 
-export default function Sprint() {
-  const MAX_STORIES = 3;
-  const MAX_POINTS = 15;
-  const MAX_PROBLEMS = 2;
-  const MAX_IMPROVEMENTS = 1;
+const MAX_STORIES = 3;
+const MAX_POINTS = getRandomInt(7, 21);
+const MAX_PROBLEMS = MAX_POINTS > 14 ? 3 : 2;
+const MAX_IMPROVEMENTS = 1;
 
+export default function Sprint() {
   const [stage, setStage] = useState(0);
   const [canProgress, setCanProgress] = useState(false);
 
@@ -204,6 +205,9 @@ export default function Sprint() {
                       title={action.title}
                       task={action.task}
                       content={action.message}
+                      variable={{
+                        MAX_POINTS: MAX_POINTS.toString(),
+                      }}
                     />
                   );
                 }
@@ -261,6 +265,7 @@ export default function Sprint() {
             firstName={firstName}
             nuid={nuid}
             stories={selectedStories}
+            maxStoryPoints={MAX_POINTS}
             tickets={selectedTickets}
             problems={problems}
             improvements={selectedImprovements}
@@ -275,10 +280,12 @@ function ActionItem({
   title,
   task,
   content,
+  variable,
 }: {
   title: string;
   task: string;
   content: string[];
+  variable: Record<string, string>;
 }) {
   return (
     <motion.div
@@ -288,7 +295,12 @@ function ActionItem({
     >
       <h3 className="font-bold">{title}</h3>
       {content.map((c, i) => (
-        <p key={i}>{content}</p>
+        <p key={i}>
+          {c.replace(
+            `{${Object.keys(variable)[0]}}`,
+            Object.values(variable)[0]
+          )}
+        </p>
       ))}
 
       <h3 className="font-bold">Current Task</h3>

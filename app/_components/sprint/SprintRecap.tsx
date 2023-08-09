@@ -24,6 +24,7 @@ export default function SprintRecap({
   firstName,
   nuid,
   stories,
+  maxStoryPoints,
   tickets,
   problems,
   improvements,
@@ -31,6 +32,7 @@ export default function SprintRecap({
   firstName: string;
   nuid: string;
   stories: Story[];
+  maxStoryPoints: number;
   tickets: Ticket[];
   problems: Problem[];
   improvements: Problem[];
@@ -43,17 +45,16 @@ export default function SprintRecap({
     const SEPARATOR = "|";
 
     // add first name
-    let identifier = "@";
+    let identifier = "s";
     firstName
       .substring(0, Math.min(2, firstName.length))
       .split("")
       .forEach((char) => {
-        identifier += char.charCodeAt(0) + SEPARATOR;
+        identifier += char.charCodeAt(0) + "";
       });
-    identifier = identifier.substring(0, identifier.length - 1);
 
     // add nuid
-    identifier += "#";
+    identifier += "|#";
     nuid.split("").forEach((char) => {
       identifier += char.charCodeAt(0);
     });
@@ -63,6 +64,9 @@ export default function SprintRecap({
     stories.forEach((story) => {
       identifier += PRODUCT_BACKLOG.findIndex((s) => s.id === story.id);
     });
+
+    // add max story points
+    identifier += SEPARATOR + "#" + maxStoryPoints;
 
     // add tickets
     identifier += SEPARATOR + "t";

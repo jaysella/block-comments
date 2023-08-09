@@ -28,6 +28,12 @@ export function getRandomDate(): moment.Moment {
   return randomDate;
 }
 
+export function getRandomInt(min: number, max: number): number {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 export function addRandomTime(initialDate: moment.Moment): moment.Moment {
   const randomDays = Math.floor(Math.random() * 14);
   const randomHours = Math.floor(Math.random() * 24);

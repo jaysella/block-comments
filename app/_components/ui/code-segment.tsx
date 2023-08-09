@@ -4,7 +4,7 @@ export function CodeSegment({
   className,
   children,
 }: {
-  className: string;
+  className?: string;
   children: string;
 }) {
   return (

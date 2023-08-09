@@ -111,36 +111,27 @@ function Story({
           }
         }}
       />
-      <label htmlFor={id} className="sr-only">
-        As a {persona}, I want to {action} so that I can {goal}.
-      </label>
-
-      <div className="flex flex-row items-start justify-between w-full gap-4 not-sr-only">
-        <div className="flex flex-col gap-2">
+      <label htmlFor={id}>
+        <div className="flex flex-row items-start justify-between w-full gap-4 not-sr-only">
           <p>
-            <span className="text-sm font-bold uppercase">As a</span>{" "}
-            <mark className="bg-transparent dark:text-slate-100 group-hover:text-blue-800 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 dark:group-hover:text-blue-100 -mx-0.5 px-0.5 rounded-sm">
+            As a{" "}
+            <mark className="bg-transparent dark:text-slate-100 group-hover:text-blue-800 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 dark:group-hover:text-blue-100 transition-colors -mx-0.5 px-0.5 rounded-sm">
               {persona}
             </mark>
-            ,
-          </p>
-          <p>
-            <span className="text-sm font-bold uppercase">I want to</span>{" "}
-            <mark className="bg-transparent dark:text-slate-100 group-hover:text-purple-800 group-hover:bg-purple-200 dark:group-hover:bg-purple-800 dark:group-hover:text-purple-100 -mx-0.5 px-0.5 rounded-sm">
+            , I want to{" "}
+            <mark className="bg-transparent dark:text-slate-100 group-hover:text-purple-800 group-hover:bg-purple-200 dark:group-hover:bg-purple-800 dark:group-hover:text-purple transition-colors-100 -mx-0.5 px-0.5 rounded-sm">
               {action}
-            </mark>
-          </p>
-          <p>
-            <span className="text-sm font-bold uppercase">so that I can</span>{" "}
-            <mark className="bg-transparent dark:text-slate-100 group-hover:text-green-800 group-hover:bg-green-200 dark:group-hover:bg-green-800 dark:group-hover:text-green-100 -mx-0.5 px-0.5 rounded-sm">
+            </mark>{" "}
+            so that I can{" "}
+            <mark className="bg-transparent dark:text-slate-100 group-hover:text-green-800 group-hover:bg-green-200 dark:group-hover:bg-green-800 dark:group-hover:text-green-100 transition-colors -mx-0.5 px-0.5 rounded-sm">
               {goal}
             </mark>
             .
           </p>
-        </div>
 
-        <StoryPoint points={points} estimate />
-      </div>
+          <StoryPoint points={points} estimate />
+        </div>
+      </label>
     </div>
   );
 }

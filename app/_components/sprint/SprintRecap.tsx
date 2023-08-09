@@ -13,12 +13,10 @@ import { KanbanLabel } from "../Kanban";
 export default function SprintRecap({
   stories,
   tickets,
-  problems,
   improvements,
 }: {
   stories: Story[];
   tickets: Ticket[];
-  problems: Problem[];
   improvements: Problem[];
 }) {
   return (

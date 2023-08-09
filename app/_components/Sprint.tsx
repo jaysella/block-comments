@@ -252,7 +252,6 @@ export default function Sprint() {
           <SprintRecap
             stories={selectedStories}
             tickets={selectedTickets}
-            problems={problems}
             improvements={selectedImprovements}
           />
         )}
@@ -280,6 +279,7 @@ function ActionItem({
       {content.map((c, i) => (
         <p key={i}>{content}</p>
       ))}
+
       <h3 className="font-bold">Current Task</h3>
       <p>{task}</p>
     </motion.div>

@@ -17,12 +17,13 @@ import {
   AwardIcon,
   Contact2Icon,
   CopyIcon,
+  DownloadCloudIcon,
   ListTodoIcon,
   SmileIcon,
 } from "lucide-react";
 import { ReactNode } from "react";
 import { KanbanLabel } from "../Kanban";
-import { CodeSegment } from "../ui/code-segment";
+import { saveAs } from "file-saver";
 import { Tooltip } from "@radix-ui/react-tooltip";
 import { TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { useToast } from "../ui/use-toast";
@@ -124,6 +125,23 @@ export default function SprintRecap({
         <BlockTitle title="Sprint Recap" />
 
         <BlockControls>
+          <Tooltip>
+            <TooltipTrigger
+              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
+              onClick={() =>
+                saveAs(
+                  `/product/sprint/recap?id=${getIdentifier()}`,
+                  "sprint-recap.jpg"
+                )
+              }
+            >
+              <DownloadCloudIcon size={18} />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Download Recap</p>
+            </TooltipContent>
+          </Tooltip>
+
           <Tooltip>
             <TooltipTrigger
               className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"

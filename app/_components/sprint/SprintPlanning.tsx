@@ -85,9 +85,9 @@ export default function SprintPlanning({
         <BlockTitle title="Sprint Planning" />
 
         <BlockControls>
-          <div className="flex flex-row items-center gap-2 mr-2 text-sm uppercase">
-            <Tooltip>
-              <TooltipTrigger>
+          <Tooltip>
+            <TooltipTrigger>
+              <div className="flex flex-row items-center gap-2 mr-2 text-sm uppercase">
                 <div>
                   <motion.span
                     className={cn(
@@ -117,12 +117,12 @@ export default function SprintPlanning({
                 ) : (
                   <GemIcon size={18} />
                 )}
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Selected Story Points</p>
-              </TooltipContent>
-            </Tooltip>
-          </div>
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Selected Story Points</p>
+            </TooltipContent>
+          </Tooltip>
         </BlockControls>
       </BlockHeader>
 

@@ -131,7 +131,7 @@ export const SPRINT_BACKLOG: Ticket[] = [
     label: "ENG-2",
     storyId: "virtual-tastings",
     title: "Set up email reminders for virtual tasting events",
-    points: 2,
+    points: 1,
   },
   {
     label: "ENG-3",
@@ -149,13 +149,13 @@ export const SPRINT_BACKLOG: Ticket[] = [
     label: "ENG-5",
     storyId: "read-testimonials",
     title: "Email customers 3 days after order delivery requesting a review",
-    points: 1,
+    points: 2,
   },
   {
     label: "ENG-6",
     storyId: "read-testimonials",
     title: 'Add "Write a Review" form to customer dashboard',
-    points: 2,
+    points: 3,
   },
   {
     label: "ENG-7",
@@ -177,21 +177,27 @@ export const SPRINT_BACKLOG: Ticket[] = [
   },
   {
     label: "ENG-10",
-    storyId: "order-coffee",
-    title: "Set up Stripe integration for payment processing",
+    storyId: "join-loyalty",
+    title: "Award customers 1 point per dollar spent",
     points: 5,
   },
   {
     label: "ENG-11",
     storyId: "order-coffee",
-    title: "Create shopping cart logic",
+    title: "Set up Stripe integration for payment processing",
     points: 3,
   },
   {
     label: "ENG-12",
     storyId: "order-coffee",
-    title: "Display past orders in customer dashboard",
+    title: "Create shopping cart logic",
     points: 3,
+  },
+  {
+    label: "ENG-13",
+    storyId: "order-coffee",
+    title: "Display past orders in customer dashboard",
+    points: 2,
   },
 ];
 

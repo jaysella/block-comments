@@ -13,7 +13,7 @@ import {
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
 import { motion } from "framer-motion";
-import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
+import { ArrowRightIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   ACTION_ITEMS,
@@ -59,7 +59,6 @@ function determineTicketStatus(
 }
 
 export default function Sprint() {
-  const DEV_MODE = process.env.NODE_ENV === "development";
   const MAX_STORIES = 3;
   const MAX_POINTS = 15;
   const MAX_PROBLEMS = 2;
@@ -164,40 +163,28 @@ export default function Sprint() {
         <BlockHeader>
           <BlockTitle title="Sprint Simulation" />
 
-          <BlockControls>
-            <span className="mr-2 text-sm uppercase">
-              {canProgress
-                ? `Proceed to Stage ${stage + 1}`
-                : "See Action Items"}
-            </span>
+          {stage < ACTION_ITEMS.length - 1 && (
+            <BlockControls>
+              <span className="mr-2 text-sm uppercase">
+                {canProgress
+                  ? `Proceed to Stage ${stage + 1}`
+                  : "See Action Items"}
+              </span>
 
-            {DEV_MODE && (
               <Tooltip>
                 <TooltipTrigger
                   className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
-                  onClick={() => setStage(stage - 1)}
+                  disabled={!canProgress}
+                  onClick={() => setStage(stage + 1)}
                 >
-                  <ArrowLeftIcon size={18} />
+                  <ArrowRightIcon size={18} />
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Previous</p>
+                  <p>{canProgress ? "Next" : "Complete all action items"}</p>
                 </TooltipContent>
               </Tooltip>
-            )}
-
-            <Tooltip>
-              <TooltipTrigger
-                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
-                disabled={!canProgress}
-                onClick={() => setStage(stage + 1)}
-              >
-                <ArrowRightIcon size={18} />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{canProgress ? "Next" : "Complete all action items"}</p>
-              </TooltipContent>
-            </Tooltip>
-          </BlockControls>
+            </BlockControls>
+          )}
         </BlockHeader>
       </Block>
 

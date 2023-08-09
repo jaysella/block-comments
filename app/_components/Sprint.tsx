@@ -200,9 +200,12 @@ export default function Sprint() {
               {ACTION_ITEMS.map((action, i) => {
                 if (action.stage === stage) {
                   return (
-                    <ActionItem key={i} title={action.title} task={action.task}>
-                      {action.message}
-                    </ActionItem>
+                    <ActionItem
+                      key={i}
+                      title={action.title}
+                      task={action.task}
+                      content={action.message}
+                    />
                   );
                 }
               })}
@@ -261,11 +264,11 @@ export default function Sprint() {
 function ActionItem({
   title,
   task,
-  children,
+  content,
 }: {
   title: string;
   task: string;
-  children: ReactNode;
+  content: string[];
 }) {
   return (
     <motion.div
@@ -274,7 +277,9 @@ function ActionItem({
       className="prose dark:prose-invert"
     >
       <h3 className="font-bold">{title}</h3>
-      {children}
+      {content.map((c, i) => (
+        <p key={i}>{content}</p>
+      ))}
       <h3 className="font-bold">Current Task</h3>
       <p>{task}</p>
     </motion.div>

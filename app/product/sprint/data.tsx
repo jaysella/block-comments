@@ -1,9 +1,7 @@
-import { ReactNode } from "react";
-
 export type ActionItem = {
   stage: number;
   title: string;
-  message: ReactNode;
+  message: string[];
   task: string;
 };
 
@@ -33,86 +31,50 @@ export const ACTION_ITEMS: ActionItem[] = [
   {
     stage: 1,
     title: "Welcome to the Sprint!",
-    message: (
-      <>
-        <p>
-          This first stage is all about Product Backlog Refinement. This is
-          where User Stories are selected and broken down into smaller, more
-          manageable tickets. These smaller tickets will be moved to your Sprint
-          Backlog.
-        </p>
-      </>
-    ),
+    message: [
+      "This first stage is all about Product Backlog Refinement. This is where User Stories are selected and broken down into smaller, more manageable tickets. These smaller tickets will be moved to your Sprint Backlog.",
+    ],
     task: "Select three (3) Stories from the Product Backlog to break down.",
   },
   {
     stage: 2,
     title: "Selecting Tickets",
-    message: (
-      <>
-        <p>
-          Nice job! Each Story is now broken down into smaller, more manageable
-          tickets.
-        </p>
-        <p>
-          You just wrapped up a meeting with your development team. The result:
-          their maximum capacity for this Sprint is 15 Story Points.
-        </p>
-      </>
-    ),
+    message: [
+      "Nice job! Each Story is now broken down into smaller, more manageable tickets.",
+      "You just wrapped up a meeting with your development team. The result: their maximum capacity for this Sprint is 15 Story Points.",
+    ],
     task: "Choose which tickets your team will be working on this Sprint.",
   },
   {
     stage: 3,
     title: "Setting Priorities",
-    message: (
-      <>
-        <p>
-          Alright! Tickets set. Let's prioritize these now so the team knows
-          which tickets are most important.
-        </p>
-      </>
-    ),
+    message: [
+      "Alright! Tickets set. Let's prioritize these now so the team knows which tickets are most important.",
+    ],
     task: "Order this Sprint's tickets in order of decreasing priority. The topmost is the most important.",
   },
   {
     stage: 4,
     title: "Reviewing Development Progress",
-    message: (
-      <>
-        <p>
-          Development has just wrapped up. Here is the status of each ticket you
-          planned to complete this cycle.
-        </p>
-      </>
-    ),
+    message: [
+      "Development has just wrapped up. Here is the status of each ticket you planned to complete this cycle.",
+    ],
     task: "Review each ticket's status.",
   },
   {
     stage: 5,
     title: "Identifying Potential Improvements",
-    message: (
-      <>
-        <p>
-          The Sprint Retro is the final stage of the Sprint. It's important to
-          routinely review what went well, what didn't, and how processes can be
-          improved for future Sprints.
-        </p>
-      </>
-    ),
+    message: [
+      "The Sprint Retro is the final stage of the Sprint. It's important to routinely review what went well, what didn't, and how processes can be improved for future Sprints.",
+    ],
     task: "Review the identified problems and select one (1) improvement to work on during the next Sprint.",
   },
   {
     stage: 6,
     title: "Wrapping Up",
-    message: (
-      <>
-        <p>
-          Great work throughout this Sprint! This final step will recap all of
-          your decisions and their effects.
-        </p>
-      </>
-    ),
+    message: [
+      "Great work throughout this Sprint! This final step will recap all of your decisions and their effects.",
+    ],
     task: "Think about what went well during this Sprint and what you would change if you were to do it again.",
   },
 ];

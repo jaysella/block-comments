@@ -29,7 +29,7 @@ export default function SprintBacklog({ tickets }: { tickets: Ticket[] }) {
                   tickets.filter((ticket) => ticket.status === "backlog").length
                 }
               >
-                <KanbanLabel icon="circle" name="Not Started" color="slate" />
+                <KanbanLabel type="backlog" />
               </KanbanHeader>
               <KanbanContent>
                 {tickets
@@ -52,11 +52,7 @@ export default function SprintBacklog({ tickets }: { tickets: Ticket[] }) {
                     .length
                 }
               >
-                <KanbanLabel
-                  icon="circle-dot"
-                  name="In Progress"
-                  color="yellow"
-                />
+                <KanbanLabel type="in-progress" />
               </KanbanHeader>
               <KanbanContent>
                 {tickets
@@ -79,11 +75,7 @@ export default function SprintBacklog({ tickets }: { tickets: Ticket[] }) {
                     .length
                 }
               >
-                <KanbanLabel
-                  icon="check-circle-2"
-                  name="Complete"
-                  color="green"
-                />
+                <KanbanLabel type="complete" />
               </KanbanHeader>
               <KanbanContent>
                 {tickets

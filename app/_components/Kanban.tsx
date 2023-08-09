@@ -1,5 +1,12 @@
 import { cn } from "@/lib/utils";
-import { TagIcon, dynamicIconImports } from "lucide-react";
+import {
+  CheckCircle2Icon,
+  CheckCircleIcon,
+  CircleDotIcon,
+  CircleIcon,
+  TagIcon,
+  dynamicIconImports,
+} from "lucide-react";
 import dynamic from "next/dynamic";
 import { ReactNode } from "react";
 import StoryPoint from "./sprint/StoryPoint";
@@ -54,24 +61,38 @@ export function KanbanCard({
 }
 
 export function KanbanLabel({
-  icon,
-  name,
-  color,
+  type,
 }: {
-  icon?: keyof typeof dynamicIconImports;
-  name: string;
-  color: string;
+  type: "backlog" | "in-progress" | "complete";
 }) {
-  const Icon = dynamic(dynamicIconImports[icon || "circle"]);
+  const ICON_SIZE = 16;
 
   return (
     <h3
       className={cn(
-        `flex flex-row items-center px-2 py-1 font-bold uppercase border rounded-md border-${color}-200 text-${color}-600 bg-${color}-100 w-max dark:border-${color}-700 dark:text-${color}-400 dark:bg-${color}-900 text-xs gap-1.5`
+        `flex flex-row items-center px-2 py-1 font-bold uppercase border rounded-md  w-max text-xs gap-1.5`,
+        type === "backlog" &&
+          "border-red-200 text-red-600 bg-red-100 dark:border-red-700 dark:text-red-400 dark:bg-red-900",
+        type === "in-progress" &&
+          "border-amber-200 text-amber-600 bg-amber-100 dark:border-amber-700 dark:text-amber-400 dark:bg-amber-900",
+        type === "complete" &&
+          "border-green-200 text-green-600 bg-green-100 dark:border-green-700 dark:text-green-400 dark:bg-green-900"
       )}
     >
-      <Icon size={16} />
-      {name}
+      {
+        {
+          backlog: <CircleIcon size={ICON_SIZE} />,
+          "in-progress": <CircleDotIcon size={ICON_SIZE} />,
+          complete: <CheckCircle2Icon size={ICON_SIZE} />,
+        }[type]
+      }
+      {
+        {
+          backlog: "Backlog",
+          "in-progress": "In Progress",
+          complete: "Complete",
+        }[type]
+      }
     </h3>
   );
 }

@@ -28,6 +28,7 @@ import ProductBacklog from "./sprint/ProductBacklog";
 import SprintPlanning from "./sprint/SprintPlanning";
 import SprintRetro from "./sprint/SprintRetro";
 import TicketPrioritization from "./sprint/TicketPrioritization";
+import SprintRecap from "./sprint/SprintRecap";
 
 function determineTicketStatus(
   ticket: Ticket,
@@ -241,6 +242,15 @@ export default function Sprint() {
             problems={problems}
             selectedImprovements={selectedImprovements}
             setSelectedImprovements={setSelectedImprovements}
+          />
+        )}
+
+        {stage === 6 && (
+          <SprintRecap
+            stories={selectedStories}
+            tickets={selectedTickets}
+            problems={problems}
+            improvements={selectedImprovements}
           />
         )}
       </div>

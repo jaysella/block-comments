@@ -102,6 +102,19 @@ export const ACTION_ITEMS: ActionItem[] = [
     ),
     task: "Review the identified problems and select one (1) improvement to work on during the next Sprint.",
   },
+  {
+    stage: 6,
+    title: "Wrapping Up",
+    message: (
+      <>
+        <p>
+          Great work throughout this Sprint! This final step will recap all of
+          your decisions and their effects.
+        </p>
+      </>
+    ),
+    task: "Think about what went well during this Sprint and what you would change if you were to do it again.",
+  },
 ];
 
 export const PRODUCT_BACKLOG: Story[] = [

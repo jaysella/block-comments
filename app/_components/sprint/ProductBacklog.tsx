@@ -119,7 +119,7 @@ function Story({
               {persona}
             </mark>
             , I want to{" "}
-            <mark className="bg-transparent dark:text-slate-100 group-hover:text-purple-800 group-hover:bg-purple-200 dark:group-hover:bg-purple-800 dark:group-hover:text-purple transition-colors-100 -mx-0.5 px-0.5 rounded-sm">
+            <mark className="bg-transparent dark:text-slate-100 group-hover:text-purple-800 group-hover:bg-purple-200 dark:group-hover:bg-purple-800 dark:group-hover:text-purple-100 transition-colors-100 -mx-0.5 px-0.5 rounded-sm">
               {action}
             </mark>{" "}
             so that I can{" "}

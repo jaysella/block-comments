@@ -40,9 +40,9 @@ export default function SprintRetro({
         <BlockTitle title="Sprint Retro" />
 
         <BlockControls>
-          <Tooltip>
-            <TooltipTrigger>
-              <div className="flex flex-row items-center gap-2 mr-2 text-sm uppercase">
+          <div className="flex flex-row items-center gap-2 mr-2 text-sm uppercase">
+            <Tooltip>
+              <TooltipTrigger>
                 {selectedImprovements.length >= 1 &&
                   selectedImprovements.length <= maxImprovements && (
                     <motion.div
@@ -53,10 +53,12 @@ export default function SprintRetro({
                       <CheckIcon size={18} />
                     </motion.div>
                   )}
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>Task Complete</TooltipContent>
-          </Tooltip>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Task Complete</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
         </BlockControls>
       </BlockHeader>
 

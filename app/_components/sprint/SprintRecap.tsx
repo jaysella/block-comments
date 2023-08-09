@@ -1,6 +1,7 @@
 import {
   Block,
   BlockContent,
+  BlockControls,
   BlockHeader,
   BlockTitle,
 } from "@/app/_components/ui/block";
@@ -12,7 +13,13 @@ import {
   Story,
   Ticket,
 } from "@/app/product/sprint/data";
-import { AwardIcon, Contact2Icon, ListTodoIcon, SmileIcon } from "lucide-react";
+import {
+  AwardIcon,
+  Contact2Icon,
+  CopyIcon,
+  ListTodoIcon,
+  SmileIcon,
+} from "lucide-react";
 import { ReactNode } from "react";
 import { KanbanLabel } from "../Kanban";
 import { CodeSegment } from "../ui/code-segment";
@@ -115,6 +122,38 @@ export default function SprintRecap({
     <Block>
       <BlockHeader>
         <BlockTitle title="Sprint Recap" />
+
+        <BlockControls>
+          <Tooltip>
+            <TooltipTrigger
+              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
+              onClick={() => {
+                navigator.clipboard.writeText(getIdentifier()).then(
+                  () => {
+                    toast({
+                      title: "Copied!",
+                      description:
+                        "The identifier this Sprint has been copied to your clipboard.",
+                      icon: "success",
+                    });
+                  },
+                  () => {
+                    toast({
+                      title: "Unable to copy",
+                      description: "Please copy this identifier manually.",
+                      icon: "error",
+                    });
+                  }
+                );
+              }}
+            >
+              <CopyIcon size={18} />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Copy Identifier</p>
+            </TooltipContent>
+          </Tooltip>
+        </BlockControls>
       </BlockHeader>
 
       <BlockContent withPadding={false}>
@@ -153,38 +192,6 @@ export default function SprintRecap({
                 </div>
               </dl>
             </div>
-
-            {/* <div className="flex flex-row gap-2 p-3"> */}
-            {/* <Tooltip>
-                  <TooltipTrigger
-                    onClick={() => {
-                      navigator.clipboard.writeText(getIdentifier()).then(
-                        () => {
-                          toast({
-                            title: "Copied!",
-                            description:
-                              "The identifier this Sprint has been copied to your clipboard.",
-                            icon: "success",
-                          });
-                        },
-                        () => {
-                          toast({
-                            title: "Unable to copy",
-                            description:
-                              "Please copy this identifier manually.",
-                            icon: "error",
-                          });
-                        }
-                      );
-                    }}
-                  >
-                    <CodeSegment className="block transition-colors w-max hover:bg-slate-300 dark:hover:bg-slate-600">
-                      {getIdentifier()}
-                    </CodeSegment>
-                  </TooltipTrigger>
-                  <TooltipContent>Click to Copy Identifier</TooltipContent>
-                </Tooltip> */}
-            {/* </div> */}
           </Section>
 
           <Section

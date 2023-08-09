@@ -107,13 +107,13 @@ export default function SprintPlanning({
 
                 {selectedPoints > maxStoryPoints / 4 &&
                 selectedPoints <= maxStoryPoints ? (
-                  <motion.div
+                  <motion.span
                     initial={{ scale: 2 }}
                     animate={{ scale: 1 }}
-                    className="p-2 text-green-600"
+                    className="text-green-600"
                   >
                     <CheckIcon size={18} />
-                  </motion.div>
+                  </motion.span>
                 ) : (
                   <GemIcon size={18} />
                 )}

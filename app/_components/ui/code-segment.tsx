@@ -10,7 +10,7 @@ export function CodeSegment({
   return (
     <code
       className={cn(
-        "inline-block break-all py-0.25 px-1.5 rounded-md bg-slate-200 dark:bg-slate-700 dark:text-slate-200",
+        "inline-block break-all py-0.25 px-1.5 rounded-md bg-slate-200 dark:bg-slate-700 dark:text-slate-200 text-left",
         className
       )}
     >

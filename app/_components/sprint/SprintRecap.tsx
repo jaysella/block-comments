@@ -19,6 +19,7 @@ import { CodeSegment } from "../ui/code-segment";
 import { Tooltip } from "@radix-ui/react-tooltip";
 import { TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { useToast } from "../ui/use-toast";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function SprintRecap({
   firstName,
@@ -37,15 +38,19 @@ export default function SprintRecap({
   problems: Problem[];
   improvements: Problem[];
 }) {
+  const router = useRouter();
+  const pathname = usePathname();
   const { toast } = useToast();
+
+  router.replace(`${pathname}?id=${getIdentifier()}`);
 
   const ICON_CLASSES = "w-8 h-8 shrink-0";
 
   function getIdentifier(): string {
-    const SEPARATOR = "|";
+    const SEPARATOR = "-";
 
     // add first name
-    let identifier = "s";
+    let identifier = "u";
     firstName
       .substring(0, Math.min(2, firstName.length))
       .split("")
@@ -54,7 +59,7 @@ export default function SprintRecap({
       });
 
     // add nuid
-    identifier += "|#";
+    identifier += SEPARATOR + "n";
     nuid.split("").forEach((char) => {
       identifier += char.charCodeAt(0);
     });
@@ -66,7 +71,7 @@ export default function SprintRecap({
     });
 
     // add max story points
-    identifier += SEPARATOR + "#" + maxStoryPoints;
+    identifier += SEPARATOR + "m" + maxStoryPoints;
 
     // add tickets
     identifier += SEPARATOR + "t";
@@ -113,42 +118,73 @@ export default function SprintRecap({
       </BlockHeader>
 
       <BlockContent withPadding={false}>
-        <div className="flex flex-col w-full gap-4 p-2 @md:p-3">
+        <div className="flex flex-col w-full gap-4 p-2 @md:p-3 justify-start items-start">
           <Section
             icon={<AwardIcon className={ICON_CLASSES} />}
             title="About You"
           >
-            <div className="px-3">
-              Your unique identifier for this Sprint is:{" "}
-              <Tooltip>
-                <TooltipTrigger
-                  onClick={() => {
-                    navigator.clipboard.writeText(getIdentifier()).then(
-                      () => {
-                        toast({
-                          title: "Copied!",
-                          description:
-                            "The identifier this Sprint has been copied to your clipboard.",
-                          icon: "success",
-                        });
-                      },
-                      () => {
-                        toast({
-                          title: "Unable to copy",
-                          description: "Please copy this identifier manually.",
-                          icon: "error",
-                        });
-                      }
-                    );
-                  }}
-                >
-                  <CodeSegment className="transition-colors hover:bg-slate-300 dark:hover:bg-slate-600">
+            <div className="flex flex-row">
+              <dl className="w-full border rounded-lg border-slate-200 overflow-clip dark:border-slate-800">
+                <div className="items-center p-3 border-b sm:grid sm:grid-cols-4 sm:gap-4 border-b-slate-200 dark:border-b-slate-800">
+                  <dt className="text-xs font-medium uppercase text-slate-600 dark:text-slate-400">
+                    Name
+                  </dt>
+                  <dd className="mt-1 font-mono text-sm sm:mt-0 sm:col-span-3">
+                    {firstName.substring(0, 2).toUpperCase() + "·".repeat(4)}
+                  </dd>
+                </div>
+
+                <div className="items-center p-3 border-b sm:grid sm:grid-cols-4 sm:gap-4 border-b-slate-200 dark:border-b-slate-800">
+                  <dt className="text-xs font-medium uppercase text-slate-600 dark:text-slate-400">
+                    NUID
+                  </dt>
+                  <dd className="mt-1 font-mono text-sm sm:mt-0 sm:col-span-3">
+                    {"·".repeat(3) + nuid.slice(-3)}
+                  </dd>
+                </div>
+
+                <div className="items-center p-3 sm:grid sm:grid-cols-4 sm:gap-4">
+                  <dt className="text-xs font-medium uppercase text-slate-600 dark:text-slate-400">
+                    Sprint Identifier
+                  </dt>
+                  <dd className="mt-1 font-mono text-sm sm:mt-0 sm:col-span-3">
                     {getIdentifier()}
-                  </CodeSegment>
-                </TooltipTrigger>
-                <TooltipContent>Click to Copy Identifier</TooltipContent>
-              </Tooltip>
+                  </dd>
+                </div>
+              </dl>
             </div>
+
+            {/* <div className="flex flex-row gap-2 p-3"> */}
+            {/* <Tooltip>
+                  <TooltipTrigger
+                    onClick={() => {
+                      navigator.clipboard.writeText(getIdentifier()).then(
+                        () => {
+                          toast({
+                            title: "Copied!",
+                            description:
+                              "The identifier this Sprint has been copied to your clipboard.",
+                            icon: "success",
+                          });
+                        },
+                        () => {
+                          toast({
+                            title: "Unable to copy",
+                            description:
+                              "Please copy this identifier manually.",
+                            icon: "error",
+                          });
+                        }
+                      );
+                    }}
+                  >
+                    <CodeSegment className="block transition-colors w-max hover:bg-slate-300 dark:hover:bg-slate-600">
+                      {getIdentifier()}
+                    </CodeSegment>
+                  </TooltipTrigger>
+                  <TooltipContent>Click to Copy Identifier</TooltipContent>
+                </Tooltip> */}
+            {/* </div> */}
           </Section>
 
           <Section
@@ -212,7 +248,7 @@ function Section({
   children: ReactNode;
 }) {
   return (
-    <div className="p-3 border rounded-lg first-of-type:mt-0 border-slate-200 bg-slate-100 dark:bg-slate-950 dark:border-slate-800">
+    <div className="w-full p-3 border rounded-lg first-of-type:mt-0 border-slate-200 bg-slate-100 dark:bg-slate-950 dark:border-slate-800">
       <div className="flex flex-row gap-3 px-1">
         {icon}
         <h3 className="mt-1.5 font-bold">{title}</h3>

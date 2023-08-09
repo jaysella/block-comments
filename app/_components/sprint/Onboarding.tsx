@@ -30,17 +30,15 @@ export default function Onboarding({
         <BlockControls>
           <Tooltip>
             <TooltipTrigger>
-              <div className="flex flex-row items-center gap-2 mr-2 text-sm uppercase">
-                {firstName && nuid && nuid.length > 6 && nuid.length < 10 && (
-                  <motion.div
-                    initial={{ scale: 2 }}
-                    animate={{ scale: 1 }}
-                    className="p-2 text-green-600"
-                  >
-                    <CheckIcon size={18} />
-                  </motion.div>
-                )}
-              </div>
+              {firstName && nuid && nuid.length > 6 && nuid.length < 10 && (
+                <motion.div
+                  initial={{ scale: 2 }}
+                  animate={{ scale: 1 }}
+                  className="p-2 text-green-600"
+                >
+                  <CheckIcon size={18} />
+                </motion.div>
+              )}
             </TooltipTrigger>
             <TooltipContent>Selected Story Points</TooltipContent>
           </Tooltip>

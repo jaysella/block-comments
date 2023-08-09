@@ -89,20 +89,11 @@ export const ACTION_ITEMS: ActionItem[] = [
 
 export const PRODUCT_BACKLOG: Story[] = [
   {
-    id: "virtual-tastings",
+    id: "subscriptions",
     points: 8,
-    persona: "curious coffee drinker",
-    action:
-      "participate in a virtual coffee tasting event hosted by the coffee roaster",
-    goal: "learn about different coffee flavors, brewing techniques, and connect with fellow coffee enthusiasts",
-  },
-  {
-    id: "read-testimonials",
-    points: 8,
-    persona: "potential customer",
-    action:
-      "read reviews and testimonials from other coffee enthusiasts who have purchased from the coffee roaster",
-    goal: "gain confidence in the quality of their products and service",
+    persona: "busy coffee lover",
+    action: "subscribe to recurring coffee bean deliveries",
+    goal: "always have a supply of coffee without the need to manually re-order",
   },
   {
     id: "join-loyalty",
@@ -118,26 +109,43 @@ export const PRODUCT_BACKLOG: Story[] = [
     action: "order coffee blends and products through the roaster's website",
     goal: "enjoy high-quality coffee at home and order it at anytime",
   },
+  {
+    id: "read-testimonials",
+    points: 8,
+    persona: "potential customer",
+    action:
+      "read reviews and testimonials from other coffee enthusiasts who have purchased from the coffee roaster",
+    goal: "gain confidence in the quality of their products and service",
+  },
+  {
+    id: "virtual-tastings",
+    points: 8,
+    persona: "curious coffee drinker",
+    action:
+      "participate in a virtual coffee tasting event hosted by the coffee roaster",
+    goal: "learn about different coffee flavors, brewing techniques, and connect with fellow coffee enthusiasts",
+  },
 ];
 
 export const SPRINT_BACKLOG: Ticket[] = [
   {
-    label: "ENG-1",
-    storyId: "virtual-tastings",
-    title: "Build virtual tasting registration page",
-    points: 5,
+    label: "ENG-14",
+    storyId: "subscriptions",
+    title:
+      "Create subscription management page which allows customers to change delivery frequency",
+    points: 3,
   },
   {
-    label: "ENG-2",
-    storyId: "virtual-tastings",
-    title: "Set up email reminders for virtual tasting events",
-    points: 1,
-  },
-  {
-    label: "ENG-3",
-    storyId: "virtual-tastings",
-    title: "Build virtual tasting livestream page",
+    label: "ENG-15",
+    storyId: "subscriptions",
+    title: "Build automated subscription renewal reminders",
     points: 2,
+  },
+  {
+    label: "ENG-16",
+    storyId: "subscriptions",
+    title: "Allow support team to view and manage customer subscriptions",
+    points: 5,
   },
   {
     label: "ENG-4",
@@ -197,6 +205,24 @@ export const SPRINT_BACKLOG: Ticket[] = [
     label: "ENG-13",
     storyId: "order-coffee",
     title: "Display past orders in customer dashboard",
+    points: 2,
+  },
+  {
+    label: "ENG-1",
+    storyId: "virtual-tastings",
+    title: "Build virtual tasting registration page",
+    points: 5,
+  },
+  {
+    label: "ENG-2",
+    storyId: "virtual-tastings",
+    title: "Set up email reminders for virtual tasting events",
+    points: 1,
+  },
+  {
+    label: "ENG-3",
+    storyId: "virtual-tastings",
+    title: "Build virtual tasting livestream page",
     points: 2,
   },
 ];

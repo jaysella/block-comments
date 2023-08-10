@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { Explanation } from "@/app/_components/Snippet";
 import { CodeSegment } from "@/app/_components/ui/code-segment";
 
@@ -13,7 +12,7 @@ export const CODE = `; A GameType (GT) is one of:
 (define GT-RPG "rpg")
 
 ; A Game is a (make-game String GameType)
-; Intepretation: a video game
+; Interpretation: a video game
 ;  - name is the name of the game
 ;  - type is the type of the game
 (define-struct game [name type])

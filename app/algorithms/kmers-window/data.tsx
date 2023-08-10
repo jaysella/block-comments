@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { Explanation, SnippetContent } from "@/app/_components/Snippet";
 import KMersPlayground from "@/app/_components/KMersPlayground";
 import { CodeSegment } from "@/app/_components/ui/code-segment";

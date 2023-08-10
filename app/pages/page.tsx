@@ -55,6 +55,14 @@ export default function Page() {
           </ul>
         </li>
         <li>
+          <h2 className="font-semibold">Product Management</h2>
+          <ul className="pl-4 mt-1">
+            <li>
+              <Link href="/product/sprint">Sprint Simulation</Link>
+            </li>
+          </ul>
+        </li>
+        <li>
           <h2 className="font-semibold">Tools: Git</h2>
           <ul className="pl-4 mt-1">
             <li>

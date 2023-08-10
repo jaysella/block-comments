@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 
 export function Block({ children }: { children: ReactNode }) {
@@ -10,23 +11,34 @@ export function Block({ children }: { children: ReactNode }) {
 
 export function BlockHeader({ children }: { children: ReactNode }) {
   return (
-    <div className="flex items-center justify-between w-full px-4 py-2  @md:pl-8 min-h-[3.25rem]">
+    <div className="flex items-center justify-between w-full px-4 py-1 min-h-[3rem] @md:px-6">
       {children}
     </div>
   );
 }
 
 export function BlockControls({ children }: { children: ReactNode }) {
-  return <div className="flex items-center">{children}</div>;
+  return <div className="flex items-center -mr-2">{children}</div>;
 }
 
 export function BlockTitle({ title }: { title: string }) {
   return <h2 className="font-bold uppercase">{title}</h2>;
 }
 
-export function BlockContent({ children }: { children: ReactNode }) {
+export function BlockContent({
+  withPadding = true,
+  children,
+}: {
+  withPadding?: boolean;
+  children: ReactNode;
+}) {
   return (
-    <div className="-mt-0.5 border-t-2 border-slate-200 dark:border-slate-800 flex flex-col justify-between gap-6 p-4 divide-y-2 @md:divide-y-0 @md:flex-row @md:divide-x-2 @md:pb-6 @md:px-8 divide-slate-200 dark:divide-slate-800">
+    <div
+      className={cn(
+        "-mt-0.5 border-t-2 border-slate-200 dark:border-slate-800 flex flex-col justify-between gap-6 divide-y-2 @md:divide-y-0 @md:flex-row @md:divide-x-2 divide-slate-200 dark:divide-slate-800",
+        withPadding ? "p-4 @md:pb-6 @md:px-6" : ""
+      )}
+    >
       {children}
     </div>
   );

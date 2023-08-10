@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import InfoBlock from "@/app/_components/InfoBlock";
 import { Explanation } from "@/app/_components/Snippet";
 import { CodeSegment } from "@/app/_components/ui/code-segment";

@@ -7,6 +7,25 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function shuffle<T>(array: T[]): T[] {
+  let currentIndex = array.length,
+    randomIndex;
+
+  while (currentIndex != 0) {
+    // pick a remaining element
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // swap the remaining element with the current element
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
+
 export function getRandomDate(): moment.Moment {
   const currentDate = moment();
 
@@ -26,6 +45,12 @@ export function getRandomDate(): moment.Moment {
   });
 
   return randomDate;
+}
+
+export function getRandomInt(min: number, max: number): number {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 export function addRandomTime(initialDate: moment.Moment): moment.Moment {
@@ -116,4 +141,16 @@ export function unDiff(input: string, hideDeleted: boolean = false): string {
     });
 
   return processedLines.join("\n");
+}
+
+export function moveArrayItem(
+  array: any[],
+  fromIndex: number,
+  toIndex: number
+): any[] {
+  const updatedArray = [...array];
+  const movedItem = updatedArray[fromIndex];
+  updatedArray.splice(fromIndex, 1);
+  updatedArray.splice(toIndex, 0, movedItem);
+  return updatedArray;
 }

@@ -52,6 +52,17 @@ module.exports = {
     "dark:text-blue-400",
     "dark:text-yellow-400",
     "dark:text-red-400",
+
+    // ----
+    // LABELS
+    "dark:text-yellow-400",
+    "dark:text-green-400",
+
+    "dark:bg-yellow-900",
+    "dark:bg-green-900",
+
+    "dark:border-yellow-700",
+    "dark:border-green-700",
   ],
   theme: {
     container: {
@@ -84,5 +95,6 @@ module.exports = {
   plugins: [
     require("tailwindcss-animate"),
     require("@tailwindcss/container-queries"),
+    require("@tailwindcss/typography"),
   ],
 };

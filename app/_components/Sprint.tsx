@@ -44,11 +44,11 @@ function determineTicketStatus(
 
   const priority = 1 - (index + 1) / totalTickets;
   const randomSign = Math.random();
-  const random = randomSign < 0.5 ? Math.random() * -0.5 : Math.random();
+  const random = randomSign < 0.35 ? Math.random() * -0.5 : Math.random();
   const timeCommitment = ticket.points / totalPoints;
   const likelihood = priority - timeCommitment + random / 4;
 
-  if (likelihood > 0.25) {
+  if (likelihood > 0.225) {
     ticket.status = "complete";
   } else if (likelihood > 0) {
     ticket.status = "in-progress";
@@ -57,6 +57,27 @@ function determineTicketStatus(
   }
 
   return ticket;
+}
+
+function determineProblems(maxProblems: number): Problem[] {
+  const problems: Problem[] = [];
+
+  let i = 0;
+  while (i < maxProblems || problems.length === 0) {
+    const randomIndex = Math.floor(Math.random() * PROBLEMS.length);
+    const randomProblem = PROBLEMS[randomIndex];
+
+    const duplicateProblem = problems.some(
+      (p) => p.title === randomProblem.title
+    );
+
+    if (!duplicateProblem) {
+      problems.push(randomProblem);
+    }
+    i++;
+  }
+
+  return problems;
 }
 
 const MAX_STORIES = 3;
@@ -76,7 +97,7 @@ export default function Sprint() {
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [selectedTickets, setSelectedTickets] = useState<Ticket[]>([]);
 
-  const [problems, setProblems] = useState<Problem[]>([]);
+  const [problems] = useState<Problem[]>(determineProblems(MAX_PROBLEMS));
   const [selectedImprovements, setSelectedImprovements] = useState<Problem[]>(
     []
   );
@@ -142,19 +163,6 @@ export default function Sprint() {
           determineTicketStatus(ticket, index, tickets.length, selectedPoints)
         )
       );
-    }
-
-    if (stage === 5 && problems.length === 0) {
-      let i = 0;
-      while (i < MAX_PROBLEMS) {
-        const randomIndex = Math.floor(Math.random() * PROBLEMS.length);
-        if (
-          !problems.find(({ title }) => title === PROBLEMS[randomIndex].title)
-        ) {
-          setProblems((p) => [PROBLEMS[randomIndex], ...p]);
-        }
-        i++;
-      }
     }
   }, [stage]);
 

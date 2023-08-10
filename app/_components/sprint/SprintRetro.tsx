@@ -99,7 +99,7 @@ function Problem({
   onCheckedChange?: (checked: boolean) => void;
 }) {
   return (
-    <div className="p-3 border rounded-lg first-of-type:mt-0 border-slate-200 bg-slate-100 dark:bg-slate-950 dark:border-slate-800">
+    <div className="p-3 bg-white border rounded-lg dark:bg-slate-950 first-of-type:mt-0 border-slate-200 dark:border-slate-800">
       <div className="flex flex-row w-full gap-3 px-1">
         <BadgeAlertIcon className="w-8 h-8 shrink-0" />
         <div>
@@ -111,7 +111,7 @@ function Problem({
       <div className="flex flex-col gap-2 mt-4">
         <div
           className={cn(
-            "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950",
+            "flex flex-row w-full gap-3 p-3 border rounded-lg",
             checked
               ? "border-slate-700 dark:border-slate-300"
               : "border-slate-200 dark:border-slate-800"

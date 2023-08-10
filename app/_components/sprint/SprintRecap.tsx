@@ -13,6 +13,8 @@ import {
   Story,
   Ticket,
 } from "@/app/product/sprint/data";
+import { Tooltip } from "@radix-ui/react-tooltip";
+import { saveAs } from "file-saver";
 import {
   AwardIcon,
   Contact2Icon,
@@ -21,13 +23,11 @@ import {
   ListTodoIcon,
   SmileIcon,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
 import { KanbanLabel } from "../Kanban";
-import { saveAs } from "file-saver";
-import { Tooltip } from "@radix-ui/react-tooltip";
 import { TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { useToast } from "../ui/use-toast";
-import { usePathname, useRouter } from "next/navigation";
 
 export default function SprintRecap({
   firstName,
@@ -47,10 +47,9 @@ export default function SprintRecap({
   improvements: Problem[];
 }) {
   const router = useRouter();
-  const pathname = usePathname();
   const { toast } = useToast();
 
-  router.replace(`${pathname}?id=${getIdentifier()}`);
+  router.replace(`/product/sprint/report?id=${getIdentifier()}`);
 
   const ICON_CLASSES = "w-8 h-8 shrink-0";
 
@@ -182,7 +181,7 @@ export default function SprintRecap({
           >
             <div className="flex flex-row">
               <dl className="w-full border rounded-lg border-slate-200 overflow-clip dark:border-slate-800">
-                <div className="items-center p-3 border-b sm:grid sm:grid-cols-4 sm:gap-4 border-b-slate-200 dark:border-b-slate-800">
+                <div className="items-center p-3 transition-colors border-b sm:grid sm:grid-cols-4 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-900 border-b-slate-200 dark:border-b-slate-800">
                   <dt className="text-xs font-medium uppercase text-slate-600 dark:text-slate-400">
                     Name
                   </dt>
@@ -191,7 +190,7 @@ export default function SprintRecap({
                   </dd>
                 </div>
 
-                <div className="items-center p-3 border-b sm:grid sm:grid-cols-4 sm:gap-4 border-b-slate-200 dark:border-b-slate-800">
+                <div className="items-center p-3 transition-colors border-b sm:grid sm:grid-cols-4 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-900 border-b-slate-200 dark:border-b-slate-800">
                   <dt className="text-xs font-medium uppercase text-slate-600 dark:text-slate-400">
                     NUID
                   </dt>
@@ -200,7 +199,7 @@ export default function SprintRecap({
                   </dd>
                 </div>
 
-                <div className="items-center p-3 sm:grid sm:grid-cols-4 sm:gap-4">
+                <div className="items-center p-3 transition-colors sm:grid sm:grid-cols-4 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-900">
                   <dt className="text-xs font-medium uppercase text-slate-600 dark:text-slate-400">
                     Sprint Identifier
                   </dt>
@@ -273,7 +272,7 @@ function Section({
   children: ReactNode;
 }) {
   return (
-    <div className="w-full p-3 border rounded-lg first-of-type:mt-0 border-slate-200 bg-slate-100 dark:bg-slate-950 dark:border-slate-800">
+    <div className="w-full p-3 bg-white border rounded-lg dark:bg-slate-950 first-of-type:mt-0 border-slate-200 dark:border-slate-800">
       <div className="flex flex-row gap-3 px-1">
         {icon}
         <h3 className="mt-1.5 font-bold">{title}</h3>

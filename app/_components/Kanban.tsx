@@ -48,7 +48,7 @@ export function KanbanCard({
   points: number;
 }) {
   return (
-    <div className="p-2 border rounded-md shadow-sm bg-slate-100 dark:bg-slate-950 border-slate-200 dark:border-slate-800">
+    <div className="p-2 bg-white border rounded-md dark:bg-slate-950 border-slate-200 dark:border-slate-800">
       <h3 className="mb-2 text-sm text-slate-800 dark:text-slate-200">
         {title}
       </h3>

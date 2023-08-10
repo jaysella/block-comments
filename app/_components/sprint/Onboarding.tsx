@@ -46,8 +46,8 @@ export default function Onboarding({
       </BlockHeader>
 
       <BlockContent>
-        <div className="flex flex-col w-full gap-4">
-          <div className="grid w-full max-w-sm items-center gap-1.5">
+        <div className="flex flex-col w-full gap-4 md:gap-6">
+          <div className="grid items-center w-full max-w-sm gap-2">
             <Label htmlFor="first-name">First Name</Label>
             <Input
               type="text"

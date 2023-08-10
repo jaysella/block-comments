@@ -64,7 +64,7 @@ export default function SprintPrioritization({
               >
                 <div
                   className={cn(
-                    "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950 justify-between items-center border-slate-200 dark:border-slate-800"
+                    "flex flex-row w-full gap-3 p-3 bg-white dark:bg-slate-950 border rounded-lg justify-between items-center border-slate-200 dark:border-slate-800 transition-colors"
                   )}
                 >
                   <p className="pl-1">

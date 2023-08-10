@@ -55,7 +55,7 @@ export default function ProductBacklog({
       </BlockHeader>
 
       <BlockContent withPadding={false}>
-        <div className="flex flex-col w-full gap-2 p-2 @md:p-3">
+        <div className="flex flex-col w-full gap-3 p-2 @md:p-3">
           {PRODUCT_BACKLOG.map((story) => (
             <Story
               key={story.id}
@@ -95,7 +95,7 @@ function Story({
   return (
     <div
       className={cn(
-        "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950 group border-slate-200 dark:border-slate-800",
+        "flex flex-row bg-white dark:bg-slate-950 w-full gap-3 p-3 border rounded-lg group border-slate-200 dark:border-slate-800",
         checked
           ? "border-slate-700 dark:border-slate-300"
           : "border-slate-200 dark:border-slate-800"

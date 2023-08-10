@@ -48,7 +48,7 @@ export default function SprintPlanning({
   const ticketsByStory: { [story: string]: Ticket[] } = {};
   tickets.forEach((ticket) => {
     const story = PRODUCT_BACKLOG.find((s) => s.id === ticket.storyId) as Story;
-    const key = `As a ${story.persona}, I want to ${story.action} so that I can ${story.goal}`;
+    const key = `As a ${story.persona}, I want to ${story.action} so that I can ${story.goal}.`;
 
     if (!ticketsByStory[key]) {
       ticketsByStory[key] = [];
@@ -139,7 +139,7 @@ export default function SprintPlanning({
                   <AlertTriangleIcon className="w-4 h-4" />
                   <AlertTitle>Too much work!</AlertTitle>
                   <AlertDescription>
-                    The tickets you have selected exceed your development team's
+                    The selected tickets exceed your development team's
                     capacity. Please adjust your plan to stay within{" "}
                     {maxStoryPoints} Story Points.
                   </AlertDescription>
@@ -151,7 +151,7 @@ export default function SprintPlanning({
           {Object.keys(ticketsByStory).map((story) => (
             <div
               key={story}
-              className="p-3 border rounded-lg first-of-type:mt-0 border-slate-200 bg-slate-100 dark:bg-slate-950 dark:border-slate-800"
+              className="p-3 bg-white border rounded-lg first-of-type:mt-0 border-slate-200 dark:bg-slate-950 dark:border-slate-800"
             >
               <div className="flex flex-row w-full gap-3 px-1">
                 <Contact2Icon className="w-8 h-8 shrink-0" />
@@ -202,7 +202,7 @@ function Ticket({
   return (
     <div
       className={cn(
-        "flex flex-row w-full gap-3 p-3 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-950 group",
+        "flex flex-row w-full gap-3 p-3 border rounded-md dark:bg-black transition-colors",
         checked
           ? "border-slate-700 dark:border-slate-300"
           : "border-slate-200 dark:border-slate-800"

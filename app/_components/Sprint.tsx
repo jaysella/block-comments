@@ -12,25 +12,27 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
+import { getRandomInt, shuffle } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
   ACTION_ITEMS,
   PROBLEMS,
+  PRODUCT_BACKLOG,
   Problem,
   SPRINT_BACKLOG,
   Story,
   Ticket,
 } from "../product/sprint/data";
 import DailyScrum from "./sprint/DailyScrum";
+import Onboarding from "./sprint/Onboarding";
 import ProductBacklog from "./sprint/ProductBacklog";
 import SprintPlanning from "./sprint/SprintPlanning";
 import SprintPrioritization from "./sprint/SprintPrioritization";
 import SprintRecap from "./sprint/SprintRecap";
 import SprintRetro from "./sprint/SprintRetro";
-import Onboarding from "./sprint/Onboarding";
-import { getRandomInt } from "@/lib/utils";
 
 function determineTicketStatus(
   ticket: Ticket,
@@ -44,7 +46,7 @@ function determineTicketStatus(
 
   const priority = 1 - (index + 1) / totalTickets;
   const randomSign = Math.random();
-  const random = randomSign < 0.35 ? Math.random() * -0.5 : Math.random();
+  const random = randomSign < 0.25 ? Math.random() * -0.5 : Math.random();
   const timeCommitment = ticket.points / totalPoints;
   const likelihood = priority - timeCommitment + random / 4;
 
@@ -86,12 +88,16 @@ const MAX_PROBLEMS = MAX_POINTS > 14 ? 3 : 2;
 const MAX_IMPROVEMENTS = 1;
 
 export default function Sprint() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const [stage, setStage] = useState(0);
   const [canProgress, setCanProgress] = useState(false);
 
   const [firstName, setFirstName] = useState("");
   const [nuid, setNuid] = useState("");
 
+  const [stories, setStories] = useState<Story[]>([]);
   const [selectedStories, setSelectedStories] = useState<Story[]>([]);
 
   const [tickets, setTickets] = useState<Ticket[]>([]);
@@ -106,6 +112,15 @@ export default function Sprint() {
     (prev, curr) => prev + curr.points,
     0
   );
+
+  useEffect(() => {
+    const sprintId = searchParams.get("id");
+    if (sprintId) {
+      router.replace(`/product/sprint/recap?id=${sprintId}`);
+    }
+
+    setStories(shuffle(PRODUCT_BACKLOG));
+  }, []);
 
   useEffect(() => {
     if (firstName && nuid && nuid.length > 6 && nuid.length < 10) {
@@ -128,11 +143,11 @@ export default function Sprint() {
         SPRINT_BACKLOG.filter((ticket) => ticket.storyId === story.id)
       );
     });
-    setTickets(availableTickets);
+    setTickets(shuffle(availableTickets));
   }, [selectedStories]);
 
   useEffect(() => {
-    if (selectedPoints > MAX_POINTS / 4 && selectedPoints <= MAX_POINTS) {
+    if (selectedPoints > MAX_POINTS / 3 && selectedPoints <= MAX_POINTS) {
       setCanProgress(true);
     } else {
       setCanProgress(false);
@@ -236,6 +251,7 @@ export default function Sprint() {
         {stage === 1 && (
           <ProductBacklog
             maxStories={MAX_STORIES}
+            stories={stories}
             selectedStories={selectedStories}
             setSelectedStories={setSelectedStories}
           />

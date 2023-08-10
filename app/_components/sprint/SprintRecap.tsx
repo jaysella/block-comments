@@ -13,21 +13,22 @@ import {
   Story,
   Ticket,
 } from "@/app/product/sprint/data";
-import { Tooltip } from "@radix-ui/react-tooltip";
-import { saveAs } from "file-saver";
 import {
   AwardIcon,
   Contact2Icon,
   CopyIcon,
   DownloadCloudIcon,
+  LinkIcon,
   ListTodoIcon,
   SmileIcon,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { KanbanLabel } from "../Kanban";
+import { saveAs } from "file-saver";
+import { Tooltip } from "@radix-ui/react-tooltip";
 import { TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { useToast } from "../ui/use-toast";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function SprintRecap({
   firstName,
@@ -47,9 +48,10 @@ export default function SprintRecap({
   improvements: Problem[];
 }) {
   const router = useRouter();
+  const pathname = usePathname();
   const { toast } = useToast();
 
-  router.replace(`/product/sprint/report?id=${getIdentifier()}`);
+  const [identifier, setIdentifier] = useState("");
 
   const ICON_CLASSES = "w-8 h-8 shrink-0";
 
@@ -57,66 +59,72 @@ export default function SprintRecap({
     const SEPARATOR = "-";
 
     // add first name
-    let identifier = "u";
+    let id = "u";
     firstName
       .substring(0, Math.min(2, firstName.length))
       .split("")
       .forEach((char) => {
-        identifier += char.charCodeAt(0) + "";
+        id += char.charCodeAt(0) + "";
       });
 
     // add nuid
-    identifier += SEPARATOR + "n";
+    id += SEPARATOR + "n";
     nuid.split("").forEach((char) => {
-      identifier += char.charCodeAt(0);
+      id += char.charCodeAt(0);
     });
 
     // add stories
-    identifier += SEPARATOR + "s";
+    id += SEPARATOR + "s";
     stories.forEach((story) => {
-      identifier += PRODUCT_BACKLOG.findIndex((s) => s.id === story.id);
+      id += PRODUCT_BACKLOG.findIndex((s) => s.id === story.id);
     });
 
     // add max story points
-    identifier += SEPARATOR + "m" + maxStoryPoints;
+    id += SEPARATOR + "m" + maxStoryPoints;
 
     // add tickets
-    identifier += SEPARATOR + "t";
+    id += SEPARATOR + "t";
     tickets.forEach((ticket) => {
-      identifier += SPRINT_BACKLOG.findIndex((t) => t.label === ticket.label);
+      id += SPRINT_BACKLOG.findIndex((t) => t.label === ticket.label);
       switch (ticket.status) {
         case "backlog":
-          identifier += "b";
+          id += "b";
           break;
 
         case "in-progress":
-          identifier += "i";
+          id += "i";
           break;
 
         case "complete":
-          identifier += "c";
+          id += "c";
           break;
 
         default:
-          identifier += "e";
+          id += "e";
           break;
       }
     });
 
     // add problems
-    identifier += SEPARATOR + "p";
+    id += SEPARATOR + "p";
     problems.forEach((problem) => {
-      identifier += PROBLEMS.findIndex((p) => p.title === problem.title);
+      id += PROBLEMS.findIndex((p) => p.title === problem.title);
     });
 
     // add improvements
-    identifier += SEPARATOR + "i";
+    id += SEPARATOR + "i";
     improvements.forEach((improvement) => {
-      identifier += PROBLEMS.findIndex((i) => i.title === improvement.title);
+      id += PROBLEMS.findIndex((i) => i.title === improvement.title);
     });
 
-    return identifier;
+    return id;
   }
+
+  useEffect(() => {
+    const id = getIdentifier();
+    setIdentifier(id);
+    router.replace(`${pathname}?id=${id}`);
+  }, []);
 
   return (
     <Block>
@@ -129,7 +137,7 @@ export default function SprintRecap({
               className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
               onClick={() =>
                 saveAs(
-                  `/product/sprint/recap?id=${getIdentifier()}`,
+                  `/product/sprint/recap?id=${identifier}`,
                   "sprint-recap.jpg"
                 )
               }
@@ -145,7 +153,7 @@ export default function SprintRecap({
             <TooltipTrigger
               className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
               onClick={() => {
-                navigator.clipboard.writeText(getIdentifier()).then(
+                navigator.clipboard.writeText(identifier).then(
                   () => {
                     toast({
                       title: "Copied!",
@@ -204,7 +212,7 @@ export default function SprintRecap({
                     Sprint Identifier
                   </dt>
                   <dd className="mt-1 font-mono text-sm sm:mt-0 sm:col-span-3">
-                    {getIdentifier()}
+                    {identifier}
                   </dd>
                 </div>
               </dl>

@@ -6,7 +6,7 @@ import {
   BlockTitle,
 } from "@/app/_components/ui/block";
 import { Checkbox } from "@/app/_components/ui/checkbox";
-import { PRODUCT_BACKLOG, Story } from "@/app/product/sprint/data";
+import { Story } from "@/app/product/sprint/data";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { CheckIcon } from "lucide-react";
@@ -15,10 +15,12 @@ import StoryPoint from "./StoryPoint";
 
 export default function ProductBacklog({
   maxStories,
+  stories,
   selectedStories,
   setSelectedStories,
 }: {
   maxStories: number;
+  stories: Story[];
   selectedStories: Story[];
   setSelectedStories: Dispatch<SetStateAction<Story[]>>;
 }) {
@@ -56,7 +58,7 @@ export default function ProductBacklog({
 
       <BlockContent withPadding={false}>
         <div className="flex flex-col w-full gap-3 p-2 @md:p-3">
-          {PRODUCT_BACKLOG.map((story) => (
+          {stories.map((story) => (
             <Story
               key={story.id}
               id={story.id}

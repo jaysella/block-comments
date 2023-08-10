@@ -92,7 +92,7 @@ export default function SprintPlanning({
                   <motion.span
                     className={cn(
                       "transition-colors",
-                      selectedPoints > maxStoryPoints - maxStoryPoints / 4
+                      selectedPoints > maxStoryPoints - maxStoryPoints / 3
                         ? "text-orange-400 font-bold"
                         : "",
                       selectedPoints > maxStoryPoints
@@ -105,7 +105,7 @@ export default function SprintPlanning({
                   of {maxStoryPoints}
                 </div>
 
-                {selectedPoints > maxStoryPoints / 4 &&
+                {selectedPoints > maxStoryPoints / 3 &&
                 selectedPoints <= maxStoryPoints ? (
                   <motion.span
                     initial={{ scale: 2 }}

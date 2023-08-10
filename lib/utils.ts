@@ -7,6 +7,25 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function shuffle<T>(array: T[]): T[] {
+  let currentIndex = array.length,
+    randomIndex;
+
+  while (currentIndex != 0) {
+    // pick a remaining element
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // swap the remaining element with the current element
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
+
 export function getRandomDate(): moment.Moment {
   const currentDate = moment();
 

@@ -46,12 +46,14 @@ export default function Snippet({
   language,
   explanations,
   highlights = {},
+  withLineNumbers = true,
   children: code,
 }: {
   title?: string;
   language: string;
   explanations?: Explanation[];
   highlights?: Record<string, LineHighlight>;
+  withLineNumbers?: boolean;
   children: string;
 }) {
   const { toast } = useToast();
@@ -121,6 +123,7 @@ export default function Snippet({
         explanations={explanations}
         highlights={highlights}
         wrapText={wrapText}
+        withLineNumbers={withLineNumbers}
       >
         {code}
       </SnippetContent>
@@ -162,6 +165,7 @@ export function SnippetContent({
           import("prismjs/components/prism-python" as any),
         language === "scheme" &&
           import("prismjs/components/prism-scheme" as any),
+        language === "sql" && import("prismjs/components/prism-sql" as any),
       ]).then(() => {
         router.refresh();
       });

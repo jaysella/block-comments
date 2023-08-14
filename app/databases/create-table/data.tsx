@@ -1,5 +1,6 @@
 import { Explanation } from "@/app/_components/Snippet";
 import { CodeSegment } from "@/app/_components/ui/code-segment";
+import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 
 export const CODE = `CREATE TABLE IF NOT EXISTS Customers (
@@ -205,7 +206,12 @@ function ColumnDetails({
           </dd>
         </div>
 
-        <div className="p-3 transition-colors border-b sm:grid sm:grid-cols-4 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-900 border-b-slate-200 dark:border-b-slate-800">
+        <div
+          className={cn(
+            "p-3 transition-colors sm:grid sm:grid-cols-4 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-900",
+            notes ? " border-b border-b-slate-200 dark:border-b-slate-800" : ""
+          )}
+        >
           <dt className="mt-0.5 text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
             Definition
           </dt>

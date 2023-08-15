@@ -8,6 +8,12 @@ import {
   BlockTitle,
 } from "@/app/_components/ui/block";
 import { CodeSegment } from "@/app/_components/ui/code-segment";
+import { KeyRoundIcon } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/app/_components/ui/tooltip";
 
 export const metadata: Metadata = {
   title: "Databases: Create Table",
@@ -26,34 +32,53 @@ export default function Page() {
         </BlockHeader>
 
         <BlockContent>
-          <div className="relative w-full overflow-x-auto bg-white border sm:rounded-lg border-slate-200">
+          <div className="relative w-full overflow-x-auto border rounded-lg bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800">
             <table className="w-full text-sm text-left text-slate-500 dark:text-slate-400">
-              <thead className="text-xs uppercase text-slate-700 dark:text-slate-400">
+              <thead className="text-xs uppercase border-b text-slate-700 dark:text-slate-400 border-slate-200 dark:border-slate-800">
                 <tr>
                   <th
                     scope="col"
-                    className="px-6 py-3 bg-slate-100 dark:bg-slate-800"
+                    className="px-6 py-3 bg-slate-100 dark:bg-slate-950"
                   >
                     Attribute Name
                   </th>
-                  <th scope="col" className="px-6 py-3 bg-slate-50">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 bg-slate-50 dark:bg-slate-900"
+                  >
                     Data Type
                   </th>
-                  <th scope="col" className="px-6 py-3 bg-slate-50">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 bg-slate-50 dark:bg-slate-900"
+                  >
                     Business Definition
                   </th>
-                  <th scope="col" className="px-6 py-3 bg-slate-50">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 bg-slate-50 dark:bg-slate-900"
+                  >
                     Notes
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="transition-colors border-b hover:bg-slate-100 border-slate-200 dark:border-slate-700">
+                <tr className="transition-colors border-b hover:bg-slate-100 dark:hover:bg-slate-800 border-slate-200 dark:border-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-800"
+                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-950"
                   >
-                    CustomerID
+                    <span className="flex flex-row items-center gap-2">
+                      CustomerID
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <KeyRoundIcon size={16} className="text-blue-500" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p className="font-sans font-normal">Primary Key</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </span>
                   </th>
                   <td className="px-6 py-4">integer</td>
                   <td className="px-6 py-4">
@@ -61,10 +86,10 @@ export default function Page() {
                   </td>
                   <td className="px-6 py-4">PRIMARY KEY</td>
                 </tr>
-                <tr className="transition-colors border-b hover:bg-slate-100 border-slate-200 dark:border-slate-700">
+                <tr className="transition-colors border-b hover:bg-slate-100 dark:hover:bg-slate-800 border-slate-200 dark:border-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-800"
+                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-950"
                   >
                     Name
                   </th>
@@ -74,10 +99,10 @@ export default function Page() {
                   </td>
                   <td className="px-6 py-4"></td>
                 </tr>
-                <tr className="transition-colors border-b hover:bg-slate-100 border-slate-200 dark:border-slate-700">
+                <tr className="transition-colors border-b hover:bg-slate-100 dark:hover:bg-slate-800 border-slate-200 dark:border-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-800"
+                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-950"
                   >
                     Affiliate_Company
                   </th>
@@ -87,10 +112,10 @@ export default function Page() {
                   </td>
                   <td className="px-6 py-4"></td>
                 </tr>
-                <tr className="transition-colors border-b hover:bg-slate-100 border-slate-200 dark:border-slate-700">
+                <tr className="transition-colors border-b hover:bg-slate-100 dark:hover:bg-slate-800 border-slate-200 dark:border-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-800"
+                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-950"
                   >
                     Email
                   </th>
@@ -101,10 +126,10 @@ export default function Page() {
                   </td>
                   <td className="px-6 py-4"></td>
                 </tr>
-                <tr className="transition-colors border-b hover:bg-slate-100 border-slate-200 dark:border-slate-700">
+                <tr className="transition-colors border-b hover:bg-slate-100 dark:hover:bg-slate-800 border-slate-200 dark:border-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-800"
+                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-950"
                   >
                     Address
                   </th>
@@ -115,10 +140,10 @@ export default function Page() {
                   </td>
                   <td className="px-6 py-4"></td>
                 </tr>
-                <tr className="transition-colors border-b hover:bg-slate-100 border-slate-200 dark:border-slate-700">
+                <tr className="transition-colors border-b hover:bg-slate-100 dark:hover:bg-slate-800 border-slate-200 dark:border-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-800"
+                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-950"
                   >
                     City
                   </th>
@@ -126,10 +151,10 @@ export default function Page() {
                   <td className="px-6 py-4">The city a customer resides in.</td>
                   <td className="px-6 py-4"></td>
                 </tr>
-                <tr className="transition-colors border-b hover:bg-slate-100 border-slate-200 dark:border-slate-700">
+                <tr className="transition-colors border-b hover:bg-slate-100 dark:hover:bg-slate-800 border-slate-200 dark:border-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-800"
+                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-950"
                   >
                     Age
                   </th>
@@ -137,10 +162,10 @@ export default function Page() {
                   <td className="px-6 py-4">A customer's age, in years.</td>
                   <td className="px-6 py-4"></td>
                 </tr>
-                <tr className="transition-colors hover:bg-slate-100">
+                <tr className="transition-colors hover:bg-slate-100 dark:hover:bg-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-800"
+                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-950"
                   >
                     Loyalty_Plan
                   </th>

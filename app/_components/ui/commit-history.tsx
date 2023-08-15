@@ -54,7 +54,7 @@ export function CommitHistory({
             {branch ? "History" : "Commit History"}
           </span>
           {branch ? (
-            <code className="flex items-center gap-2 px-2 py-1 text-sm border rounded-lg border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800">
+            <code className="flex items-center gap-2 px-2 py-1 text-sm border rounded-lg border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-900">
               <GitBranchIcon size={18} aria-label="branch" /> {branch}
             </code>
           ) : null}
@@ -64,7 +64,7 @@ export function CommitHistory({
       <BlockContent>
         {commits.length === 0 && <>No commits.</>}
 
-        <ol className="relative flex flex-col gap-6 border-l border-slate-200 dark:border-slate-700">
+        <ol className="relative flex flex-col gap-6 border-l border-slate-200 dark:border-slate-800">
           <AnimatePresence>
             {commits
               .sort((a, b) => moment(b.ts).diff(a.ts))
@@ -112,9 +112,9 @@ function Commit({
 
       <button
         className={cn(
-          "p-2 pt-1 -m-2 text-left border border-transparent rounded-lg",
+          "p-2 pt-1 -m-2 text-left border border-transparent rounded-lg transition-colors",
           setCurrentCommit
-            ? "hover:bg-slate-100 dark:hover:bg-slate-800 hover:border-slate-200 dark:hover:border-slate-700"
+            ? "hover:bg-slate-100 dark:hover:bg-slate-900 hover:border-slate-200 dark:hover:border-slate-800"
             : "cursor-default select-text"
         )}
         onClick={() => {
@@ -165,7 +165,7 @@ function CommitMetaTag({
   return (
     <div
       className={cn(
-        "flex items-center gap-2 px-2 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-800 w-max border border-slate-200 dark:border-slate-700",
+        "flex items-center gap-2 px-2 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-900 w-max border border-slate-200 dark:border-slate-800",
         className
       )}
     >

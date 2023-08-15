@@ -28,7 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(inter.className, spaceMono.variable, "dark:bg-slate-950")}
+        className={cn(
+          inter.className,
+          spaceMono.variable,
+          "bg-white dark:bg-black"
+        )}
       >
         <TooltipProvider>{children}</TooltipProvider>
         <Footer />

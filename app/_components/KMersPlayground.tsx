@@ -35,6 +35,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import {
+  Block,
+  BlockContent,
+  BlockControls,
+  BlockHeader,
+  BlockTitle,
+} from "./ui/block";
 
 export default function KMersPlayground({
   sequence: initialSequence,
@@ -80,8 +87,8 @@ export default function KMersPlayground({
       transition: { duration: 0.25 },
     },
     normal: {
-      backgroundColor: darkMode ? "#0f172a" : "#f8fafc",
-      borderColor: darkMode ? "#0f172a" : "#f8fafc",
+      backgroundColor: darkMode ? "#020617" : "#f8fafc",
+      borderColor: darkMode ? "#020617" : "#f8fafc",
       transition: { duration: 0.25 },
     },
   };
@@ -113,17 +120,19 @@ export default function KMersPlayground({
   }, [sequence, k, step, totalSteps]);
 
   return (
-    <div className="@container border-2 rounded-xl border-slate-200 dark:border-slate-800 bg-slate-50 text-slate-700 dark:text-slate-200 dark:bg-slate-900">
-      <div className="flex items-center justify-between w-full px-4 py-2 border-b-2 @md:pl-8 border-b-slate-200 dark:border-b-slate-800">
-        <h2 className="font-bold uppercase">
-          {title
-            ? title
-            : playground
-            ? "K-Mers Playground"
-            : "K-Mers Visualization"}
-        </h2>
+    <Block>
+      <BlockHeader>
+        <BlockTitle
+          title={
+            title
+              ? title
+              : playground
+              ? "K-Mers Playground"
+              : "K-Mers Visualization"
+          }
+        />
 
-        <div className="flex items-center">
+        <BlockControls>
           {!hideSteps && (
             <div
               className="mr-2 text-sm uppercase"
@@ -137,10 +146,9 @@ export default function KMersPlayground({
               </span>
             </div>
           )}
-
           <Tooltip>
             <TooltipTrigger
-              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
               disabled={step === 0}
               onClick={() => setStep(step - 1)}
             >
@@ -150,10 +158,9 @@ export default function KMersPlayground({
               <p>Previous</p>
             </TooltipContent>
           </Tooltip>
-
           <Tooltip>
             <TooltipTrigger
-              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
               disabled={totalSteps === step}
               onClick={() => setStep(step + 1)}
             >
@@ -163,10 +170,9 @@ export default function KMersPlayground({
               <p>Next</p>
             </TooltipContent>
           </Tooltip>
-
           <Tooltip>
             <TooltipTrigger
-              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800"
+              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800"
               onClick={() => {
                 if (!isPlaying && step === totalSteps) {
                   setStep(0);
@@ -186,10 +192,9 @@ export default function KMersPlayground({
               <p>{isPlaying ? "Stop" : "Play"}</p>
             </TooltipContent>
           </Tooltip>
-
           {playground && (
             <Popover>
-              <PopoverTrigger className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800">
+              <PopoverTrigger className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800">
                 <Settings2Icon size={18} />
               </PopoverTrigger>
 
@@ -295,10 +300,10 @@ export default function KMersPlayground({
               </PopoverContent>
             </Popover>
           )}
-        </div>
-      </div>
+        </BlockControls>
+      </BlockHeader>
 
-      <div className="flex flex-col justify-between gap-6 p-4 divide-y-2 @md:divide-y-0 @md:flex-row @md:divide-x-2 @md:pb-6 @md:px-8 divide-slate-200 dark:divide-slate-800">
+      <BlockContent>
         <div>
           <motion.div
             className="-ml-2 font-mono text-5xl font-bold text-black dark:text-white"
@@ -381,7 +386,7 @@ export default function KMersPlayground({
             </div>
           </div>
         )}
-      </div>
-    </div>
+      </BlockContent>
+    </Block>
   );
 }

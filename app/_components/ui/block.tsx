@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 export function Block({ children }: { children: ReactNode }) {
   return (
-    <div className="@container border-2 rounded-xl border-slate-200 dark:border-slate-800 bg-slate-50 text-slate-700 dark:text-slate-200 dark:bg-slate-900">
+    <div className="@container border-2 rounded-xl border-slate-200 dark:border-slate-800 bg-slate-50 text-slate-700 dark:text-slate-200 dark:bg-slate-950">
       {children}
     </div>
   );
@@ -11,7 +11,7 @@ export function Block({ children }: { children: ReactNode }) {
 
 export function BlockHeader({ children }: { children: ReactNode }) {
   return (
-    <div className="flex items-center justify-between w-full px-4 py-1 min-h-[3rem] @md:px-6">
+    <div className="flex items-center justify-between w-full px-4 py-1 min-h-[3rem] @md:px-6 gap-2">
       {children}
     </div>
   );

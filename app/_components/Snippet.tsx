@@ -199,14 +199,14 @@ export function SnippetContent({
                 key={i}
                 {...getLineProps({ line })}
                 className={cn(
-                  "flex flex-row w-full px-4 @md:px-6 border-l-2 border-l-transparent",
+                  "flex flex-row w-full px-4 @md:px-6 transition-colors",
                   highlight && highlights[lineNum].color
                     ? `bg-${highlights[lineNum].color}-100 dark:bg-${highlights[lineNum].color}-950`
                     : "",
                   explanations
                     ? highlight && highlights[lineNum].color
-                      ? `hover:bg-${highlights[lineNum].color}-200 dark:bg-${highlights[lineNum].color}-800`
-                      : "hover:bg-slate-200 dark:hover:bg-slate-800"
+                      ? `hover:bg-${highlights[lineNum].color}-200 dark:hover:bg-${highlights[lineNum].color}-900`
+                      : "hover:bg-slate-100 dark:hover:bg-slate-900"
                     : ""
                 )}
               >
@@ -305,7 +305,7 @@ function SnippetExplanation({
 }) {
   return (
     <>
-      <h2 className="px-4 pt-4 pb-2 font-mono text-xs text-blue-600 uppercase bg-blue-50 dark:bg-blue-900 dark:text-blue-200">
+      <h2 className="px-4 pt-2.5 pb-2 font-mono text-xs text-black uppercase border-b-2 border-slate-200 bg-slate-100 dark:bg-slate-900 dark:text-white dark:border-slate-800">
         {title}
       </h2>
       <div className="p-4 text-sm">

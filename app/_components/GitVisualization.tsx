@@ -77,16 +77,16 @@ export default function GitVisualization() {
           <BlockTitle title="Git Visualization" />
 
           <BlockControls>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap justify-end mr-2 gap-y-1 gap-x-2">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <div className="flex items-center text-sm border rounded-lg border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800">
+                  <div className="flex items-center text-sm border rounded-lg border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-900">
                     <code className="flex items-center gap-2 px-2 py-1">
                       <GitBranchIcon size={18} aria-label="branch" />{" "}
                       {currentBranch}
                     </code>
                     <Separator orientation="vertical" className="h-[18px]" />
-                    <button className="my-0.5 mx-1 p-0.5 rounded-md shadow-none hover:bg-slate-200 dark:hover:bg-slate-700">
+                    <button className="my-0.5 mx-1 p-0.5 rounded-md shadow-none hover:bg-slate-200 dark:hover:bg-slate-800">
                       <ChevronDownIcon className="w-4 h-4 text-secondary-foreground" />
                     </button>
                   </div>
@@ -107,8 +107,8 @@ export default function GitVisualization() {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <div className="mr-2 text-sm">
-                <code className="flex items-center gap-2 px-2 py-1 border rounded-lg border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800">
+              <div className="text-sm">
+                <code className="flex items-center gap-2 px-2 py-1 border rounded-lg border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-900">
                   <GitCommitIcon size={18} aria-label="commit" />{" "}
                   {branchCommits[Math.min(branchCommits.length - 1, step)].hash}
                 </code>
@@ -117,7 +117,7 @@ export default function GitVisualization() {
 
             <Tooltip>
               <TooltipTrigger
-                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
                 disabled={step === 0}
                 onClick={() => setStep(step - 1)}
               >
@@ -130,7 +130,7 @@ export default function GitVisualization() {
 
             <Tooltip>
               <TooltipTrigger
-                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
                 disabled={step === branchCommits.length - 1}
                 onClick={() => setStep(step + 1)}
               >

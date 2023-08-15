@@ -197,7 +197,7 @@ export default function Sprint() {
 
               <Tooltip>
                 <TooltipTrigger
-                  className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+                  className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
                   disabled={!canProgress}
                   onClick={() => setStage(stage + 1)}
                 >

@@ -74,7 +74,7 @@ export default function SprintPrioritization({
                     <StoryPoint points={ticket.points} className="mr-2" />
                     <Tooltip>
                       <TooltipTrigger
-                        className="p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+                        className="p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
                         disabled={ticket.label === selectedTickets[0].label}
                         onClick={() => handleMove(ticket.label, "up")}
                       >
@@ -86,7 +86,7 @@ export default function SprintPrioritization({
                     </Tooltip>
                     <Tooltip>
                       <TooltipTrigger
-                        className="p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+                        className="p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
                         disabled={
                           ticket.label ===
                           selectedTickets[selectedTickets.length - 1].label

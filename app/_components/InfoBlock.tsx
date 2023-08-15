@@ -3,7 +3,7 @@ import { VariantProps, cva } from "class-variance-authority";
 import { InfoIcon } from "lucide-react";
 
 const blockVariants = cva(
-  "flex flex-col gap-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border-2 dark:text-white",
+  "flex flex-col gap-2.5 rounded-xl bg-slate-100 dark:bg-slate-950 border-2 dark:text-white",
   {
     variants: {
       variant: {

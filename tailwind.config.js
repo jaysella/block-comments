@@ -29,12 +29,12 @@ module.exports = {
     "dark:bg-yellow-950",
     "dark:bg-red-950",
 
-    "dark:hover:bg-slate-800",
-    "dark:hover:bg-green-800",
-    "dark:hover:bg-purple-800",
-    "dark:hover:bg-blue-800",
-    "dark:hover:bg-yellow-800",
-    "dark:hover:bg-red-800",
+    "dark:hover:bg-slate-900",
+    "dark:hover:bg-green-900",
+    "dark:hover:bg-purple-900",
+    "dark:hover:bg-blue-900",
+    "dark:hover:bg-yellow-900",
+    "dark:hover:bg-red-900",
 
     // ----
     // TEXT

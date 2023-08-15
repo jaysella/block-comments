@@ -205,7 +205,7 @@ export function SnippetContent({
                     : "",
                   explanations
                     ? highlight && highlights[lineNum].color
-                      ? `hover:bg-${highlights[lineNum].color}-200 dark:bg-${highlights[lineNum].color}-800`
+                      ? `hover:bg-${highlights[lineNum].color}-200 dark:hover:bg-${highlights[lineNum].color}-900`
                       : "hover:bg-slate-100 dark:hover:bg-slate-900"
                     : ""
                 )}

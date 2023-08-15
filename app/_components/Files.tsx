@@ -56,7 +56,7 @@ export default function Files({
           {files.length > 1 && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="ml-2 p-1.5 rounded-md shadow-none hover:bg-slate-200 dark:hover:bg-slate-700">
+                <button className="ml-2 p-1.5 rounded-md shadow-none hover:bg-slate-200 dark:hover:bg-slate-800">
                   <ChevronDownIcon className="w-4 h-4 text-secondary-foreground" />
                 </button>
               </DropdownMenuTrigger>

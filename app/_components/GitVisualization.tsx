@@ -86,7 +86,7 @@ export default function GitVisualization() {
                       {currentBranch}
                     </code>
                     <Separator orientation="vertical" className="h-[18px]" />
-                    <button className="my-0.5 mx-1 p-0.5 rounded-md shadow-none hover:bg-slate-200 dark:hover:bg-slate-700">
+                    <button className="my-0.5 mx-1 p-0.5 rounded-md shadow-none hover:bg-slate-200 dark:hover:bg-slate-800">
                       <ChevronDownIcon className="w-4 h-4 text-secondary-foreground" />
                     </button>
                   </div>
@@ -117,7 +117,7 @@ export default function GitVisualization() {
 
             <Tooltip>
               <TooltipTrigger
-                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
                 disabled={step === 0}
                 onClick={() => setStep(step - 1)}
               >
@@ -130,7 +130,7 @@ export default function GitVisualization() {
 
             <Tooltip>
               <TooltipTrigger
-                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
                 disabled={step === branchCommits.length - 1}
                 onClick={() => setStep(step + 1)}
               >

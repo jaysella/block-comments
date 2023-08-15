@@ -49,7 +49,7 @@ export function CommitHistory({
   return (
     <Block>
       <BlockHeader>
-        <h2 className="flex items-center gap-2 font-bold md:gap-1 lg:gap-2 md:items-start lg:items-center md:flex-col lg:flex-row">
+        <h2 className="flex items-center gap-2 font-bold @md:gap-1 @lg:gap-2 @md:items-start @lg:items-center @md:flex-col @lg:flex-row">
           <span className="uppercase">
             {branch ? "History" : "Commit History"}
           </span>

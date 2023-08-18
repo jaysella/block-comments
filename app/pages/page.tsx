@@ -68,6 +68,9 @@ export default function Page() {
             <li>
               <Link href="/databases/create-table">Create Table (SQLite)</Link>
             </li>
+            <li>
+              <Link href="/databases/insert-rows">Insert Rows (SQLite)</Link>
+            </li>
           </ul>
         </li>
         <li>

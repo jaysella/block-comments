@@ -66,7 +66,7 @@ export default function Page() {
                 <tr className="transition-colors border-b hover:bg-slate-100 dark:hover:bg-slate-900 border-slate-200 dark:border-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-900"
+                    className="px-6 py-4 font-mono font-bold text-slate-950 bg-slate-100 whitespace-nowrap dark:text-slate-50 dark:bg-slate-900"
                   >
                     <span className="flex flex-row items-center gap-2">
                       CustomerID
@@ -89,7 +89,7 @@ export default function Page() {
                 <tr className="transition-colors border-b hover:bg-slate-100 dark:hover:bg-slate-900 border-slate-200 dark:border-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-900"
+                    className="px-6 py-4 font-mono font-bold text-slate-950 bg-slate-100 whitespace-nowrap dark:text-slate-50 dark:bg-slate-900"
                   >
                     Name
                   </th>
@@ -102,7 +102,7 @@ export default function Page() {
                 <tr className="transition-colors border-b hover:bg-slate-100 dark:hover:bg-slate-900 border-slate-200 dark:border-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-900"
+                    className="px-6 py-4 font-mono font-bold text-slate-950 bg-slate-100 whitespace-nowrap dark:text-slate-50 dark:bg-slate-900"
                   >
                     Affiliate_Company
                   </th>
@@ -115,7 +115,7 @@ export default function Page() {
                 <tr className="transition-colors border-b hover:bg-slate-100 dark:hover:bg-slate-900 border-slate-200 dark:border-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-900"
+                    className="px-6 py-4 font-mono font-bold text-slate-950 bg-slate-100 whitespace-nowrap dark:text-slate-50 dark:bg-slate-900"
                   >
                     Email
                   </th>
@@ -129,7 +129,7 @@ export default function Page() {
                 <tr className="transition-colors border-b hover:bg-slate-100 dark:hover:bg-slate-900 border-slate-200 dark:border-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-900"
+                    className="px-6 py-4 font-mono font-bold text-slate-950 bg-slate-100 whitespace-nowrap dark:text-slate-50 dark:bg-slate-900"
                   >
                     Address
                   </th>
@@ -143,7 +143,7 @@ export default function Page() {
                 <tr className="transition-colors border-b hover:bg-slate-100 dark:hover:bg-slate-900 border-slate-200 dark:border-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-900"
+                    className="px-6 py-4 font-mono font-bold text-slate-950 bg-slate-100 whitespace-nowrap dark:text-slate-50 dark:bg-slate-900"
                   >
                     City
                   </th>
@@ -154,7 +154,7 @@ export default function Page() {
                 <tr className="transition-colors border-b hover:bg-slate-100 dark:hover:bg-slate-900 border-slate-200 dark:border-slate-800">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-900"
+                    className="px-6 py-4 font-mono font-bold text-slate-950 bg-slate-100 whitespace-nowrap dark:text-slate-50 dark:bg-slate-900"
                   >
                     Age
                   </th>
@@ -165,7 +165,7 @@ export default function Page() {
                 <tr className="transition-colors hover:bg-slate-100 dark:hover:bg-slate-900">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-mono font-bold text-slate-900 bg-slate-100 whitespace-nowrap dark:text-white dark:bg-slate-900"
+                    className="px-6 py-4 font-mono font-bold text-slate-950 bg-slate-100 whitespace-nowrap dark:text-slate-50 dark:bg-slate-900"
                   >
                     Loyalty_Plan
                   </th>

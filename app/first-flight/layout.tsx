@@ -3,7 +3,7 @@ import InfoBlock from "@/app/_components/InfoBlock";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <main className="container flex flex-col gap-4 my-4">
+    <main className="container flex flex-col gap-4 mt-4">
       <InfoBlock>
         Click on any line in the snippets below for additional info. To close
         it, press{" "}

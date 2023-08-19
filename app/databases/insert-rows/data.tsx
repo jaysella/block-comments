@@ -12,26 +12,26 @@ export type Customer = {
   loyaltyPlan: boolean;
 };
 
-export const CODE = `INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (1, 'Krystyna McIntee', 'Feedfish', null, '414 Merrick Junction', 'Boston', 51, FALSE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (2, 'Garrott Meriton', 'Abatz', 'gmeriton1@godaddy.com', '0 Prentice Lane', 'Cambridge', 98, FALSE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (3, 'Had Nials', 'Photolist', 'hnials2@surveymonkey.com', null, 'Somerville', 68, TRUE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (4, 'Haze Toppes', 'Shufflebeat', 'htoppes3@webs.com', '03258 Buhler Circle', 'Cornwall', 87, FALSE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (5, 'Hyacintha Bold', 'Voonix', null, '0127 Vernon Street', 'Port Glaud', 26, TRUE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (6, 'Archibald Streeting', 'Linkbuzz', 'astreeting5@canalblog.com', '127 Butterfield Place', 'Oemollo', 64, FALSE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (7, 'Balduin Loade', 'Agimba', null, '497 Lukken Point', 'Fenway', 73, TRUE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (8, 'Uta Othen', 'Feedfish', 'uothen7@umich.edu', null, 'Reading', 62, TRUE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (9, 'Darcie Flahy', null, 'dflahy8@tinypic.com', '1772 8th Way', null, 29, TRUE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (10, 'Steffane Fallon', 'Buzzshare', 'sfallon9@economist.com', '99 Brickson Park Junction', null, 54, FALSE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (11, 'Cos Vlasenko', 'Skidoo', 'cvlasenkoa@apple.com', '7294 Pepper Wood Parkway', 'Cambridge', 57, TRUE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (12, 'Ogdan Feares', 'Feedfish', 'ofearesb@ow.ly', '449 Utah Park', 'Boston', 41, TRUE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (13, 'Kaycee Wolstencroft', 'Jaxnation', 'kwolstencroftc@senate.gov', '66 Village Green Pass', 'Seia', 68, TRUE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (14, 'Solly Frogley', 'Viva', 'sfrogleyd@cdc.gov', '2793 Little Fleur Hill', 'Mayapusi', 62, FALSE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (15, 'Sansone Nattriss', 'Kaymbo', null, '77053 Starling Park', 'Banfora', 30, TRUE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (16, 'Clementina Ferrillo', 'Zoomdog', 'cferrillof@t-online.de', null, 'Boston', 65, FALSE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (17, 'Brett O''Farrell', 'Agivu', null, '04 Norway Maple Street', null, 31, FALSE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (18, 'Rod Daviddi', 'Ozu', 'rdaviddih@istockphoto.com', '04 Bowman Drive', null, 54, TRUE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (19, 'Kippar Dudbridge', null, 'kdudbridgei@wunderground.com', '1 Summit Drive', 'Lexington', 88, FALSE);
-INSERT INTO Customers (CustomerID, Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES (20, 'Ardelis Pershouse', 'Kimia', 'apershousej@opensource.org', '49787 Amoth Court', 'Somerville', 61, FALSE);`;
+export const CODE = `INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Krystyna McIntee', 'Feedfish', null, '414 Merrick Junction', 'Boston', 51, FALSE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Garrott Meriton', 'Abatz', 'gmeriton1@godaddy.com', '0 Prentice Lane', 'Cambridge', 98, FALSE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Had Nials', 'Photolist', 'hnials2@surveymonkey.com', null, 'Somerville', 68, TRUE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Haze Toppes', 'Shufflebeat', 'htoppes3@webs.com', '03258 Buhler Circle', 'Cornwall', 87, FALSE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Hyacintha Bold', 'Voonix', null, '0127 Vernon Street', 'Port Glaud', 26, TRUE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Archibald Streeting', 'Linkbuzz', 'astreeting5@canalblog.com', '127 Butterfield Place', 'Oemollo', 64, FALSE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Balduin Loade', 'Agimba', null, '497 Lukken Point', 'Fenway', 73, TRUE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Uta Othen', 'Feedfish', 'uothen7@umich.edu', null, 'Reading', 62, TRUE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Darcie Flahy', null, 'dflahy8@tinypic.com', '1772 8th Way', null, 29, TRUE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Steffane Fallon', 'Buzzshare', 'sfallon9@economist.com', '99 Brickson Park Junction', null, 54, FALSE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Cos Vlasenko', 'Skidoo', 'cvlasenkoa@apple.com', '7294 Pepper Wood Parkway', 'Cambridge', 57, TRUE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Ogdan Feares', 'Feedfish', 'ofearesb@ow.ly', '449 Utah Park', 'Boston', 41, TRUE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Kaycee Wolstencroft', 'Jaxnation', 'kwolstencroftc@senate.gov', '66 Village Green Pass', 'Seia', 68, TRUE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Solly Frogley', 'Viva', 'sfrogleyd@cdc.gov', '2793 Little Fleur Hill', 'Mayapusi', 62, FALSE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Sansone Nattriss', 'Kaymbo', null, '77053 Starling Park', 'Banfora', 30, TRUE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Clementina Ferrillo', 'Zoomdog', 'cferrillof@t-online.de', null, 'Boston', 65, FALSE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Brett O''Farrell', 'Agivu', null, '04 Norway Maple Street', null, 31, FALSE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Rod Daviddi', 'Ozu', 'rdaviddih@istockphoto.com', '04 Bowman Drive', null, 54, TRUE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Kippar Dudbridge', null, 'kdudbridgei@wunderground.com', '1 Summit Drive', 'Lexington', 88, FALSE);
+INSERT INTO Customers (Name, Affiliate_Company, Email, Address, City, Age, Loyalty_Plan) VALUES ('Ardelis Pershouse', 'Kimia', 'apershousej@opensource.org', '49787 Amoth Court', 'Somerville', 61, FALSE);`;
 
 export const CUSTOMERS: Customer[] = [
   {
@@ -247,9 +247,6 @@ export const CODE_EXPLANATIONS: Explanation[] = [
         <CodeSegment>Customers</CodeSegment> table in the following fields, in
         order:
         <ol className="mt-2 ml-6 leading-relaxed list-decimal">
-          <li>
-            <CodeSegment>CustomerID</CodeSegment>
-          </li>
           <li>
             <CodeSegment>Name</CodeSegment>
           </li>

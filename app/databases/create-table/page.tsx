@@ -28,36 +28,24 @@ export default function Page() {
 
       <Block>
         <BlockHeader>
-          <BlockTitle title="Table Schema: Customers" />
+          <BlockTitle title="Resulting Table Schema: Customers" />
         </BlockHeader>
 
-        <BlockContent>
-          <div className="relative w-full overflow-x-auto border rounded-lg border-slate-200 dark:border-slate-800">
+        <BlockContent withPadding={false}>
+          <div className="relative w-full overflow-x-auto">
             <table className="w-full text-sm text-left text-slate-500 dark:text-slate-400">
               <thead className="text-xs uppercase border-b text-slate-700 dark:text-slate-400 border-slate-200 dark:border-slate-800">
-                <tr>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 bg-slate-100 dark:bg-slate-900"
-                  >
+                <tr className="bg-slate-100 dark:bg-slate-900">
+                  <th scope="col" className="px-6 py-3">
                     Attribute Name
                   </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 bg-slate-100 dark:bg-slate-900"
-                  >
+                  <th scope="col" className="px-6 py-3">
                     Data Type
                   </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 bg-slate-100 dark:bg-slate-900"
-                  >
+                  <th scope="col" className="px-6 py-3">
                     Business Definition
                   </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 bg-slate-100 dark:bg-slate-900"
-                  >
+                  <th scope="col" className="px-6 py-3">
                     Notes
                   </th>
                 </tr>

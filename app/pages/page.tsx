@@ -95,6 +95,9 @@ export default function Page() {
             </li>
           </ul>
         </li>
+        <li>
+          <Link href="/credits">Credits</Link>
+        </li>
       </ul>
     </div>
   );

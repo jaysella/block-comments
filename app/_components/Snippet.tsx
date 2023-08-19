@@ -187,7 +187,7 @@ export function SnippetContent({
             className,
             wrapText
               ? "overflow-hidden whitespace-break-spaces"
-              : "overflow-auto"
+              : "overflow-x-auto"
           )}
         >
           {tokens.map((line, i) => {
@@ -213,7 +213,7 @@ export function SnippetContent({
                 {withLineNumbers && (
                   <div
                     className={cn(
-                      "self-end flex-shrink-0 w-10 select-none text-slate-400 dark:text-slate-500",
+                      "shrink-0 w-10 select-none text-slate-400 dark:text-slate-500",
                       highlight && highlights[lineNum].color
                         ? `text-${highlights[lineNum].color}-600 dark:text-${highlights[lineNum].color}-400`
                         : ""

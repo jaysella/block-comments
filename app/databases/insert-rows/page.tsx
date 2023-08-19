@@ -74,7 +74,7 @@ const TableRow = ({
   return (
     <tr
       className={cn(
-        "transition-colors hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-950 dark:hover:text-slate-50",
+        "transition-colors hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-950 dark:hover:text-slate-50 group",
         !lastItem ? "border-b border-slate-200 dark:border-slate-800" : ""
       )}
     >
@@ -86,7 +86,7 @@ const TableRow = ({
         className={cn(
           "px-6 py-1",
           !customer.affiliateCompany
-            ? "text-purple-600 dark:text-purple-400 bg-purple-50 font-mono"
+            ? "text-purple-600 dark:text-purple-400 group-hover:bg-purple-100 dark:group-hover:bg-purple-900 transition-colors group-hover:text-purple-700 dark:group-hover:text-purple-300 dark:bg-purple-950 bg-purple-50 font-mono"
             : ""
         )}
       >
@@ -96,7 +96,7 @@ const TableRow = ({
         className={cn(
           "px-6 py-1",
           !customer.email
-            ? "text-purple-600 dark:text-purple-400 bg-purple-50 font-mono"
+            ? "text-purple-600 dark:text-purple-400 group-hover:bg-purple-100 dark:group-hover:bg-purple-900 transition-colors group-hover:text-purple-700 dark:group-hover:text-purple-300 dark:bg-purple-950 bg-purple-50 font-mono"
             : ""
         )}
       >
@@ -106,7 +106,7 @@ const TableRow = ({
         className={cn(
           "px-6 py-1",
           !customer.address
-            ? "text-purple-600 dark:text-purple-400 bg-purple-50 font-mono"
+            ? "text-purple-600 dark:text-purple-400 group-hover:bg-purple-100 dark:group-hover:bg-purple-900 transition-colors group-hover:text-purple-700 dark:group-hover:text-purple-300 dark:bg-purple-950 bg-purple-50 font-mono"
             : ""
         )}
       >
@@ -116,7 +116,7 @@ const TableRow = ({
         className={cn(
           "px-6 py-1",
           !customer.city
-            ? "text-purple-600 dark:text-purple-400 bg-purple-50 font-mono"
+            ? "text-purple-600 dark:text-purple-400 group-hover:bg-purple-100 dark:group-hover:bg-purple-900 transition-colors group-hover:text-purple-700 dark:group-hover:text-purple-300 dark:bg-purple-950 bg-purple-50 font-mono"
             : ""
         )}
       >

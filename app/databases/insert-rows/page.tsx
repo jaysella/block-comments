@@ -51,7 +51,9 @@ export default function Page() {
                       </Tooltip>
                     </span>
                   </th>
-                  <th className="px-6 py-2">Name</th>
+                  <th className="sticky left-0 px-6 py-2 bg-slate-100 dark:bg-slate-900">
+                    Name
+                  </th>
                   <th className="px-6 py-2">Affiliate_Company</th>
                   <th className="px-6 py-2">Email</th>
                   <th className="px-6 py-2">Address</th>
@@ -100,7 +102,7 @@ const TableRow = ({
       )}
     >
       <td className="px-6 py-1">{customer.customerId}</td>
-      <td className="px-6 py-1 text-slate-950 dark:text-slate-50">
+      <td className="sticky left-0 px-6 py-1 bg-slate-100 dark:bg-slate-900 text-slate-950 dark:text-slate-50">
         {customer.name}
       </td>
       <td

@@ -1,13 +1,5 @@
 import { cn } from "@/lib/utils";
-import {
-  CheckCircle2Icon,
-  CheckCircleIcon,
-  CircleDotIcon,
-  CircleIcon,
-  TagIcon,
-  dynamicIconImports,
-} from "lucide-react";
-import dynamic from "next/dynamic";
+import { CheckCircle2Icon, CircleDotIcon, CircleIcon } from "lucide-react";
 import { ReactNode } from "react";
 import StoryPoint from "./sprint/StoryPoint";
 

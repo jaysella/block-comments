@@ -94,7 +94,7 @@ export default function KMersPlayground({
   };
 
   useEffect(() => {
-    let interval: NodeJS.Timer;
+    let interval: NodeJS.Timeout;
 
     if (isPlaying) {
       interval = setInterval(() => {

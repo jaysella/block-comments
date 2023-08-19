@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 export function Block({ children }: { children: ReactNode }) {
   return (
-    <div className="@container border-2 rounded-xl border-slate-200 dark:border-slate-800 bg-slate-50 text-slate-700 dark:text-slate-200 dark:bg-slate-950 overflow-clip">
+    <div className="@container border-2 rounded-xl border-slate-200 dark:border-slate-800 bg-slate-50 text-slate-700 dark:text-slate-200 dark:bg-slate-950">
       {children}
     </div>
   );

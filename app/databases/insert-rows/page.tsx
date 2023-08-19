@@ -8,6 +8,12 @@ import {
 import { Metadata } from "next";
 import { CODE, CODE_EXPLANATIONS, CUSTOMERS, Customer } from "./data";
 import { cn } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/app/_components/ui/tooltip";
+import { InfoIcon } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Databases: Insert Rows",
@@ -68,7 +74,7 @@ const TableRow = ({
   return (
     <tr
       className={cn(
-        "transition-colors hover:bg-slate-100 dark:hover:bg-slate-900",
+        "transition-colors hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-950 dark:hover:text-slate-50",
         !lastItem ? "border-b border-slate-200 dark:border-slate-800" : ""
       )}
     >
@@ -118,7 +124,24 @@ const TableRow = ({
       </td>
       <td className="px-6 py-1">{customer.age}</td>
       <td className="px-6 py-1 font-mono">
-        {customer.loyaltyPlan ? "TRUE" : "FALSE"}
+        <span className="grid items-center grid-cols-2 gap-2">
+          {customer.loyaltyPlan ? "TRUE" : "FALSE"}
+          <Tooltip>
+            <TooltipTrigger>
+              <InfoIcon
+                size={14}
+                className="text-slate-400 dark:text-slate-600"
+              />
+            </TooltipTrigger>
+            <TooltipContent className="w-36">
+              <p className="font-sans font-normal">
+                This customer{" "}
+                <strong>{customer.loyaltyPlan ? "is" : "is not"}</strong> a
+                loyalty member.
+              </p>
+            </TooltipContent>
+          </Tooltip>
+        </span>
       </td>
     </tr>
   );

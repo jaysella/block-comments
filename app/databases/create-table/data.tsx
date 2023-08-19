@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 
 export const CODE = `CREATE TABLE IF NOT EXISTS Customers (
-  CustomerID integer PRIMARY KEY,
+  Customer_ID integer PRIMARY KEY,
   Name text,
   Affiliate_Company text,
   Email text,
@@ -41,7 +41,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
         This line defines a column for the <CodeSegment>Customers</CodeSegment>{" "}
         table:
         <ColumnDetails
-          name="CustomerID"
+          name="Customer_ID"
           type="integer"
           definition="A unique, universal identification for a customer."
           notes={

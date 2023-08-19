@@ -57,7 +57,7 @@ export default function Page() {
                     className="px-6 py-4 font-mono font-bold text-slate-950 bg-slate-100 whitespace-nowrap dark:text-slate-50 dark:bg-slate-900"
                   >
                     <span className="flex flex-row items-center gap-2">
-                      CustomerID
+                      Customer_ID
                       <Tooltip>
                         <TooltipTrigger>
                           <KeyRoundIcon size={16} className="text-blue-500" />

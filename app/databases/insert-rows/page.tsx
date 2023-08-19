@@ -38,7 +38,7 @@ export default function Page() {
                 <tr className="text-xs uppercase border-b bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-400 border-slate-200 dark:border-slate-800">
                   <th className="px-6 py-2">
                     <span className="flex flex-row items-center gap-2">
-                      CustomerID
+                      Customer_ID
                       <Tooltip>
                         <TooltipTrigger>
                           <KeyRoundIcon size={12} className="text-blue-500" />

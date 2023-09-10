@@ -159,8 +159,8 @@ const TableRow = ({
             <TooltipContent side="top" align="end" className="w-36">
               <p className="font-sans font-normal">
                 This customer{" "}
-                <strong>{customer.loyaltyPlan ? "is" : "is not"}</strong> a
-                loyalty member.
+                <strong>{customer.loyaltyPlan ? "is" : "is not"}</strong> a on a
+                loyalty plan.
               </p>
             </TooltipContent>
           </Tooltip>

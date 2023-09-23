@@ -11,7 +11,7 @@ import {
   BlockHeader,
   BlockTitle,
 } from "@/app/_components/ui/block";
-import { Ticket } from "@/app/product/sprint/data";
+import { Ticket } from "@/app/(content)/product/sprint/data";
 
 export default function SprintBacklog({ tickets }: { tickets: Ticket[] }) {
   return (

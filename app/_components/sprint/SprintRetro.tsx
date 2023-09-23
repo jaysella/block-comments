@@ -5,7 +5,7 @@ import {
   BlockHeader,
   BlockTitle,
 } from "@/app/_components/ui/block";
-import { Problem } from "@/app/product/sprint/data";
+import { Problem } from "@/app/(content)/product/sprint/data";
 import { cn } from "@/lib/utils";
 import { BadgeAlertIcon, CheckIcon } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";

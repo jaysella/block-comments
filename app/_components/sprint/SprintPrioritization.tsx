@@ -9,7 +9,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
-import { Ticket } from "@/app/product/sprint/data";
+import { Ticket } from "@/app/(content)/product/sprint/data";
 import { cn, moveArrayItem } from "@/lib/utils";
 import { Reorder } from "framer-motion";
 import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";

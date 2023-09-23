@@ -59,6 +59,16 @@ export default function Snippet({
   const { toast } = useToast();
   const [wrapText, setWrapText] = useState<boolean>(false);
 
+  useEffect(() => {
+    if (window.self !== window.top) {
+      // loaded within an iframe
+      toast({ title: "Loaded within iframe" });
+    } else {
+      // not loaded within an iframe
+      console.log("I am not inside an iframe.");
+    }
+  }, []);
+
   return (
     <Block>
       <BlockHeader>

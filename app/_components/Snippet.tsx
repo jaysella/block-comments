@@ -19,7 +19,12 @@ import {
 import { useThemeDetector } from "@/app/_components/ui/use-theme-detector";
 import { useToast } from "@/app/_components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import { AlignLeftIcon, CopyIcon, WrapTextIcon } from "lucide-react";
+import {
+  AlignLeftIcon,
+  ArrowUpRightIcon,
+  CopyIcon,
+  WrapTextIcon,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import {
   Highlight as HighlightPrimitive,
@@ -57,15 +62,16 @@ export default function Snippet({
   children: string;
 }) {
   const { toast } = useToast();
-  const [wrapText, setWrapText] = useState<boolean>(false);
+  const [wrapText, setWrapText] = useState(false);
+  const [inFrame, setInFrame] = useState(false);
 
   useEffect(() => {
     if (window.self !== window.top) {
       // loaded within an iframe
-      toast({ title: "Loaded within iframe" });
+      setInFrame(true);
     } else {
       // not loaded within an iframe
-      console.log("I am not inside an iframe.");
+      setInFrame(false);
     }
   }, []);
 
@@ -125,6 +131,22 @@ export default function Snippet({
               <p>Copy snippet</p>
             </TooltipContent>
           </Tooltip>
+
+          {inFrame ? (
+            <Tooltip>
+              <TooltipTrigger
+                className="p-2 rounded-lg cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-800"
+                asChild
+              >
+                <a href="#" target="_blank">
+                  <ArrowUpRightIcon size={18} />
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Open in new tab</p>
+              </TooltipContent>
+            </Tooltip>
+          ) : null}
         </BlockControls>
       </BlockHeader>
       <SnippetContent

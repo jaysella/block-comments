@@ -1,34 +1,33 @@
 import {
-  Block,
-  BlockContent,
-  BlockControls,
-  BlockHeader,
-  BlockTitle,
-} from "@/app/_components/ui/block";
-import {
   PROBLEMS,
   PRODUCT_BACKLOG,
   Problem,
   SPRINT_BACKLOG,
   Story,
   Ticket,
-} from "@/app/product/sprint/data";
+} from "@/app/(content)/product/sprint/data";
+import {
+  Block,
+  BlockContent,
+  BlockControls,
+  BlockHeader,
+  BlockTitle,
+} from "@/app/_components/ui/block";
+import { Tooltip } from "@radix-ui/react-tooltip";
+import { saveAs } from "file-saver";
 import {
   AwardIcon,
   Contact2Icon,
   CopyIcon,
   DownloadCloudIcon,
-  LinkIcon,
   ListTodoIcon,
   SmileIcon,
 } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import { KanbanLabel } from "../Kanban";
-import { saveAs } from "file-saver";
-import { Tooltip } from "@radix-ui/react-tooltip";
 import { TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { useToast } from "../ui/use-toast";
-import { usePathname, useRouter } from "next/navigation";
 
 export default function SprintRecap({
   firstName,

@@ -35,6 +35,7 @@ import {
   themes,
 } from "prism-react-renderer";
 import { ReactNode, useEffect, useState } from "react";
+import { useIframe } from "./ui/use-iframe";
 
 export type Explanation = {
   lines?: number[];
@@ -62,18 +63,8 @@ export default function Snippet({
   children: string;
 }) {
   const { toast } = useToast();
+  const inFrame = useIframe();
   const [wrapText, setWrapText] = useState(false);
-  const [inFrame, setInFrame] = useState(false);
-
-  useEffect(() => {
-    if (window.self !== window.top) {
-      // loaded within an iframe
-      setInFrame(true);
-    } else {
-      // not loaded within an iframe
-      setInFrame(false);
-    }
-  }, []);
 
   return (
     <Block>

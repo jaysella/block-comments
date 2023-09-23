@@ -55,6 +55,16 @@ export default function Page() {
           </ul>
         </li>
         <li>
+          <h2 className="font-semibold">Data Science Process</h2>
+          <ul className="pl-4 mt-1">
+            <li>
+              <Link href="/ds-process/classification">
+                Classification Guide (Python)
+              </Link>
+            </li>
+          </ul>
+        </li>
+        <li>
           <h2 className="font-semibold">Product Management</h2>
           <ul className="pl-4 mt-1">
             <li>

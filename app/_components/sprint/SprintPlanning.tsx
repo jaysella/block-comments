@@ -1,4 +1,9 @@
 import {
+  PRODUCT_BACKLOG,
+  Story,
+  Ticket,
+} from "@/app/(content)/product/sprint/data";
+import {
   Alert,
   AlertDescription,
   AlertTitle,
@@ -16,7 +21,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
-import { PRODUCT_BACKLOG, Story, Ticket } from "@/app/product/sprint/data";
 import { cn } from "@/lib/utils";
 import {
   AnimatePresence,

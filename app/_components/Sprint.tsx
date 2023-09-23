@@ -1,6 +1,15 @@
 "use client";
 
 import {
+  ACTION_ITEMS,
+  PROBLEMS,
+  PRODUCT_BACKLOG,
+  Problem,
+  SPRINT_BACKLOG,
+  Story,
+  Ticket,
+} from "@/app/(content)/product/sprint/data";
+import {
   Block,
   BlockContent,
   BlockControls,
@@ -17,15 +26,6 @@ import { motion } from "framer-motion";
 import { ArrowRightIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-  ACTION_ITEMS,
-  PROBLEMS,
-  PRODUCT_BACKLOG,
-  Problem,
-  SPRINT_BACKLOG,
-  Story,
-  Ticket,
-} from "../product/sprint/data";
 import DailyScrum from "./sprint/DailyScrum";
 import Onboarding from "./sprint/Onboarding";
 import ProductBacklog from "./sprint/ProductBacklog";

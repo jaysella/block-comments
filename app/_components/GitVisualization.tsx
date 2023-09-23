@@ -1,5 +1,6 @@
 "use client";
 
+import { COMMITS as commits } from "@/app/(content)/git/visualization/data";
 import Files from "@/app/_components/Files";
 import { CommitHistory } from "@/app/_components/ui/commit-history";
 import {
@@ -21,7 +22,6 @@ import {
   GitCommitIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { COMMITS as commits } from "../git/visualization/data";
 import { Block, BlockControls, BlockHeader, BlockTitle } from "./ui/block";
 
 export default function GitVisualization() {

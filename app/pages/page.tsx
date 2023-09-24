@@ -65,6 +65,14 @@ export default function Page() {
           </ul>
         </li>
         <li>
+          <h2 className="font-semibold">Web Dev</h2>
+          <ul className="pl-4 mt-1">
+            <li>
+              <Link href="/web-dev/skeleton">Skeleton Structure</Link>
+            </li>
+          </ul>
+        </li>
+        <li>
           <h2 className="font-semibold">Product Management</h2>
           <ul className="pl-4 mt-1">
             <li>

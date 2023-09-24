@@ -70,6 +70,9 @@ export default function Page() {
             <li>
               <Link href="/web-dev/skeleton">Skeleton Structure</Link>
             </li>
+            <li>
+              <Link href="/web-dev/links">Skeleton Structure with Links</Link>
+            </li>
           </ul>
         </li>
         <li>

@@ -4,13 +4,28 @@ import { CodeSegment } from "@/app/_components/ui/code-segment";
 export const CODE = `<main>
   <div>
     <h1>[Your Name]</h1>
-    <p>[Your major]</p>
+    <p>Quantum-computer Science major, Northeastern University</p>
     <ul>
-      <li>[Your email]</li>
-      <li>[Your favorite website]</li>
+      <li>
+        <a href="mailto:email.yours@northeastern.edu">email.yours@northeastern.edu</a>
+      </li>
+      <li>
+        <a href="https://www.northeastern.edu">www.northeastern.edu</a>
+      </li>
     </ul>
   </div>
 </main>`;
+
+export const CODE_HIGHLIGHTS = {
+  7: {
+    color: "blue",
+    label: "+/-",
+  },
+  10: {
+    color: "blue",
+    label: "+/-",
+  },
+};
 
 export const CODE_EXPLANATIONS: Explanation[] = [
   {
@@ -86,7 +101,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    lines: [6, 7],
+    lines: [6, 9],
     content: (
       <>
         The <CodeSegment>{"<li>"}</CodeSegment> element represents an item in a
@@ -100,7 +115,18 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     ),
   },
   {
-    lines: [8, 9, 10],
+    lines: [7, 10],
+    content: (
+      <>
+        The <CodeSegment>{"<a>"}</CodeSegment> element (or <em>anchor</em>{" "}
+        element), with its <CodeSegment>href</CodeSegment> attribute, creates a
+        hyperlink to web pages, files, email addresses, locations in the same
+        page, or anything else a URL can address.
+      </>
+    ),
+  },
+  {
+    lines: [8, 11, 12, 13, 14],
     content: (
       <>
         The starting forward slash denotes that this is a closing tag, closing

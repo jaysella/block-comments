@@ -27,14 +27,10 @@ export default function Page() {
           <main className="font-serif prose">
             <div>
               <h1>[Your Name]</h1>
-              <p>[Your Major], Northeastern University</p>
+              <p>[Your major]</p>
               <ul>
-                <li>
-                  <a>[Your email]</a>
-                </li>
-                <li>
-                  <a>[Your favorite website]</a>
-                </li>
+                <li>[Your email]</li>
+                <li>[Your favorite website]</li>
               </ul>
             </div>
           </main>

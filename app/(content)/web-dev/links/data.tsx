@@ -3,7 +3,7 @@ import { CodeSegment } from "@/app/_components/ui/code-segment";
 
 export const CODE = `<main>
   <div>
-    <h1>[Your Name]</h1>
+    <h1>Your Name</h1>
     <p>Quantum-computer Science major, Northeastern University</p>
     <ul>
       <li>

@@ -37,7 +37,7 @@ export const COMMITS: Commit[] = [
   },
   {
     hash: "bb77b1d",
-    branches: ["main", "fix-pagination"],
+    branches: ["fix-pagination"],
     author: "Indigo Patel",
     ts: randomDate4.toDate(),
     message: "Tweak page count logic",

@@ -10,7 +10,7 @@ import "fmt"
 func countkmers(sequence string, k int) map[string]int {
 	var kmers = make(map[string]int)
 
-	if k > len(sequence) {
+	if k > len(sequence) || k <= 0 {
 		return kmers
 	}
 
@@ -139,10 +139,12 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     lines: [8],
     content: (
       <>
-        This is a conditional statement. The contents on lines 9 will only be
+        This is a conditional statement. The code on line 9 will only be
         evaluated if <CodeSegment>k</CodeSegment> is greater than (
         <CodeSegment>{">"}</CodeSegment>) the length of the given{" "}
-        <CodeSegment>sequence</CodeSegment>.
+        <CodeSegment>sequence</CodeSegment> <strong>OR</strong> (
+        <CodeSegment>||</CodeSegment>) if <CodeSegment>k</CodeSegment> is less
+        than or equal to (<CodeSegment>{"<="}</CodeSegment>) zero (0).
         <br />
         <br />
         <CodeSegment>len()</CodeSegment> is a built-in function which returns
@@ -154,9 +156,9 @@ export const CODE_EXPLANATIONS: Explanation[] = [
     lines: [9],
     content: (
       <>
-        If the above conditional is true, the <CodeSegment>kmers</CodeSegment>{" "}
-        variable will be output as the result of the{" "}
-        <CodeSegment>countkmers</CodeSegment> function.
+        If the above conditional is true, the empty{" "}
+        <CodeSegment>kmers</CodeSegment> variable will be output as the result
+        of the <CodeSegment>countkmers</CodeSegment> function.
       </>
     ),
   },

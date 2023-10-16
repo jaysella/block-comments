@@ -9,7 +9,7 @@ import "fmt"
 func countkmers(sequence string, k int) map[string]int {
 	var kmers = make(map[string]int)
 
-	if k > len(sequence) || k ≤ 0 {
+	if k > len(sequence) || k <= 0 {
 		return kmers
 	}
 

@@ -5,7 +5,7 @@ import Link from "next/link";
 export const CODE = `func countkmers(sequence string, k int) map[string]int {
   var kmers = make(map[string]int)
 
-  if k > len(sequence) {
+  if k > len(sequence) || k <= 0 {
     return kmers
   }
 
@@ -135,7 +135,7 @@ export const CODE_EXPLANATIONS: Explanation[] = [
           rel="noopener noreferrer"
           className="link"
         >
-          slide header
+          slice header
         </Link>{" "}
         contains only a pointer to the underlying array, size, and capacity.
         These three values can be updated behind the scenes in constant time.

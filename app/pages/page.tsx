@@ -84,6 +84,14 @@ export default function Page() {
           </ul>
         </li>
         <li>
+          <h2 className="font-semibold">Machine Learning</h2>
+          <ul className="pl-4 mt-1">
+            <li>
+              <Link href="/machine-learning/data-cleaning">Data Cleaning</Link>
+            </li>
+          </ul>
+        </li>
+        <li>
           <h2 className="font-semibold">Tools: Databases</h2>
           <ul className="pl-4 mt-1">
             <li>

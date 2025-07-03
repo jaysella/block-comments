@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Sprint from "@/app/_components/Sprint";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Product Management: Sprint Simulation"
@@ -8,7 +9,9 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="flex flex-col gap-4">
-      <Sprint />
+      <Suspense>
+        <Sprint />
+      </Suspense>
     </div>
   );
 }

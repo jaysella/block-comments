@@ -1,10 +1,10 @@
 import {
   PROBLEMS,
   PRODUCT_BACKLOG,
-  Problem,
+  type Problem,
   SPRINT_BACKLOG,
-  Story,
-  Ticket,
+  type Story,
+  type Ticket,
 } from "@/app/(content)/product/sprint/data";
 import {
   Block,

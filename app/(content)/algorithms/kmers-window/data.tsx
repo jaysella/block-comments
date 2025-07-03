@@ -2,6 +2,7 @@ import { Explanation, SnippetContent } from "@/app/_components/Snippet";
 import KMersPlayground from "@/app/_components/KMersPlayground";
 import { CodeSegment } from "@/app/_components/ui/code-segment";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export const CODE = `package main
 
@@ -274,12 +275,14 @@ export const CODE_EXPLANATIONS: Explanation[] = [
           </li>
         </ol>
         <br />
-        <KMersPlayground
-          title="Sliding Window"
-          sequence="ACGAGGTACGA"
-          hideSteps={true}
-          hideDetails={true}
-        />
+        <Suspense>
+          <KMersPlayground
+            title="Sliding Window"
+            sequence="ACGAGGTACGA"
+            hideSteps={true}
+            hideDetails={true}
+          />
+        </Suspense>
       </>
     ),
   },

@@ -8,6 +8,7 @@ import {
   OUTPUT,
   OUTPUT_EXPLANATIONS,
 } from "./data";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Algorithms: Sliding Window Technique (Go)"
@@ -29,7 +30,9 @@ export default function Page() {
         {OUTPUT}
       </Snippet>
 
-      <KMersPlayground sequence="ACGAGGTACGA" playground={false} />
+      <Suspense>
+        <KMersPlayground sequence="ACGAGGTACGA" playground={false} />
+      </Suspense>
     </>
   );
 }

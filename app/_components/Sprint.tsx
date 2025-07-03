@@ -22,8 +22,8 @@ import {
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
 import { getRandomInt, shuffle } from "@/lib/utils";
-import { motion } from "framer-motion";
 import { ArrowRightIcon } from "lucide-react";
+import { motion } from "motion/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import DailyScrum from "./sprint/DailyScrum";

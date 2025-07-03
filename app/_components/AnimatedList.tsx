@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { ReactNode } from "react";
 
 export function AnimatedList({ children }: { children: ReactNode }) {

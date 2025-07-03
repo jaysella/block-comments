@@ -17,7 +17,7 @@ import {
 } from "@/app/_components/ui/tooltip";
 import { useThemeDetector } from "@/app/_components/ui/use-theme-detector";
 import { cn, findSubstrings, groupSubstrings } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,

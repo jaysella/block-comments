@@ -5,13 +5,13 @@ import {
   BlockHeader,
   BlockTitle,
 } from "@/app/_components/ui/block";
-import { Problem } from "@/app/(content)/product/sprint/data";
+import { type Problem } from "@/app/(content)/product/sprint/data";
 import { cn } from "@/lib/utils";
 import { BadgeAlertIcon, CheckIcon } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
 import { Dispatch, SetStateAction } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export default function SprintRetro({
   maxImprovements,

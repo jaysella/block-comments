@@ -3,7 +3,7 @@
 import { File } from "@/app/_components/Files";
 import { Block, BlockContent, BlockHeader } from "@/app/_components/ui/block";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import {
   CalendarIcon,
   ClockIcon,

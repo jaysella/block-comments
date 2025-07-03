@@ -6,9 +6,9 @@ import {
   BlockTitle,
 } from "@/app/_components/ui/block";
 import { Checkbox } from "@/app/_components/ui/checkbox";
-import { Story } from "@/app/(content)/product/sprint/data";
+import { type Story } from "@/app/(content)/product/sprint/data";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { CheckIcon } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 import StoryPoint from "./StoryPoint";

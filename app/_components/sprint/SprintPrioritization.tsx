@@ -11,7 +11,7 @@ import {
 } from "@/app/_components/ui/tooltip";
 import { Ticket } from "@/app/(content)/product/sprint/data";
 import { cn, moveArrayItem } from "@/lib/utils";
-import { Reorder } from "framer-motion";
+import { Reorder } from "motion/react";
 import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 import StoryPoint from "./StoryPoint";

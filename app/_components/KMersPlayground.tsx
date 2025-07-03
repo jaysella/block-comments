@@ -17,7 +17,7 @@ import {
 } from "@/app/_components/ui/tooltip";
 import { useThemeDetector } from "@/app/_components/ui/use-theme-detector";
 import { cn, findSubstrings, groupSubstrings } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -148,7 +148,7 @@ export default function KMersPlayground({
           )}
           <Tooltip>
             <TooltipTrigger
-              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 dark:disabled:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
               disabled={step === 0}
               onClick={() => setStep(step - 1)}
             >
@@ -160,7 +160,7 @@ export default function KMersPlayground({
           </Tooltip>
           <Tooltip>
             <TooltipTrigger
-              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 dark:disabled:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
               disabled={totalSteps === step}
               onClick={() => setStep(step + 1)}
             >
@@ -172,7 +172,7 @@ export default function KMersPlayground({
           </Tooltip>
           <Tooltip>
             <TooltipTrigger
-              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800"
+              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 dark:disabled:hover:bg-slate-800"
               onClick={() => {
                 if (!isPlaying && step === totalSteps) {
                   setStep(0);
@@ -194,7 +194,7 @@ export default function KMersPlayground({
           </Tooltip>
           {playground && (
             <Popover>
-              <PopoverTrigger className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800">
+              <PopoverTrigger className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 dark:disabled:hover:bg-slate-800">
                 <Settings2Icon size={18} />
               </PopoverTrigger>
 

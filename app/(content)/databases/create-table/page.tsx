@@ -16,7 +16,7 @@ import {
 } from "@/app/_components/ui/tooltip";
 
 export const metadata: Metadata = {
-  title: "Databases: Create Table",
+  title: "Databases: Create Table"
 };
 
 export default function Page() {

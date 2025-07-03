@@ -3,7 +3,7 @@ import { CODE, CODE_EXPLANATIONS, OUTPUT, OUTPUT_EXPLANATIONS } from "./data";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "First Flight: JavaScript",
+  title: "First Flight: JavaScript"
 };
 
 export default function Page() {

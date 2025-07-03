@@ -22,8 +22,8 @@ import {
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
 import { getRandomInt, shuffle } from "@/lib/utils";
-import { motion } from "framer-motion";
 import { ArrowRightIcon } from "lucide-react";
+import { motion } from "motion/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import DailyScrum from "./sprint/DailyScrum";
@@ -197,7 +197,7 @@ export default function Sprint() {
 
               <Tooltip>
                 <TooltipTrigger
-                  className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+                  className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 dark:disabled:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
                   disabled={!canProgress}
                   onClick={() => setStage(stage + 1)}
                 >

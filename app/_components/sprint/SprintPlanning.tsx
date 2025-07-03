@@ -1,7 +1,7 @@
 import {
   PRODUCT_BACKLOG,
   Story,
-  Ticket,
+  type Ticket,
 } from "@/app/(content)/product/sprint/data";
 import {
   Alert,
@@ -28,7 +28,7 @@ import {
   motion,
   useMotionValue,
   useTransform,
-} from "framer-motion";
+} from "motion/react";
 import {
   AlertTriangleIcon,
   CheckIcon,

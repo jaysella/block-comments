@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { CODE, CODE_EXPLANATIONS, OUTPUT, OUTPUT_EXPLANATIONS } from "./data";
 
 export const metadata: Metadata = {
-  title: "Algorithms: Simple Multiplication (Go)",
+  title: "Algorithms: Simple Multiplication (Go)"
 };
 
 export default function Page() {

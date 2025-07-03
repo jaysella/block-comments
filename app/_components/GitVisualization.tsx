@@ -117,7 +117,7 @@ export default function GitVisualization() {
 
             <Tooltip>
               <TooltipTrigger
-                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 dark:disabled:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
                 disabled={step === 0}
                 onClick={() => setStep(step - 1)}
               >
@@ -130,7 +130,7 @@ export default function GitVisualization() {
 
             <Tooltip>
               <TooltipTrigger
-                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:dark:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
+                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 disabled:cursor-not-allowed disabled:hover:bg-slate-100 dark:disabled:hover:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600"
                 disabled={step === branchCommits.length - 1}
                 onClick={() => setStep(step + 1)}
               >

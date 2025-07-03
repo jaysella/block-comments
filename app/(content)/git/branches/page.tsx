@@ -3,7 +3,7 @@ import { CommitHistory } from "@/app/_components/ui/commit-history";
 import { COMMITS } from "./data";
 
 export const metadata: Metadata = {
-  title: "Git: Branches",
+  title: "Git: Branches"
 };
 
 export default function Page() {

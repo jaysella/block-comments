@@ -5,11 +5,11 @@ import {
   BlockHeader,
   BlockTitle,
 } from "@/app/_components/ui/block";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { motion } from "framer-motion";
 import { CheckIcon } from "lucide-react";
+import { motion } from "motion/react";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export default function Onboarding({
   firstName,

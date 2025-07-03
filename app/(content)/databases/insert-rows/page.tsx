@@ -16,7 +16,7 @@ import {
 import { InfoIcon, KeyRoundIcon } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Databases: Insert Rows",
+  title: "Databases: Insert Rows"
 };
 
 export default function Page() {

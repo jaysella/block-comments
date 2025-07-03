@@ -11,7 +11,7 @@ export function Block({ children }: { children: ReactNode }) {
 
 export function BlockHeader({ children }: { children: ReactNode }) {
   return (
-    <div className="flex items-center justify-between w-full px-4 py-1 min-h-[3rem] @md:px-6 gap-2">
+    <div className="flex items-center justify-between w-full px-4 py-1 min-h-12 @md:px-6 gap-2">
       {children}
     </div>
   );

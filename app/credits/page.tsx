@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Credits",
+  title: "Credits"
 };
 
 export default function Page() {

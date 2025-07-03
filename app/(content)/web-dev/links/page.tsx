@@ -9,7 +9,7 @@ import {
 } from "@/app/_components/ui/block";
 
 export const metadata: Metadata = {
-  title: "Web Dev: Skeleton with Links",
+  title: "Web Dev: Skeleton with Links"
 };
 
 export default function Page() {

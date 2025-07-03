@@ -10,7 +10,7 @@ import {
 } from "./data";
 
 export const metadata: Metadata = {
-  title: "Algorithms: Sliding Window Technique (Go)",
+  title: "Algorithms: Sliding Window Technique (Go)"
 };
 
 export default function Page() {

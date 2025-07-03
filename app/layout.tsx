@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: {
     template: "%s | CS1200 Demos",
     default: "CS1200 Demos",
-  },
+  }
 };
 
 export default function RootLayout({

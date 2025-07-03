@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { CODE, CODE_EXPLANATIONS, OUTPUT, OUTPUT_EXPLANATIONS } from "./data";
 
 export const metadata: Metadata = {
-  title: "Algorithms: Counting K-Mers (Go)",
+  title: "Algorithms: Counting K-Mers (Go)"
 };
 
 export default function Page() {

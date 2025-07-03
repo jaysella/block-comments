@@ -2,7 +2,7 @@ import GitVisualization from "@/app/_components/GitVisualization";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Git: Visualization",
+  title: "Git: Visualization"
 };
 
 export default function Page() {

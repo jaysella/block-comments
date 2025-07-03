@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { CONFLICT } from "./data";
 
 export const metadata: Metadata = {
-  title: "Git: Conflict",
+  title: "Git: Conflict"
 };
 
 export default function Page() {

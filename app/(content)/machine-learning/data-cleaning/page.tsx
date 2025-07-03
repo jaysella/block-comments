@@ -9,7 +9,7 @@ import {
 } from "@/app/_components/ui/block";
 
 export const metadata: Metadata = {
-  title: "Machine Learning: Data Cleaning",
+  title: "Machine Learning: Data Cleaning"
 };
 
 export default function Page() {

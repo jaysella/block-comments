@@ -117,15 +117,15 @@ function Story({
         <div className="flex flex-row items-start justify-between w-full gap-4 not-sr-only">
           <p>
             As a{" "}
-            <mark className="bg-transparent dark:text-slate-100 group-hover:text-blue-800 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 dark:group-hover:text-blue-100 transition-colors -mx-0.5 px-0.5 rounded-sm">
+            <mark className="bg-transparent dark:text-slate-100 group-hover:text-blue-800 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 dark:group-hover:text-blue-100 transition-colors -mx-0.5 px-0.5 rounded-xs">
               {persona}
             </mark>
             , I want to{" "}
-            <mark className="bg-transparent dark:text-slate-100 group-hover:text-purple-800 group-hover:bg-purple-200 dark:group-hover:bg-purple-800 dark:group-hover:text-purple-100 transition-colors-100 -mx-0.5 px-0.5 rounded-sm">
+            <mark className="bg-transparent dark:text-slate-100 group-hover:text-purple-800 group-hover:bg-purple-200 dark:group-hover:bg-purple-800 dark:group-hover:text-purple-100 transition-colors-100 -mx-0.5 px-0.5 rounded-xs">
               {action}
             </mark>{" "}
             so that I can{" "}
-            <mark className="bg-transparent dark:text-slate-100 group-hover:text-green-800 group-hover:bg-green-200 dark:group-hover:bg-green-800 dark:group-hover:text-green-100 transition-colors -mx-0.5 px-0.5 rounded-sm">
+            <mark className="bg-transparent dark:text-slate-100 group-hover:text-green-800 group-hover:bg-green-200 dark:group-hover:bg-green-800 dark:group-hover:text-green-100 transition-colors -mx-0.5 px-0.5 rounded-xs">
               {goal}
             </mark>
             .

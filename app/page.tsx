@@ -14,7 +14,10 @@ export default function Page() {
           <h2 className="font-semibold">First Flight</h2>
           <ul className="pl-4 mt-1">
             <li>
-              <Link href="/first-flight/racket">Racket</Link>
+              <Link href="/first-flight/racket">Racket</Link> (historical)
+            </li>
+            <li>
+              <Link href="/first-flight/pyret">Pyret</Link>
             </li>
             <li>
               <Link href="/first-flight/python">Python</Link>
